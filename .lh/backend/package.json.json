@@ -1,0 +1,26 @@
+{
+    "sourceFile": "backend/package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1764970532228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764970540446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,16 @@\n+{\n+  \"name\": \"backend\",\n+  \"version\": \"1.0.0\",\n+  \"main\": \"index.js\",\n+  \"scripts\": {\n+    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n+    \"dev\": \"nodemon app.js\"\n+  },\n+  \"keywords\": [],\n+  \"author\": \"\",\n+  \"license\": \"ISC\",\n+  \"description\": \"\",\n+  \"dependencies\": {\n+    \"express\": \"^5.2.1\"\n+  }\n+}\n"
+                },
+                {
+                    "date": 1764970655977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,30 +3,16 @@\n   \"version\": \"1.0.0\",\n   \"main\": \"index.js\",\n   \"scripts\": {\n     \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n-    \"dev\": \"nodemon app.js\"\n+    \"dev\": \"nodemon server.js\"\n   },\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n   \"description\": \"\",\n   \"dependencies\": {\n-    \"express\": \"^5.2.1\"\n+    \"express\": \"^5.2.1\",\n+    \"mongodb\": \"^7.0.0\",\n+    \"mongoose\": \"^9.0.1\"\n   }\n }\n-{\n-  \"name\": \"backend\",\n-  \"version\": \"1.0.0\",\n-  \"main\": \"index.js\",\n-  \"scripts\": {\n-    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n-    \"dev\"\n-  },\n-  \"keywords\": [],\n-  \"author\": \"\",\n-  \"license\": \"ISC\",\n-  \"description\": \"\",\n-  \"dependencies\": {\n-    \"express\": \"^5.2.1\"\n-  }\n-}\n"
+                }
+            ],
+            "date": 1764970532228,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"backend\",\n  \"version\": \"1.0.0\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"dev\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"description\": \"\",\n  \"dependencies\": {\n    \"express\": \"^5.2.1\"\n  }\n}\n"
+        }
+    ]
+}

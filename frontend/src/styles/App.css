@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .phone-input .selected-flag {
+    background-color: transparent !important;
+  }
+
+  /* remove scrollbar */
+  .phone-input .country-list {
+    scrollbar-width: none !important;
+  }
+
+}

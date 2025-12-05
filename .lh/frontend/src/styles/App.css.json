@@ -1,0 +1,130 @@
+{
+    "sourceFile": "frontend/src/styles/App.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 28,
+            "patches": [
+                {
+                    "date": 1764966290040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764966332965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,15 @@\n @tailwind utilities;\r\n \r\n \r\n @layer components {\r\n-  .phone-input .flag-dropdown {\r\n-    @apply bg-transparent border-0 shadow-none hover:bg-transparent focus:bg-transparent !important;\r\n+  .phone-input .flag-dropdown,\r\n+  .phone-input .selected-flag {\r\n+    @apply bg-transparent border-0 shadow-none p-0;\r\n   }\r\n \r\n-  .phone-input .selected-flag {\r\n-    @apply bg-transparent p-0 border-0 shadow-none !important;\r\n+  .phone-input .flag-dropdown.open,\r\n+  .phone-input .flag-dropdown:hover,\r\n+  .phone-input .flag-dropdown:focus {\r\n+    @apply bg-transparent border-0 shadow-none;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966351485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,4 +14,9 @@\n   .phone-input .flag-dropdown:focus {\r\n     @apply bg-transparent border-0 shadow-none;\r\n   }\r\n }\r\n+\r\n+\r\n+.red{\r\n+    bg-red\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1764966357189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,6 @@\n }\r\n \r\n \r\n .red{\r\n-    bg-red\r\n+    background-color: red;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1764966378223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,4 @@\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n \r\n-\r\n-@layer components {\r\n-  .phone-input .flag-dropdown,\r\n-  .phone-input .selected-flag {\r\n-    @apply bg-transparent border-0 shadow-none p-0;\r\n-  }\r\n-\r\n-  .phone-input .flag-dropdown.open,\r\n-  .phone-input .flag-dropdown:hover,\r\n-  .phone-input .flag-dropdown:focus {\r\n-    @apply bg-transparent border-0 shadow-none;\r\n-  }\r\n-}\r\n-\r\n-\r\n-.red{\r\n-    background-color: red;\r\n-}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1764966405363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n \r\n+.react-tel-input .flag-dropdown:hover,\r\n+.react-tel-input .flag-dropdown.open { background-color: #fff; }\r\n"
+                },
+                {
+                    "date": 1764966437220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,23 @@\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n \r\n-.react-tel-input .flag-dropdown:hover,\r\n-.react-tel-input .flag-dropdown.open { background-color: #fff; }\r\n+@layer components {\r\n+  /* base state */\r\n+  .phone-input .flag-dropdown,\r\n+  .phone-input .selected-flag {\r\n+    background-color: transparent !important;\r\n+    border: none !important;\r\n+    box-shadow: none !important;\r\n+  }\r\n+\r\n+  /* kill hover / open background */\r\n+  .phone-input .flag-dropdown:hover,\r\n+  .phone-input .flag-dropdown.open,\r\n+  .phone-input .selected-flag:hover,\r\n+  .phone-input .flag-dropdown.open .selected-flag,\r\n+  .phone-input .selected-flag:focus {\r\n+    background-color: transparent !important;\r\n+    box-shadow: none !important;\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1764966445539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,15 +9,4 @@\n     background-color: transparent !important;\r\n     border: none !important;\r\n     box-shadow: none !important;\r\n   }\r\n-\r\n-  /* kill hover / open background */\r\n-  .phone-input .flag-dropdown:hover,\r\n-  .phone-input .flag-dropdown.open,\r\n-  .phone-input .selected-flag:hover,\r\n-  .phone-input .flag-dropdown.open .selected-flag,\r\n-  .phone-input .selected-flag:focus {\r\n-    background-color: transparent !important;\r\n-    box-shadow: none !important;\r\n-  }\r\n-}\r\n"
+                },
+                {
+                    "date": 1764966457834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,4 +9,15 @@\n     background-color: transparent !important;\r\n     border: none !important;\r\n     box-shadow: none !important;\r\n   }\r\n+\r\n+  /* kill hover / open background */\r\n+  .phone-input .flag-dropdown:hover,\r\n+  .phone-input .flag-dropdown.open,\r\n+  .phone-input .selected-flag:hover,\r\n+  .phone-input .flag-dropdown.open .selected-flag,\r\n+  .phone-input .selected-flag:focus {\r\n+    background-color: transparent !important;\r\n+    box-shadow: none !important;\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1764966468591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,4 @@\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n \r\n-@layer components {\r\n-  /* base state */\r\n-  .phone-input .flag-dropdown,\r\n-  .phone-input .selected-flag {\r\n-    background-color: transparent !important;\r\n-    border: none !important;\r\n-    box-shadow: none !important;\r\n-  }\r\n-\r\n-  /* kill hover / open background */\r\n-  .phone-input .flag-dropdown:hover,\r\n-  .phone-input .flag-dropdown.open,\r\n-  .phone-input .selected-flag:hover,\r\n-  .phone-input .flag-dropdown.open .selected-flag,\r\n-  .phone-input .selected-flag:focus {\r\n-    background-color: transparent !important;\r\n-    box-shadow: none !important;\r\n-  }\r\n-}\r\n"
+                },
+                {
+                    "date": 1764966473808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,23 @@\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n \r\n+@layer components {\r\n+  /* base state */\r\n+  .phone-input .flag-dropdown,\r\n+  .phone-input .selected-flag {\r\n+    background-color: transparent !important;\r\n+    border: none !important;\r\n+    box-shadow: none !important;\r\n+  }\r\n+\r\n+  /* kill hover / open background */\r\n+  .phone-input .flag-dropdown:hover,\r\n+  .phone-input .flag-dropdown.open,\r\n+  .phone-input .selected-flag:hover,\r\n+  .phone-input .flag-dropdown.open .selected-flag,\r\n+  .phone-input .selected-flag:focus {\r\n+    background-color: transparent !important;\r\n+    box-shadow: none !important;\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1764966479333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,14 +10,6 @@\n     border: none !important;\r\n     box-shadow: none !important;\r\n   }\r\n \r\n-  /* kill hover / open background */\r\n-  .phone-input .flag-dropdown:hover,\r\n-  .phone-input .flag-dropdown.open,\r\n-  .phone-input .selected-flag:hover,\r\n-  .phone-input .flag-dropdown.open .selected-flag,\r\n-  .phone-input .selected-flag:focus {\r\n-    background-color: transparent !important;\r\n-    box-shadow: none !important;\r\n-  }\r\n+\r\n }\r\n"
+                },
+                {
+                    "date": 1764966487599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,10 @@\n @layer components {\r\n   /* base state */\r\n   .phone-input .flag-dropdown,\r\n   .phone-input .selected-flag {\r\n-    background-color: transparent !important;\r\n+\r\n     border: none !important;\r\n-    box-shadow: none !important;\r\n   }\r\n \r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1764966497796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n @layer components {\r\n   /* base state */\r\n   .phone-input .flag-dropdown,\r\n   .phone-input .selected-flag {\r\n-\r\n+    background-color: transparent !important;\r\n     border: none !important;\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1764966518806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,11 @@\n @tailwind utilities;\r\n \r\n @layer components {\r\n   /* base state */\r\n-  .phone-input .flag-dropdown,\r\n+\r\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n-    border: none !important;\r\n   }\r\n \r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1764966586585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,6 @@\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n   }\r\n \r\n-\r\n+  \r\n }\r\n"
+                },
+                {
+                    "date": 1764966593508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,8 @@\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n   }\r\n \r\n-  \r\n+  .phone-input .flag-dropdown{\r\n+    over\r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966604202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,7 @@\n     background-color: transparent !important;\r\n   }\r\n \r\n   .phone-input .flag-dropdown{\r\n-    over\r\n+    overflow: ;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966609808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,7 @@\n     background-color: transparent !important;\r\n   }\r\n \r\n   .phone-input .flag-dropdown{\r\n-    overflow: ;\r\n+    overflow-y: hidden;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966626486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,13 @@\n @tailwind components;\r\n @tailwind utilities;\r\n \r\n @layer components {\r\n-  /* base state */\r\n \r\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n   }\r\n \r\n   .phone-input .flag-dropdown{\r\n-    overflow-y: hidden;\r\n+    \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966652495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,14 @@\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n   }\r\n \r\n-  .phone-input .flag-dropdown{\r\n-    \r\n+  /* remove scrollbar */\r\n+  .phone-input .country-list {\r\n+    scrollbar-width: none !important; /* Firefox */\r\n+    -ms-overflow-style: none !important; /* IE/Edge */\r\n   }\r\n+\r\n+  .phone-input .country-list::-webkit-scrollbar {\r\n+    display: none !important; /* Chrome / Safari */\r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966665084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,6 @@\n     scrollbar-width: none !important; /* Firefox */\r\n     -ms-overflow-style: none !important; /* IE/Edge */\r\n   }\r\n \r\n-  .phone-input .country-list::-webkit-scrollbar {\r\n-    display: none !important; /* Chrome / Safari */\r\n-  }\r\n+\r\n }\r\n"
+                },
+                {
+                    "date": 1764966677819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,6 +13,8 @@\n     scrollbar-width: none !important; /* Firefox */\r\n     -ms-overflow-style: none !important; /* IE/Edge */\r\n   }\r\n \r\n-\r\n+  .phone-input .country-list::-webkit-scrollbar {\r\n+    display: none !important; /* Chrome / Safari */\r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966693251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,10 @@\n     background-color: transparent !important;\r\n   }\r\n \r\n   /* remove scrollbar */\r\n-  .phone-input .country-list {\r\n-    scrollbar-width: none !important; /* Firefox */\r\n-    -ms-overflow-style: none !important; /* IE/Edge */\r\n-  }\r\n \r\n+\r\n   .phone-input .country-list::-webkit-scrollbar {\r\n     display: none !important; /* Chrome / Safari */\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966700964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,9 @@\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n   }\r\n \r\n-  /* remove scrollbar */\r\n \r\n-\r\n   .phone-input .country-list::-webkit-scrollbar {\r\n     display: none !important; /* Chrome / Safari */\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966706182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,6 @@\n     background-color: transparent !important;\r\n   }\r\n \r\n \r\n-  .phone-input .country-list::-webkit-scrollbar {\r\n-    display: none !important; /* Chrome / Safari */\r\n-  }\r\n+\r\n }\r\n"
+                },
+                {
+                    "date": 1764966712046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,14 @@\n   .phone-input .selected-flag {\r\n     background-color: transparent !important;\r\n   }\r\n \r\n+  /* remove scrollbar */\r\n+  .phone-input .country-list {\r\n+    scrollbar-width: none !important; /* Firefox */\r\n+    -ms-overflow-style: none !important; /* IE/Edge */\r\n+  }\r\n \r\n-\r\n+  .phone-input .country-list::-webkit-scrollbar {\r\n+    display: none !important; /* Chrome / Safari */\r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966717197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,5 @@\n     scrollbar-width: none !important; /* Firefox */\r\n     -ms-overflow-style: none !important; /* IE/Edge */\r\n   }\r\n \r\n-  .phone-input .country-list::-webkit-scrollbar {\r\n-    display: none !important; /* Chrome / Safari */\r\n-  }\r\n }\r\n"
+                },
+                {
+                    "date": 1764966723130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   }\r\n \r\n   /* remove scrollbar */\r\n   .phone-input .country-list {\r\n-    scrollbar-width: none !important; /* Firefox */\r\n-    -ms-overflow-style: none !important; /* IE/Edge */\r\n+    scrollbar-width: none !important;\r\n   }\r\n \r\n }\r\n"
+                }
+            ],
+            "date": 1764966290040,
+            "name": "Commit-0",
+            "content": "@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;\r\n\r\n\r\n@layer components {\r\n  .phone-input .flag-dropdown {\r\n    @apply bg-transparent border-0 shadow-none hover:bg-transparent focus:bg-transparent !important;\r\n  }\r\n\r\n  .phone-input .selected-flag {\r\n    @apply bg-transparent p-0 border-0 shadow-none !important;\r\n  }\r\n}\r\n"
+        }
+    ]
+}
