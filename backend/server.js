@@ -3,11 +3,14 @@ import dotenv from "dotenv";
 import cors from "cors";
 import pool from "./src/models/db.js";
 
+import authRoutes from "./src/routes/authRoutes.js";
+
 dotenv.config();
 
 const PORT = process.env.PORT;
 const app = express();
-app.use(cors());
+
+app.use(cors({ origin: "htttp://localhost:5173", credentials: true }));
 app.use(express.json());
 
 app.get("/api/db-test", async (req, res) => {
@@ -25,6 +28,8 @@ app.get("/api/db-test", async (req, res) => {
     res.status(500).json({ message: "DB error" });
   }
 });
+
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server started at http://localhost:${PORT}`);

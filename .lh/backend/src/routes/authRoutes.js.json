@@ -1,0 +1,26 @@
+{
+    "sourceFile": "backend/src/routes/authRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1765257876171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1765257882949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-import \n\\ No newline at end of file\n+import bcrypt\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1765257898623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+import bcrypt from 'bcrypt';\r\n+import jwt from 'jsonwebtoken'\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1765257876171,
+            "name": "Commit-0",
+            "content": "import"
+        }
+    ]
+}

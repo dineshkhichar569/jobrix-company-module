@@ -5,18 +5,43 @@ import "../styles/App.css";
 import { Link } from "react-router-dom";
 
 function Register() {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleSubmit = (e) => {
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    mobile_no: "",
+    gender: "",
+  });
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // To Check Password
-    if (password !== confirmPassword) {
+    if (form.password !== form.confirmPassword) {
       setError("Passwords do not match!");
       return;
+    }
+
+    try {
+      const res = await api.post("/api/auth/register", {
+        username: form.username,
+        email: form.email,
+        password: form.password,
+        confirmPassword: form.confirmPassword,
+        mobile_no: form.mobile_no,
+        gender: form.gender,
+      });
+
+      localStorage.setItem("token", res.data.token);
+      setSuccess("Registered successfully");
+    } catch (error) {
+      setError(error.message);
     }
 
     setError("");
@@ -47,6 +72,9 @@ function Register() {
               className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm outline-none"
               type="text"
               placeholder="Enter Your Full Name"
+              name="username"
+              value={form.username}
+              onChange={onChange}
               required
             />
           </div>
@@ -54,6 +82,8 @@ function Register() {
           <div className="flex flex-col gap-1 w-full">
             <label className="text-gray-700 font-medium flex">Mobile No.</label>
             <PhoneInput
+              value={form.mobile_no}
+              onchange={onChange}
               country={"in"}
               enableSearch={true}
               containerClass="phone-input w-full"
@@ -82,6 +112,9 @@ function Register() {
             <input
               className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm outline-none"
               type="email"
+              name="email"
+              value={form.email}
+              onChange={onChange}
               required
             />
           </div>
@@ -116,7 +149,6 @@ function Register() {
                 Other
               </button>
             </div>
-
           </div>
 
           <div className="flex gap-5">
@@ -125,8 +157,9 @@ function Register() {
               <input
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm outline-none"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                value={form.password}
+                onChange={onChange}
                 required
               />
             </div>
@@ -138,13 +171,13 @@ function Register() {
               <input
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm outline-none"
                 type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={onChange}
                 required
               />
             </div>
           </div>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <div className="flex gap-2">
             <input
@@ -182,6 +215,9 @@ function Register() {
               Login
             </Link>
           </p>
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {success && <p className="text-red-500 text-sm">{success}</p>}
         </form>
       </div>
     </main>

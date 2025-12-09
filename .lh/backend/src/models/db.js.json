@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/models/db.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765257631667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765257631667,
+            "name": "Commit-0",
+            "content": "import pg from 'pg';\r\nimport dotenv from \"dotenv\";\r\n\r\ndotenv.config();\r\n\r\nconst { Pool } = pg;\r\n\r\nconst pool = new Pool({\r\n  user: process.env.DB_USER,\r\n  password: process.env.DB_PASSWORD,\r\n  host: process.env.DB_HOST,\r\n  port: process.env.DB_PORT,\r\n  database: process.env.DB_NAME,\r\n});\r\n\r\nexport default pool;\r\n"
+        }
+    ]
+}
