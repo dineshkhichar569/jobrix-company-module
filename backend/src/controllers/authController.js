@@ -75,3 +75,26 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "server error" });
   }
 };
+
+//////////////////////////////////  Login  ///////////////////////////////////////
+
+
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and Password required." });
+    }
+
+    ///// to check if email exist or not
+    const exist = await pool.query(`SELECT * FROM users WHERE email = $1`, [
+      email,
+    ]);
+
+    if (exist.rows.length === 0) {
+      return res.status(400).json;
+    }
+  } catch (error) {}
+};
