@@ -18,7 +18,8 @@ function Register() {
     mobile_no: "",
     gender: "",
   });
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +33,15 @@ function Register() {
     console.log("DEBUG: submit payload:", form);
 
     try {
-      const res = await api.post("/api/auth/register", {
+      const payload = {
         username: form.username,
         email: form.email,
         password: form.password,
         confirmPassword: form.confirmPassword,
         mobile_no: form.mobile_no,
         gender: form.gender,
-      });
+      };
+      const res = await api.post("/api/auth/register", payload);
 
       console.log("AXIOS response: ", res.status, res.data);
 
@@ -233,7 +235,7 @@ function Register() {
           </p>
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
-          {success && <p className="text-red-500 text-sm">{success}</p>}
+          {success && <p className="text-green-500 text-sm">{success}</p>}
         </form>
       </div>
     </main>

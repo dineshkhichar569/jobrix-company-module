@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../api/api.js";
 
 function Login() {
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChange = (e) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    console.log("DEBUG: submit payload:", form);
+
+    try {
+      const payload = { email: form.email, password: form.password };
+
+      const res = await api.post("/api/auth/login", payload);
+
+      const token = res.data.token;
+      localStorage.setItem("token", res.data.token);
+
+      if (token) {
+        console.log("User is Logged in");
+      } else {
+        console.log("Not Logged in");
+      }
+
+      console.log("AXIOS response: ", res.status, res.data);
+      setSuccess("Registered successfully");
+      setError("");
+      alert("You are Logged in!");
+    } catch (err) {
+      setError(
+        err.response?.data?.message || err.message || "Something went wrong"
+      );
+    }
+  };
+
   return (
     <main className="flex min-h-screen w-full items-center justify-between bg-[#f5f7ff]">
       {/* Image Card */}
@@ -15,12 +57,19 @@ function Login() {
           Login as a Company
         </h1>
 
-        <form className="w-full max-w-md flex flex-col gap-4" action="submit">
+        <form
+          className="w-full max-w-md flex flex-col gap-4"
+          // action="submit"
+          onSubmit={handleSubmit}
+        >
           <div className="flex flex-col gap-1 w-full">
             <label className="text-gray-700 font-medium flex">Email ID</label>
             <input
               className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm outline-none"
               type="email"
+              name="email"
+              value={form.email}
+              onChange={onChange}
               required
             />
           </div>
@@ -39,6 +88,9 @@ function Login() {
             <input
               className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm outline-none"
               type="password"
+              name="password"
+              value={form.password}
+              onChange={onChange}
               required
             />
           </div>
@@ -69,7 +121,8 @@ function Login() {
               Sign up
             </Link>
           </p>
-
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {success && <p className="text-green-500 text-sm">{success}</p>}
         </form>
       </div>
     </main>

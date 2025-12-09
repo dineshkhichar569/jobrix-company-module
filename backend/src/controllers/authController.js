@@ -78,8 +78,6 @@ export const register = async (req, res) => {
 
 //////////////////////////////////  Login  ///////////////////////////////////////
 
-
-
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -92,9 +90,34 @@ export const login = async (req, res) => {
     const exist = await pool.query(`SELECT * FROM users WHERE email = $1`, [
       email,
     ]);
-
     if (exist.rows.length === 0) {
-      return res.status(400).json;
+      return res.status(400).json({ message: "Invalid credentials." });
     }
-  } catch (error) {}
+
+
+    /////  this user take data of a user from database to compare password and to generate token
+    const user = exist.rows[0];
+
+    ////  to check password is correct or not
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(400).json({ message: "Invalid credentials." });
+    }
+
+    ////// to generate token for a specific user
+    const token = generateToken(user);
+
+    return res.json({
+      message: "Login Successful",
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      },
+      token,
+    });
+  } catch (err) {
+    console.error("Login error: ", err);
+    return res.status(500).json({ message: "Server error during Login." });
+  }
 };
