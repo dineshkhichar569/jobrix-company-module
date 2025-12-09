@@ -1,8 +1,6 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
-dotenv.config();
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:8080";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -17,5 +15,18 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+api.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    // show errors in console
+    console.error(
+      "API response error",
+      err?.response?.status,
+      err?.response?.data
+    );
+    return Promise.reject(err);
+  }
+);
 
 export default api;

@@ -3,11 +3,12 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "../styles/App.css";
 import { Link } from "react-router-dom";
+import api from "../api/api.js";
 
 function Register() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState(""); /////  This is only for UI  on selecting the gender like color
 
   const [form, setForm] = useState({
     username: "",
@@ -28,6 +29,8 @@ function Register() {
       return;
     }
 
+    console.log("DEBUG: submit payload:", form);
+
     try {
       const res = await api.post("/api/auth/register", {
         username: form.username,
@@ -38,14 +41,16 @@ function Register() {
         gender: form.gender,
       });
 
+      console.log("AXIOS response: ", res.status, res.data);
+
       localStorage.setItem("token", res.data.token);
+
       setSuccess("Registered successfully");
+      setError("");
+      alert("Your account Registered!");
     } catch (error) {
       setError(error.message);
     }
-
-    setError("");
-    alert("Your account Registered!");
   };
 
   return (
@@ -83,7 +88,9 @@ function Register() {
             <label className="text-gray-700 font-medium flex">Mobile No.</label>
             <PhoneInput
               value={form.mobile_no}
-              onchange={onChange}
+              onChange={(value) =>
+                setForm((prev) => ({ ...prev, mobile_no: value }))
+              }
               country={"in"}
               enableSearch={true}
               containerClass="phone-input w-full"
@@ -128,7 +135,10 @@ function Register() {
                 type="button"
                 className={`flex-1 py-1 rounded-full border shadow-sm 
           ${gender === "Male" ? "bg-blue-500 text-white" : "bg-white"}`}
-                onClick={() => setGender("Male")}
+                onClick={() => {
+                  setGender("Male");
+                  setForm((prev) => ({ ...prev, gender: "M" }));
+                }}
               >
                 Male
               </button>
@@ -136,7 +146,10 @@ function Register() {
                 type="button"
                 className={`flex-1 py-1 rounded-full border shadow-sm 
           ${gender === "Female" ? "bg-blue-500 text-white" : "bg-white"}`}
-                onClick={() => setGender("Female")}
+                onClick={() => {
+                  setGender("Female");
+                  setForm((prev) => ({ ...prev, gender: "F" }));
+                }}
               >
                 Female
               </button>
@@ -144,7 +157,10 @@ function Register() {
                 type="button"
                 className={`flex-1 py-1 rounded-full border shadow-sm 
           ${gender === "Other" ? "bg-blue-500 text-white" : "bg-white"}`}
-                onClick={() => setGender("Other")}
+                onClick={() => {
+                  setGender("Other");
+                  setForm((prev) => ({ ...prev, gender: "O" }));
+                }}
               >
                 Other
               </button>
@@ -203,7 +219,7 @@ function Register() {
             type="submit"
             className="w-full py-2 bg-blue-500 hover:bg-blue-700 transition-all duration-300 text-white font-semibold rounded-full text-xl shadow-md mt-4"
           >
-            Login
+            Register
           </button>
 
           <p className="text-black mt-2 font-medium text-base text-center">
