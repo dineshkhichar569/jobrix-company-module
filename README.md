@@ -1,4 +1,4 @@
-# jobrix-company-module
+# JOBRIX-company-module
 
 
 Currently in Process
