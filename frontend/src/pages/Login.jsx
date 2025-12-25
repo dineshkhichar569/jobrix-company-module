@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -16,6 +16,8 @@ function Login() {
     password: "",
     mobile_no: "",
   });
+
+  const navigate = useNavigate();
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -100,6 +102,7 @@ function Login() {
 
       setSuccess("Logged in with phone number");
       alert("You are logged in with phone!");
+      navigate("/settings");
     } catch (err) {
       console.error(err);
       setError("Invalid OTP or verification failed");
@@ -110,11 +113,12 @@ function Login() {
   const onChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
+  const { password, confirmPassword, ...safeForm } = form;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    console.log("DEBUG: submit payload:", form);
+    console.log("DEBUG: submit payload:", safeForm);
 
     try {
       const payload = {
@@ -138,6 +142,7 @@ function Login() {
       setSuccess("Registered successfully");
       setError("");
       alert("You are Logged in!");
+      navigate("/settings");
     } catch (err) {
       setError(
         err.response?.data?.message || err.message || "Something went wrong"
@@ -148,8 +153,19 @@ function Login() {
   return (
     <main className="flex min-h-screen w-full items-center justify-between bg-[#f5f7ff]">
       {/* Image Card */}
-      <div className="w-1/2 h-screen flex items-center justify-center bg-red-300">
-        IMG Placeholder
+      <div className="w-1/2 h-screen flex items-center justify-center">
+        <div className="relative w-[90%] h-[90%] bg-gray-900 rounded-3xl overflow-hidden flex items-center justify-center">
+          <div className="absolute -rotate-12 w-[120%] h-40 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+
+          <div className="relative z-10 text-center px-6">
+            <h1 className="text-6xl font-black tracking-tight text-white">
+              JOBRIX
+            </h1>
+            <p className="mt-2 text-sm text-white/85 uppercase tracking-wide">
+              FAST TRACK JOB MATCHING
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Login Card */}
@@ -292,7 +308,7 @@ function Login() {
           <p className="text-black mt-2 font-medium text-base text-center">
             Don’t have an account ?
             <Link
-              to="/register"
+              to="/"
               className="text-blue-600 font-semibold hover:underline ml-1"
             >
               Sign up

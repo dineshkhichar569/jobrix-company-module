@@ -1,1 +1,4 @@
-# Page components ( Login, Register, Dashboard, Settings )
+### Page components ( Login, Register, Dashboard, Settings )
+
+
+### In **accountSetup/steps** here all step jsx components and  **accountSetup/index.jsx** here all steps components are used and similarly in other things.
