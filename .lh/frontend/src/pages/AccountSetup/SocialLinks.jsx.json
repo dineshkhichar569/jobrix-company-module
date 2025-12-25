@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/pages/AccountSetup/SocialLinks.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765552350684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765552350684,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\nconst platforms = [{ value: \"facebook\", label: \"Facebook\" },{ value: \"twitter\", label: \"Twitter\" },{ value: \"instagram\", label: \"Instagram\" },{ value: \"youtube\", label: \"Youtube\" },{ value: \"linkedin\", label: \"LinkedIn\" }];\r\n\r\nexport default function SocialLinks({ data, update, next, prev }) {\r\n  const setSocial = (index, patch) => {\r\n    const list = [...data.socials];\r\n    list[index] = { ...list[index], ...patch };\r\n    update({ socials: list });\r\n  };\r\n  const addSocial = () => update({ socials: [...data.socials, { platform: \"facebook\", url: \"\" }]});\r\n  const removeSocial = (index) => update({ socials: data.socials.filter((_, i) => i !== index) });\r\n\r\n  return (\r\n    <div>\r\n      <h2 className=\"text-lg font-semibold mb-4\">Social Media Profile</h2>\r\n      <div className=\"space-y-3\">\r\n        {data.socials.map((s, i) => (\r\n          <div key={i} className=\"flex gap-3 items-center\">\r\n            <select value={s.platform} onChange={(e)=>setSocial(i, {platform: e.target.value})} className=\"w-40 border rounded p-2\">\r\n              {platforms.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}\r\n            </select>\r\n            <input placeholder=\"Profile link/url...\" value={s.url} onChange={(e)=>setSocial(i,{url:e.target.value})} className=\"flex-1 border rounded p-2\" />\r\n            <button onClick={()=>removeSocial(i)} className=\"p-2 border rounded bg-gray-50\">✕</button>\r\n          </div>\r\n        ))}\r\n      </div>\r\n\r\n      <div className=\"mt-3\">\r\n        <button onClick={addSocial} className=\"py-2 px-3 bg-gray-100 rounded border\">+ Add New Social Link</button>\r\n      </div>\r\n\r\n      <div className=\"mt-6 flex gap-4\">\r\n        <button onClick={prev} className=\"px-4 py-2 border rounded\">Previous</button>\r\n        <button onClick={next} className=\"bg-blue-600 text-white px-4 py-2 rounded\">Save & Next →</button>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"
+        }
+    ]
+}

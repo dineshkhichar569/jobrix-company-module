@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/middleware/authMiddleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765550604599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765550604599,
+            "name": "Commit-0",
+            "content": "import jwt from \"jsonwebtoken\";\r\nimport createError from \"http-errors\";\r\nimport dotenv from \"dotenv\";\r\ndotenv.config();\r\n\r\nexport const requireAuth = (req, res, next) => {\r\n  try {\r\n    const header = req.headers.authorization;\r\n    if (!header) throw createError(401, \"Authorization header missing\");\r\n    const token = header.split(\" \")[1];\r\n    if (!token) throw createError(401, \"Token missing\");\r\n    const payload = jwt.verify(token, process.env.JWT_SECRET);\r\n    req.user = payload; // { id, email }\r\n    next();\r\n  } catch (err) {\r\n    next(createError(401, err.message || \"Unauthorized\"));\r\n  }\r\n};\r\n"
+        }
+    ]
+}

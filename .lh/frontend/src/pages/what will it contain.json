@@ -1,0 +1,30 @@
+{
+    "sourceFile": "frontend/src/pages/what will it contain",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1766253524512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1766253532069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+# Page components ( Login, Register, Dashboard, Settings )\r\n+\r\n+\r\n+and in setting \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766253544860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n # Page components ( Login, Register, Dashboard, Settings )\r\n \r\n \r\n-and in accountS\n\\ No newline at end of file\n+and in accountSetup \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766253552395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+# Page components ( Login, Register, Dashboard, Settings )\r\n+\r\n+\r\n+and in accountSetup \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1766253524512,
+            "name": "Commit-0",
+            "content": "# Page components ( Login, Register, Dashboard, Settings )\r\n\r\n\r\n"
+        }
+    ]
+}

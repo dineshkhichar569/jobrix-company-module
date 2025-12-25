@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/pages/AccountSetup/inde.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1765552856929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1765552886214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +0,0 @@\n-const [data, setData] = useState({\r\n-  // flat fields only\r\n-  logo: \"\",        // will store preview URL string or empty\r\n-  banner: \"\",      // will store preview URL string or empty\r\n-  companyName: \"\",\r\n-  about: \"\",\r\n-  orgType: \"\",\r\n-  industry: \"\",\r\n-  teamSize: \"\",\r\n-  year: \"\",\r\n-  website: \"\",\r\n-  vision: \"\",\r\n-  socials: [{ platform: \"facebook\", url: \"\" }],\r\n-  mapLocation: \"\",\r\n-  phoneCountry: \"+91\",\r\n-  phone: \"\",\r\n-  email: \"\"\r\n-});\r\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1765552856929,
+            "name": "Commit-0",
+            "content": "const [data, setData] = useState({\r\n  // flat fields only\r\n  logo: \"\",        // will store preview URL string or empty\r\n  banner: \"\",      // will store preview URL string or empty\r\n  companyName: \"\",\r\n  about: \"\",\r\n  orgType: \"\",\r\n  industry: \"\",\r\n  teamSize: \"\",\r\n  year: \"\",\r\n  website: \"\",\r\n  vision: \"\",\r\n  socials: [{ platform: \"facebook\", url: \"\" }],\r\n  mapLocation: \"\",\r\n  phoneCountry: \"+91\",\r\n  phone: \"\",\r\n  email: \"\"\r\n});\r\n"
+        }
+    ]
+}

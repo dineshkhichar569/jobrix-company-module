@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/store/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1765550774774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1765551310999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +0,0 @@\n-import { configureStore } from \"@reduxjs/toolkit\";\r\n-import authReducer from \"./slices/authSlice.js\";\r\n-import companyReducer from \"./slices/companySlice.js\";\r\n-\r\n-export const store = configureStore({\r\n-  reducer: {\r\n-    auth: authReducer,\r\n-    company: companyReducer\r\n-  }\r\n-});\r\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1765550774774,
+            "name": "Commit-0",
+            "content": "import { configureStore } from \"@reduxjs/toolkit\";\r\nimport authReducer from \"./slices/authSlice.js\";\r\nimport companyReducer from \"./slices/companySlice.js\";\r\n\r\nexport const store = configureStore({\r\n  reducer: {\r\n    auth: authReducer,\r\n    company: companyReducer\r\n  }\r\n});\r\n"
+        }
+    ]
+}

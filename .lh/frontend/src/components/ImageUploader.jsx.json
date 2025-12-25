@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/components/ImageUploader.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1765550851120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1765551303722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,38 +0,0 @@\n-import React, { useState } from \"react\";\r\n-import api from \"../api/api.js\";\r\n-import { toast } from \"react-toastify\";\r\n-\r\n-export default function ImageUploader({ type = \"logo\", onUploaded }) {\r\n-  const [file, setFile] = useState(null);\r\n-  const [loading, setLoading] = useState(false);\r\n-\r\n-  const handleFile = (e) => setFile(e.target.files[0]);\r\n-\r\n-  const handleUpload = async () => {\r\n-    if (!file) return toast.error(\"Select file\");\r\n-    setLoading(true);\r\n-    try {\r\n-      const form = new FormData();\r\n-      form.append(\"file\", file);\r\n-      // query param type=logo or banner\r\n-      const res = await api.post(`/api/company/upload?type=${type}`, form, {\r\n-        headers: { \"Content-Type\": \"multipart/form-data\" }\r\n-      });\r\n-      toast.success(\"Uploaded\");\r\n-      onUploaded && onUploaded(res.data.url);\r\n-    } catch (err) {\r\n-      toast.error(err.response?.data?.message || \"Upload failed\");\r\n-    } finally {\r\n-      setLoading(false);\r\n-    }\r\n-  };\r\n-\r\n-  return (\r\n-    <div className=\"flex items-center gap-3\">\r\n-      <input type=\"file\" accept=\"image/*\" onChange={handleFile} />\r\n-      <button disabled={loading} onClick={handleUpload} className=\"btn\">\r\n-        {loading ? \"Uploading...\" : \"Upload\"}\r\n-      </button>\r\n-    </div>\r\n-  );\r\n-}\r\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1765550851120,
+            "name": "Commit-0",
+            "content": "import React, { useState } from \"react\";\r\nimport api from \"../api/api.js\";\r\nimport { toast } from \"react-toastify\";\r\n\r\nexport default function ImageUploader({ type = \"logo\", onUploaded }) {\r\n  const [file, setFile] = useState(null);\r\n  const [loading, setLoading] = useState(false);\r\n\r\n  const handleFile = (e) => setFile(e.target.files[0]);\r\n\r\n  const handleUpload = async () => {\r\n    if (!file) return toast.error(\"Select file\");\r\n    setLoading(true);\r\n    try {\r\n      const form = new FormData();\r\n      form.append(\"file\", file);\r\n      // query param type=logo or banner\r\n      const res = await api.post(`/api/company/upload?type=${type}`, form, {\r\n        headers: { \"Content-Type\": \"multipart/form-data\" }\r\n      });\r\n      toast.success(\"Uploaded\");\r\n      onUploaded && onUploaded(res.data.url);\r\n    } catch (err) {\r\n      toast.error(err.response?.data?.message || \"Upload failed\");\r\n    } finally {\r\n      setLoading(false);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div className=\"flex items-center gap-3\">\r\n      <input type=\"file\" accept=\"image/*\" onChange={handleFile} />\r\n      <button disabled={loading} onClick={handleUpload} className=\"btn\">\r\n        {loading ? \"Uploading...\" : \"Upload\"}\r\n      </button>\r\n    </div>\r\n  );\r\n}\r\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/pages/AccountSetup/Contact.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765552367078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765552367078,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\nconst countries = [{ code: \"+91\", name: \"IN\" },{ code: \"+1\", name: \"US\" },{ code: \"+44\", name: \"UK\" },{ code: \"+880\", name: \"BD\" }];\r\n\r\nexport default function Contact({ data, update, prev, submit }) {\r\n  return (\r\n    <div>\r\n      <h2 className=\"text-lg font-semibold mb-4\">Contact</h2>\r\n\r\n      <div>\r\n        <label className=\"text-sm text-gray-600\">Map Location</label>\r\n        <input value={data.mapLocation} onChange={(e)=>update({mapLocation: e.target.value})} className=\"w-full border rounded p-2 mt-1\" placeholder=\"City, Address or coordinates\" />\r\n      </div>\r\n\r\n      <div className=\"mt-4 flex gap-2 items-center\">\r\n        <div className=\"w-36\">\r\n          <label className=\"text-sm text-gray-600\">Phone</label>\r\n          <select value={data.phoneCountry} onChange={(e)=>update({phoneCountry:e.target.value})} className=\"w-full border rounded p-2 mt-1\">\r\n            {countries.map(c => <option key={c.code} value={c.code}>{c.name} {c.code}</option>)}\r\n          </select>\r\n        </div>\r\n        <div className=\"flex-1\">\r\n          <label className=\"text-sm text-gray-600 opacity-0\">phone</label>\r\n          <input value={data.phone} onChange={(e)=>update({phone: e.target.value})} className=\"w-full border rounded p-2 mt-1\" placeholder=\"Phone number..\" />\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"mt-4\">\r\n        <label className=\"text-sm text-gray-600\">Email</label>\r\n        <input value={data.email} onChange={(e)=>update({email: e.target.value})} className=\"w-full border rounded p-2 mt-1\" placeholder=\"Email address\" />\r\n      </div>\r\n\r\n      <div className=\"mt-6 flex gap-4\">\r\n        <button onClick={prev} className=\"px-4 py-2 border rounded\">Previous</button>\r\n        <button onClick={submit} className=\"bg-blue-600 text-white px-4 py-2 rounded\">Finish Editing →</button>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"
+        }
+    ]
+}

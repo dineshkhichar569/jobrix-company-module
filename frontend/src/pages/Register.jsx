@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "../styles/App.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 
 function Register() {
@@ -18,8 +18,13 @@ function Register() {
     mobile_no: "",
     gender: "",
   });
+
+  const navigate = useNavigate();
+
   const onChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const { password, confirmPassword, ...safeForm } = form;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +35,7 @@ function Register() {
       return;
     }
 
-    console.log("DEBUG: submit payload:", form);
+    console.log("DEBUG: submit payload:", safeForm);
 
     try {
       const payload = {
@@ -50,6 +55,7 @@ function Register() {
       setSuccess("Registered successfully");
       setError("");
       alert("Your account Registered!");
+      navigate("/account-setup");
     } catch (error) {
       setError(error.message);
     }
@@ -58,11 +64,22 @@ function Register() {
   return (
     <main className="flex min-h-screen w-full items-center justify-between bg-[#f5f7ff]">
       {/* Image Card */}
-      <div className="w-1/2 h-screen flex items-center justify-center bg-red-300">
-        IMG Placeholder
+      <div className="w-1/2 h-screen flex items-center justify-center">
+        <div className="relative w-[90%] h-[90%] bg-gray-900 rounded-3xl overflow-hidden flex items-center justify-center">
+          <div className="absolute -rotate-12 w-[120%] h-40 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+
+          <div className="relative z-10 text-center px-6">
+            <h1 className="text-6xl font-black tracking-tight text-white">
+              JOBRIX
+            </h1>
+            <p className="mt-2 text-sm text-white/85 uppercase tracking-wide">
+              FAST TRACK JOB MATCHING
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Login Card */}
+      {/* Rgister Card */}
       <div className="w-1/2 h-screen flex flex-col justify-center items-center">
         <h1 className="text-3xl font-semibold mb-10 tracking-wide text-black">
           Register as a Company

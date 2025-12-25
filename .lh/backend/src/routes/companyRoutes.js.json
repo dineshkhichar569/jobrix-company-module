@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/src/routes/companyRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1765550649237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1765551318161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +0,0 @@\n-import express from \"express\";\r\n-import { requireAuth } from \"../middleware/authMiddleware.js\";\r\n-import { createOrUpdateProfile, getProfile, uploadImage } from \"../controllers/companyController.js\";\r\n-\r\n-const router = express.Router();\r\n-\r\n-router.get(\"/profile\", requireAuth, getProfile);\r\n-router.post(\"/profile\", requireAuth, createOrUpdateProfile);\r\n-router.put(\"/profile\", requireAuth, createOrUpdateProfile);\r\n-\r\n-// upload logo/banner\r\n-router.post(\"/upload\", requireAuth, uploadImage);\r\n-\r\n-export default router;\r\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1765550649237,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\r\nimport { requireAuth } from \"../middleware/authMiddleware.js\";\r\nimport { createOrUpdateProfile, getProfile, uploadImage } from \"../controllers/companyController.js\";\r\n\r\nconst router = express.Router();\r\n\r\nrouter.get(\"/profile\", requireAuth, getProfile);\r\nrouter.post(\"/profile\", requireAuth, createOrUpdateProfile);\r\nrouter.put(\"/profile\", requireAuth, createOrUpdateProfile);\r\n\r\n// upload logo/banner\r\nrouter.post(\"/upload\", requireAuth, uploadImage);\r\n\r\nexport default router;\r\n"
+        }
+    ]
+}

@@ -1,36 +1,24 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import pool from "./src/models/db.js";
+import connnectDB from "./src/config/mongoose-connection.js";
 
-import authRoutes from "./src/routes/authRoutes.js";
 
 dotenv.config();
+connnectDB();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 
-app.get("/api/db-test", async (req, res) => {
-  try {
-    const { rows } = await pool.query("SELECT NOW()");
-    console.log("DB test rows:", rows);
+app.get("/", (req, res) => {
+  res.send("Hello World !");
+})
 
-    if (!rows || rows.length === 0) {
-      return res.status(500).json({ message: "No rows returned from DB" });
-    }
-
-    res.json({ db_time: rows[0].now });
-  } catch (err) {
-    console.error("DB test error:", err);
-    res.status(500).json({ message: "DB error" });
-  }
-});
-
-app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server started at http://localhost:${PORT}`);
 });
+52

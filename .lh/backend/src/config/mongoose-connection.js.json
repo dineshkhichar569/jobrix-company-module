@@ -1,0 +1,82 @@
+{
+    "sourceFile": "backend/src/config/mongoose-connection.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 16,
+            "patches": [
+                {
+                    "date": 1766656691761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1766656699337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const mongoose\n\\ No newline at end of file\n+import  mom\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656705032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-import  mom\n\\ No newline at end of file\n+import  mongoose from \"mong\"\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656710590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n"
+                },
+                {
+                    "date": 1766656720154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n import  mongoose from \"mongoose\";\r\n \r\n \r\n+////////   to connect \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656728818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656735881,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,5 @@\n import  mongoose from \"mongoose\";\r\n \r\n \r\n ////////   to connect mongoDB\r\n-mongoose\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect \n-import  mongoose from \"mong\"\n\\ No newline at end of file\n+mongoose.connect()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656744007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656758280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect(`${}`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656765926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,5 @@\n import  mongoose from \"mongoose\";\r\n \r\n \r\n ////////   to connect mongoDB\r\n-mongoose.connect(`${}`)\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect mongoDB\r\n-mongoose.connect()\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect mongoDB\r\n-mongoose.connect()\n\\ No newline at end of file\n+mongoose.connect(`mongodb`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656773061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect(`mongodb://localhos`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656780580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect(`mongodb://localhost:27017`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656787541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect(`mongodb://localhost:27017/backend`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656794235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect(`mongodb://localhost:27017/backend_`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656801077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +1,5 @@\n import  mongoose from \"mongoose\";\r\n \r\n \r\n ////////   to connect mongoDB\r\n-mongoose.connect(`mongodb://localhost:27017/backend_`)\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect mongoDB\r\n-mongoose.connect(`mongodb://localhost:27017/backend`)\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect mongoDB\r\n-mongoose.connect(`mongodb://localhost:27017`)\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect mongoDB\r\n-mongoose.connect(`mongodb://localhos`)\n-import  mongoose from \"mongoose\";\r\n-\r\n-\r\n-////////   to connect mongoDB\r\n-mongoose.connect(`mongodb`)\n\\ No newline at end of file\n+mongoose.connect(`mongodb://localhost:27017/`)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656813596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n import  mongoose from \"mongoose\";\r\n \r\n \r\n ////////   to connect mongoDB\r\n-mongoose.connect(`mongodb://localhost:27017/JOBRIX`)\n\\ No newline at end of file\n+mongoose.connect(`mongodb://localhost:27017/JOBRIX`).then\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766656819765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+import  mongoose from \"mongoose\";\r\n+\r\n+\r\n+////////   to connect mongoDB\r\n+mongoose.connect(`mongodb://localhost:27017/JOBRIX`).then(() => {\r\n+    \r\n+})\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1766656691761,
+            "name": "Commit-0",
+            "content": "const mongoose"
+        }
+    ]
+}

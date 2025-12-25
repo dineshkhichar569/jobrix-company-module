@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/pages/AccountSetup/Complete.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765552383484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765552383484,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\n\r\nexport default function Complete() {\r\n  return (\r\n    <div className=\"text-center py-20\">\r\n      <div className=\"mx-auto w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mb-6\">\r\n        <svg width=\"36\" height=\"36\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 13l4 4L19 7\" stroke=\"#0b63d8\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>\r\n      </div>\r\n\r\n      <h3 className=\"text-xl font-semibold mb-2\">🎉 Congratulations, Your profile is 100% complete!</h3>\r\n      <p className=\"text-gray-500 max-w-xl mx-auto\">Thank you — your company profile is all set. You can view dashboard or your public profile now.</p>\r\n\r\n      <div className=\"mt-6 flex justify-center gap-4\">\r\n        <button className=\"px-4 py-2 border rounded bg-gray-50\">View Dashboard</button>\r\n        <button className=\"px-4 py-2 bg-blue-600 text-white rounded\">View Profile</button>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"
+        }
+    ]
+}

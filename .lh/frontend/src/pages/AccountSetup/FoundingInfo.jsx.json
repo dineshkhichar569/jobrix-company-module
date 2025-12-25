@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/pages/AccountSetup/FoundingInfo.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765552326204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765552326204,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\n\r\nexport default function FoundingInfo({ data, update, next, prev }) {\r\n  return (\r\n    <div>\r\n      <div className=\"grid grid-cols-3 gap-4\">\r\n        <div>\r\n          <label className=\"text-sm text-gray-600\">Organization Type</label>\r\n          <select value={data.orgType} onChange={(e)=>update({orgType:e.target.value})} className=\"w-full border rounded p-2 mt-1\">\r\n            <option value=\"\">Select...</option><option>Private</option><option>Public</option><option>Startup</option><option>NGO</option>\r\n          </select>\r\n        </div>\r\n\r\n        <div>\r\n          <label className=\"text-sm text-gray-600\">Industry Types</label>\r\n          <select value={data.industry} onChange={(e)=>update({industry:e.target.value})} className=\"w-full border rounded p-2 mt-1\">\r\n            <option value=\"\">Select...</option><option>IT</option><option>Healthcare</option><option>Finance</option><option>Education</option>\r\n          </select>\r\n        </div>\r\n\r\n        <div>\r\n          <label className=\"text-sm text-gray-600\">Team Size</label>\r\n          <select value={data.teamSize} onChange={(e)=>update({teamSize:e.target.value})} className=\"w-full border rounded p-2 mt-1\">\r\n            <option value=\"\">Select...</option><option>1-10</option><option>11-50</option><option>51-200</option><option>200+</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"grid grid-cols-3 gap-4 mt-4\">\r\n        <div>\r\n          <label className=\"text-sm text-gray-600\">Year of Establishment</label>\r\n          <input type=\"date\" value={data.year} onChange={(e)=>update({year:e.target.value})} className=\"w-full border rounded p-2 mt-1\" />\r\n        </div>\r\n\r\n        <div className=\"col-span-2\">\r\n          <label className=\"text-sm text-gray-600\">Company Website</label>\r\n          <input placeholder=\"https://company.com\" value={data.website} onChange={(e)=>update({website:e.target.value})} className=\"w-full border rounded p-2 mt-1\" />\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"mt-4\">\r\n        <label className=\"text-sm text-gray-600\">Company Vision</label>\r\n        <textarea value={data.vision} onChange={(e)=>update({vision:e.target.value})} className=\"w-full border rounded p-2 mt-1 h-28\" placeholder=\"Tell us about your company vision...\"></textarea>\r\n      </div>\r\n\r\n      <div className=\"mt-6 flex gap-4\">\r\n        <button onClick={prev} className=\"px-4 py-2 border rounded\">Previous</button>\r\n        <button onClick={next} className=\"bg-blue-600 text-white px-4 py-2 rounded\">Save & Next →</button>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"
+        }
+    ]
+}

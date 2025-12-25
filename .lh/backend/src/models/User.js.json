@@ -1,0 +1,70 @@
+{
+    "sourceFile": "backend/src/models/User.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1766659035349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1766659068335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-import\n\\ No newline at end of file\n+import mon\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659077377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,1 @@\n+import mongoose from \"mongoose\";\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659134846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,1 @@\n-import mongoose from \"mongoose\";\n-import mon\n\\ No newline at end of file\n+import mongoose from \"mongoose\";\r\n"
+                },
+                {
+                    "date": 1766659141543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+import mongoose from \"mongoose\";\r\n+\r\n"
+                },
+                {
+                    "date": 1766659149546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659157007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,6 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const User\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659166028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,6 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const userSchema = mongoose\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659171539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const userSchema = mongoose.Schema({\r\n+    \r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659178974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const userSchema = mongoose.Schema({\r\n+    fullname:\r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659186792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const userSchema = mongoose.Schema({\r\n+    fullname:{\r\n+        type:\r\n+    }\r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659197726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const userSchema = mongoose.Schema({\r\n+    fullname:{\r\n+        type: String,\r\n+        \r\n+    }\r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659206706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,6 @@\n const userSchema = mongoose.Schema({\r\n     fullname:{\r\n         type: String,\r\n         minLength:\r\n-    }\r\n\\ No newline at end of file\n+    }\r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1766659218495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import mongoose from \"mongoose\";\r\n+\r\n+//// Define Schema\r\n+\r\n+\r\n+const userSchema = mongoose.Schema({\r\n+    fullname:{\r\n+        type: String,\r\n+        minLength: 3,\r\n+        trim: true,\r\n+    }\r\n+})\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1766659035349,
+            "name": "Commit-0",
+            "content": "import"
+        }
+    ]
+}

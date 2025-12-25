@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/pages/Dashboard.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1765550898196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1765551297883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +0,0 @@\n-import React, { useEffect } from \"react\";\r\n-import { useDispatch, useSelector } from \"react-redux\";\r\n-import { fetchCompany } from \"../store/slices/companySlice.js\";\r\n-\r\n-export default function Dashboard() {\r\n-  const dispatch = useDispatch();\r\n-  const { profile, loading } = useSelector(s => s.company);\r\n-\r\n-  useEffect(()=> { dispatch(fetchCompany()); }, [dispatch]);\r\n-\r\n-  if (loading) return <div>Loading...</div>;\r\n-\r\n-  return (\r\n-    <div className=\"p-8\">\r\n-      <h1 className=\"text-2xl mb-4\">Dashboard</h1>\r\n-      {!profile ? (\r\n-        <p>No company profile yet. <a href=\"/onboard\">Create profile</a></p>\r\n-      ) : (\r\n-        <div>\r\n-          <img src={profile.banner_url} alt=\"banner\" style={{maxWidth: 600}} />\r\n-          <h2>{profile.company_name}</h2>\r\n-          <p>{profile.description}</p>\r\n-        </div>\r\n-      )}\r\n-    </div>\r\n-  );\r\n-}\r\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1765550898196,
+            "name": "Commit-0",
+            "content": "import React, { useEffect } from \"react\";\r\nimport { useDispatch, useSelector } from \"react-redux\";\r\nimport { fetchCompany } from \"../store/slices/companySlice.js\";\r\n\r\nexport default function Dashboard() {\r\n  const dispatch = useDispatch();\r\n  const { profile, loading } = useSelector(s => s.company);\r\n\r\n  useEffect(()=> { dispatch(fetchCompany()); }, [dispatch]);\r\n\r\n  if (loading) return <div>Loading...</div>;\r\n\r\n  return (\r\n    <div className=\"p-8\">\r\n      <h1 className=\"text-2xl mb-4\">Dashboard</h1>\r\n      {!profile ? (\r\n        <p>No company profile yet. <a href=\"/onboard\">Create profile</a></p>\r\n      ) : (\r\n        <div>\r\n          <img src={profile.banner_url} alt=\"banner\" style={{maxWidth: 600}} />\r\n          <h2>{profile.company_name}</h2>\r\n          <p>{profile.description}</p>\r\n        </div>\r\n      )}\r\n    </div>\r\n  );\r\n}\r\n"
+        }
+    ]
+}

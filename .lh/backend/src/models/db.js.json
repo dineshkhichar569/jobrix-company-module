@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1765257631667,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1766656456180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +0,0 @@\n-import pg from 'pg';\r\n-import dotenv from \"dotenv\";\r\n-\r\n-dotenv.config();\r\n-\r\n-const { Pool } = pg;\r\n-\r\n-const pool = new Pool({\r\n-  user: process.env.DB_USER,\r\n-  password: process.env.DB_PASSWORD,\r\n-  host: process.env.DB_HOST,\r\n-  port: process.env.DB_PORT,\r\n-  database: process.env.DB_NAME,\r\n-});\r\n-\r\n-export default pool;\r\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1765257631667,
