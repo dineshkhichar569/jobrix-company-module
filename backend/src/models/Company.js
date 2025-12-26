@@ -1,34 +1,35 @@
 import mongoose from "mongoose";
 
-//// Define Schema
+//// Define Schema for   Registeration 
 
-const userSchema = mongoose.Schema(
+const companySchema = mongoose.Schema(
   {
-    fullname: {
+    CompanyName: {
       type: String,
-      required: [true, "Name is required !"],
-      minLength: 3,
-      maxLength: 50,
+      required: [true, "Company name is required !"],
       trim: true,
     },
-    email: {
+    domain: {
       type: String,
-      required: [true, "Email is required !"],
+      required: [true, "domain is required !"],
       unique: true,
-      lowercase: true,
-      trim: true,
-      match: [/^[^\s@]+@[^\s@]+\.[^\s@+$]+$/, "Please enter a valid email"],
     },
-    password: {
+    industry: String,
+    companySize: String,
+    location: String,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    subscriptionPlan: {
       type: String,
-      required: [true, , "Password is required !"],
-      minLength: 6,
-      select: false, ////    this is very important foor security reasons due to this user cannot select password
+      enum: ["free", "pro", "enterprise"],
+      default: "free",
     },
   },
-  { Timestamp: true }
+  { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+const Company = mongoose.model("Company", companySchema);
 
-export default User;
+export default Company;

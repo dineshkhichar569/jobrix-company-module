@@ -1,123 +1,137 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import pool from "../models/db.js";
+
+import Company from "../models/Company.js";
+import CompanyUser from "../models/CompanyUser.js";
 
 ////// To generate Token
-const generateToken = (user) => {
-  return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET);
-};
+import generateToken from "../utiles/generateToken.js";
 
-//////////////////////////////////  To Register  ///////////////////////////////////////
-export const register = async (req, res) => {
+//////////////////////////////////  For Company Register and First Admin registeration  ///////////////////////////////////////
+
+export const companyRegister = async (req, res) => {
   try {
-    const { username, email, password, confirmPassword, mobile_no, gender } =
-      req.body;
+    ///// cause here req.body is an object coming from frontend
+    const {
+      companyName,
+      domain,
+      industry,
+      companySize,
+      location,
+      adminName,
+      adminEmail,
+      adminPassword,
+    } = req.body;
 
-    if (!username || !email || !password || !confirmPassword) {
-      return res.status(400).json({ message: "All feilds are required...." });
-    }
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Passwords do not match." });
-    }
-
-    // now to check if the email esists or not
-    const exist = await pool.query(
-      "SELECT id FROM users WHERE email = $1 OR username = $2",
-      [email.toLowerCase(), username]
-    );
-
-    if (exist.rows.length > 0) {
-      const existing = exist.rows[0];
-
-      if (existing.email === email.toLowerCase()) {
-        return res.status(400).json({ message: "Email already registered" });
-      }
-      if (existing.username === username) {
-        return res.status(400).json({ message: "Username already taken" });
-      }
+    /// to  check if (company already exists or not.)
+    const existingComapny = await Company.findOne({ domain });
+    if (existingComapny) {
+      return res.status(400).json({
+        message: "Comapny with this domain already exists",
+      });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    /// else (now to create comapny)
+    const company = await Company.create({
+      companyName,
+      domain,
+      industry,
+      companySize,
+      location,
+    });
 
-    const insertQuery = `INSERT INTO users (username, email, password, mobile_no, gender)
-                         VALUES ($1, $2, $3, $4, $5)
-                         RETURNING id, username, email, mobile_no, gender, created_at`;
+    //////   for to convert admin password to Hash
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(adminPassword, salt);
 
-    const values = [
-      username,
-      email.toLowerCase(),
-      hashedPassword,
-      mobile_no || null,
-      gender || null,
-    ];
+    ///// for to create first company User admin
+    const adminUser = await CompanyUser.create({
+      // _id is unique and auto-generated and primary key of that company
+      companyId: company._id,
+      fullName: adminName,
+      email: adminEmail,
+      password: hashedPassword,
+      role: "admin",
+    });
 
-    const result = await pool.query(insertQuery, values);
+    ////// to Generate JWT
+    //////////   without user have to login again and again
+    const token = generateToken({
+      userId: adminUser._id,
+      comapnyId: company_id,
+      role: adminUser.role,
+    });
 
-    const user = result.rows[0];
-    const token = generateToken(user);
-
+    //////  for to Response
     res.status(201).json({
-      message: "Registration Successful",
-      user,
+      message: "Company created successfully",
       token,
+      company: {
+        id: company._id,
+        name: company.companyName,
+        domain: company.domain,
+      },
+      user: {
+        id: adminUser._id,
+        name: adminUser.fullname,
+        email: adminUser.email,
+        role: adminUser.role,
+      },
     });
   } catch (error) {
-    console.error("Register error: ", error);
-
-    /////// To handle unique constraint from Postgre
-    if (error.constraint === "unique_username") {
-      return res.status(400).json({ message: "Username already taken" });
-    }
-    if (error.constraint === "unique_email") {
-      return res.status(400).json({ message: "Email already registered" });
-    }
-
-    res.status(500).json({ message: "server error" });
+    consolle.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
-//////////////////////////////////  Login  ///////////////////////////////////////
+//////////////////////////////////  For Company Users can Login and come back  ///////////////////////////////////////
 
-export const login = async (req, res) => {
+export const loginCompanyUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    ///////  can't left the blank empty
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and Password required." });
+      return res.status(400).json({ message: "Email and passwword required." });
     }
 
-    ///// to check if email exist or not
-    const exist = await pool.query(`SELECT * FROM users WHERE email = $1`, [
-      email,
-    ]);
-    if (exist.rows.length === 0) {
-      return res.status(400).json({ message: "Invalid credentials." });
+    //  to check if email exists or not
+    const existUser = await CompanyUser.findOne({ email });
+    if (!existUser) {
+      return res.status(401).json({ message: "Email or Password Incorrect." });
     }
 
-
-    /////  this user take data of a user from database to compare password and to generate token
-    const user = exist.rows[0];
-
-    ////  to check password is correct or not
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.status(400).json({ message: "Invalid credentials." });
+    // check password is correct or not
+    const isMatch = await bcrypt.compare(password, existUser.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Email or Password Incorrect." });
     }
 
-    ////// to generate token for a specific user
-    const token = generateToken(user);
+    /////  to check accout is active or not
+    if (!existUser.isActive) {
+      return res.status(403).json({ message: "Account is deactivated" });
+    }
 
-    return res.json({
-      message: "Login Successful",
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-      },
-      token,
+    ////   to Generate  Token
+    const token = generateToken({
+      userId: existUser._id,
+      companyId: existUser.company._id,
+      role: existUser.role,
     });
-  } catch (err) {
-    console.error("Login error: ", err);
-    return res.status(500).json({ message: "Server error during Login." });
+
+    ////// to send Responnse
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      existUser: {
+        id: existUser._id,
+        fullname: existUser.fullname,
+        email: existUser.email,
+        role: existUser.role,
+        companyId: existUser.company._id,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
