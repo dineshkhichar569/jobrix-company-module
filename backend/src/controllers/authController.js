@@ -47,7 +47,7 @@ export const companyRegister = async (req, res) => {
     const adminUser = await CompanyUser.create({
       // _id is unique and auto-generated and primary key of that company
       companyId: company._id,
-      fullName: adminName,
+      fullname: adminName,
       email: adminEmail,
       password: hashedPassword,
       role: "admin",
@@ -57,7 +57,7 @@ export const companyRegister = async (req, res) => {
     //////////   without user have to login again and again
     const token = generateToken({
       userId: adminUser._id,
-      comapnyId: company_id,
+      comapnyId: company._id,
       role: adminUser.role,
     });
 
@@ -78,7 +78,7 @@ export const companyRegister = async (req, res) => {
       },
     });
   } catch (error) {
-    consolle.error(error);
+    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -99,6 +99,12 @@ export const loginCompanyUser = async (req, res) => {
     if (!existUser) {
       return res.status(401).json({ message: "Email or Password Incorrect." });
     }
+
+
+    console.log("REQ PASSWORD:", password);
+console.log("DB PASSWORD:", existUser.password);
+console.log("USER DOC:", existUser);
+
 
     // check password is correct or not
     const isMatch = await bcrypt.compare(password, existUser.password);

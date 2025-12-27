@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 const companySchema = mongoose.Schema(
   {
-    CompanyName: {
+    companyName: {
       type: String,
       required: [true, "Company name is required !"],
       trim: true,
