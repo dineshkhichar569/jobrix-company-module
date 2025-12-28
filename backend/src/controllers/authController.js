@@ -19,19 +19,21 @@ export const companyRegister = async (req, res) => {
       location,
       adminName,
       adminEmail,
+      adminPhoneNo,
+      adminGender,
       adminPassword,
     } = req.body;
 
-    /// to  check if (company already exists or not.)
+    /// to  check if ( company already exists or not. )
     const existingCompany = await Company.findOne({ domain });
     if (existingCompany) {
       return res.status(400).json({
-        message: "Comapny with this domain already exists",
+        message: "Company with this domain already exists",
       });
     }
 
     /// else (now to create comapny)
-    const company = await Company.create({
+    const createCompany = await Company.create({
       companyName,
       domain,
       industry,
@@ -46,9 +48,11 @@ export const companyRegister = async (req, res) => {
     ///// for to create first company User admin
     const adminUser = await CompanyUser.create({
       // _id is unique and auto-generated and primary key of that company
-      companyId: company._id,
+      companyId: createCompany._id,
       fullname: adminName,
       email: adminEmail,
+      phoneNo: adminPhoneNo,
+      gender: adminGender,
       password: hashedPassword,
       role: "admin",
     });
@@ -57,23 +61,25 @@ export const companyRegister = async (req, res) => {
     //////////   without user have to login again and again
     const token = generateToken({
       userId: adminUser._id,
-      companyId: company._id,
+      companyId: createCompany._id,
       role: adminUser.role,
     });
 
-    //////  for to Response
+    //////  for to send Response ==> to send data back to the frontend after company creation.
     res.status(201).json({
       message: "Company created successfully",
       token,
       company: {
-        id: company._id,
-        name: company.companyName,
-        domain: company.domain,
+        id: createCompany._id,
+        companyName: createCompany.companyName,
+        domain: createCompany.domain,
       },
       user: {
         id: adminUser._id,
-        name: adminUser.fullname,
+        fullname: adminUser.fullname,
         email: adminUser.email,
+        phoneNo: adminUser.phoneNo,
+        gender: adminUser.gender,
         role: adminUser.role,
       },
     });
@@ -95,13 +101,12 @@ export const loginCompanyUser = async (req, res) => {
     }
 
     //  to check if email exists or not
-    const existUser = await CompanyUser.findOne({ email });
+    const existUser = await CompanyUser.findOne({ email }).select("+password");
     if (!existUser) {
       return res.status(401).json({ message: "Email or Password Incorrect." });
     }
 
-    console.log("REQ PASSWORD:", password);
-    console.log("DB PASSWORD:", existUser.password);
+    /////////////////////////  Remove after this part of app is done ////////////////////////////////////
     console.log("USER DOC:", existUser);
 
     // check password is correct or not

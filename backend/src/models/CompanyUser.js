@@ -7,7 +7,7 @@ const companyUserSchema = mongoose.Schema(
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "Company"
+      ref: "Company",
     },
     fullname: {
       type: String,
@@ -18,11 +18,19 @@ const companyUserSchema = mongoose.Schema(
       required: true,
       lowercase: true,
     },
-
+    phoneNo: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+    },
     password: {
       type: String,
       required: true,
-      // select: false,
+      select: false,
     },
     role: {
       type: String,
