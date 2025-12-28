@@ -23,8 +23,8 @@ export const companyRegister = async (req, res) => {
     } = req.body;
 
     /// to  check if (company already exists or not.)
-    const existingComapny = await Company.findOne({ domain });
-    if (existingComapny) {
+    const existingCompany = await Company.findOne({ domain });
+    if (existingCompany) {
       return res.status(400).json({
         message: "Comapny with this domain already exists",
       });
@@ -57,7 +57,7 @@ export const companyRegister = async (req, res) => {
     //////////   without user have to login again and again
     const token = generateToken({
       userId: adminUser._id,
-      comapnyId: company._id,
+      companyId: company._id,
       role: adminUser.role,
     });
 
@@ -100,11 +100,9 @@ export const loginCompanyUser = async (req, res) => {
       return res.status(401).json({ message: "Email or Password Incorrect." });
     }
 
-
     console.log("REQ PASSWORD:", password);
-console.log("DB PASSWORD:", existUser.password);
-console.log("USER DOC:", existUser);
-
+    console.log("DB PASSWORD:", existUser.password);
+    console.log("USER DOC:", existUser);
 
     // check password is correct or not
     const isMatch = await bcrypt.compare(password, existUser.password);
@@ -120,7 +118,7 @@ console.log("USER DOC:", existUser);
     ////   to Generate  Token
     const token = generateToken({
       userId: existUser._id,
-      companyId: existUser.company._id,
+      companyId: existUser.companyId,
       role: existUser.role,
     });
 
@@ -133,7 +131,7 @@ console.log("USER DOC:", existUser);
         fullname: existUser.fullname,
         email: existUser.email,
         role: existUser.role,
-        companyId: existUser.company._id,
+        companyId: existUser.companyId,
       },
     });
   } catch (error) {

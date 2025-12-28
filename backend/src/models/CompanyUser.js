@@ -4,7 +4,11 @@ import mongoose from "mongoose";
 
 const companyUserSchema = mongoose.Schema(
   {
-    CompanyId: mongoose.Schema.Types.ObjectId,
+    companyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Company"
+    },
     fullname: {
       type: String,
       required: true,
@@ -18,7 +22,7 @@ const companyUserSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
-      select: false,
+      // select: false,
     },
     role: {
       type: String,
