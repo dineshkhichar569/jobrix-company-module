@@ -5,7 +5,7 @@ const StyleButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 6px 14px;
-  border-radius: 16px;
+  border-radius: 10px;
   border: none;
   font-weight: 600;
   cursor: pointer;

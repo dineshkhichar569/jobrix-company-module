@@ -49,7 +49,15 @@ function LandingPage() {
           <p className="text-4xl font-bold">Everything you need to hire</p>
           <p className="text-gray-500 text-[18px]">Built for internal recruiting teams who want to move fast</p>
         </div>
-        <div></div>
+        <div>
+
+          <div className="">
+            <img src="" alt="" />
+            <p></p>
+            <p></p>
+          </div>
+        
+        </div>
       </div>
     </div>
   );
