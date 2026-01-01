@@ -3,6 +3,7 @@ import "./styles/App.css";
 
 import LandingPage from "./pages/public/LandingPage";
 import CompanyRegister from "./pages/public/CompanyRegister";
+import CompanyUserLogin from "./pages/public/CompanyUserLogin";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         
         <Route path="/" element={<LandingPage />} />
 
-        <Route path="/register" element={<CompanyRegister />} />
+        <Route path="/signup" element={<CompanyRegister />} />
+        <Route path="/login" element={<CompanyUserLogin />} />
       </Routes>
     </>
   );

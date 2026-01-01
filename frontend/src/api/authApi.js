@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://localhost:8080/api",
 });
 
 export const companySignup = (data) => {
-  API.post("/auth/company/signup", data);
+  return API.post("/auth/company/signup", data);
 };
 
 export const loginUser = (data) => {
-  API.post("/auth/login", data);
+  return API.post("/auth/login", data);
 };
