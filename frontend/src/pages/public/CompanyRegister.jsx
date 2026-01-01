@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { companySignup } from "../../api/authApi";
 
 const industries = [
   "Technology",
@@ -30,7 +31,7 @@ const SelectOption = ({ options, placeholder, onOptionSelection }) => {
     <div className="relative w-64">
       <button
         className="cursor-pointer w-full flex justify-between items-center px-4 py-2 rounded-xl border bg-[#eceef4] shadow-sm text-gray-600 hover:shadow-md transition"
-        onClick={() => setOpen(!open)} ////// open will be true when button is clicked
+        onChange={() => setOpen(!open)} ////// open will be true when button is clicked
       >
         {selected || placeholder}
         <span className="">▾</span>
@@ -43,7 +44,7 @@ const SelectOption = ({ options, placeholder, onOptionSelection }) => {
           {options.map((options) => (
             <div
               key={options}
-              onClick={() => {
+              onChange={() => {
                 setSelected(options);
                 setOpen(false);
                 onOptionSelection(options);
@@ -64,6 +65,38 @@ function CompanyRegister() {
   const [industry, setIndustry] = useState("");
   const [companySize, setCompanySize] = useState("");
 
+  const [companyName, setCompanyName] = useState("");
+  const [domain, setDomain] = useState("");
+  const [location, setLocation] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleCompanySignup = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = {
+        companyName: companyName,
+        domain: domain,
+        industry: industry,
+        companySize: companySize,
+        location: location,
+        adminName: name,
+        adminEmail: email,
+        adminPhoneNo: mobile,
+        adminGender: "",
+        adminPassword: password,
+      };
+      
+      const res = await companySignup(data);
+      localStorage.setItem("token", res.data.token);
+    } catch (error) {
+      console.error(error.response?.data?.message || "Signup failed");
+    }
+  };
+
   return (
     <main className="h-full bg-[#eceef4] flex flex-col items-center">
       <div className="space-y-2">
@@ -74,7 +107,10 @@ function CompanyRegister() {
       </div>
 
       <div className="bg-white m-10 p-8 rounded-2xl shadow-xl  w-[50%]">
-        <form className="flex flex-col gap-10" action="submit">
+        <form
+          className="flex flex-col gap-10"
+          onSubmit={handleCompanySignup}
+        >
           <div className="flex flex-col gap-6">
             <div className="flex justify-start items-center gap-3">
               <img
@@ -96,6 +132,8 @@ function CompanyRegister() {
                 <input
                   className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
                   type="text"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="Joobrix Inc."
                   required
                 />
@@ -105,6 +143,8 @@ function CompanyRegister() {
                 <input
                   className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
                   type="text"
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value)}
                   placeholder="jobrix.com"
                   required
                 />
@@ -132,6 +172,8 @@ function CompanyRegister() {
                 <input
                   className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
                   type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                   placeholder="sikar, rajasthan"
                   required
                 />
@@ -161,6 +203,8 @@ function CompanyRegister() {
                 <input
                   className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
                   type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
                   required
                 />
@@ -170,7 +214,20 @@ function CompanyRegister() {
                 <input
                   className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="jhon@jobrix.com"
+                  required
+                />
+              </label>
+              <label className="flex flex-col gap-3">
+                Phone No. *
+                <input
+                  className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
+                  type="tel"
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
+                  placeholder="+91 xxxxxxxxx"
                   required
                 />
               </label>
@@ -179,6 +236,8 @@ function CompanyRegister() {
                 <input
                   className="bg-[#eceef4] p-2 rounded-lg border border-gray-400"
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Min. 6 characters"
                   required
                 />
@@ -186,11 +245,17 @@ function CompanyRegister() {
             </div>
           </div>
 
-          <button>Create Company & Continue</button>
+          <button type="submit">Create Company & Continue</button>
         </form>
         <p className="text-center">
-          By signing up, you agree to our <Link to="" className="text-blue-600">Terms of Service</Link>{" "}
-          and <Link to="" className="text-blue-600">Privacy Policy</Link>
+          By signing up, you agree to our{" "}
+          <Link to="" className="text-blue-600">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link to="" className="text-blue-600">
+            Privacy Policy
+          </Link>
         </p>
       </div>
     </main>
