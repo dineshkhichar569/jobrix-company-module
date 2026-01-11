@@ -7,7 +7,6 @@ import CompanyUser from "../models/CompanyUser.js";
 import generateToken from "../utiles/generateToken.js";
 
 //////////////////////////////////  For Company Register and First Admin registeration  ///////////////////////////////////////
-
 export const companyRegister = async (req, res) => {
   try {
     ///// cause here req.body is an object coming from frontend
@@ -89,8 +88,8 @@ export const companyRegister = async (req, res) => {
   }
 };
 
-//////////////////////////////////  For Company Users can Login and come back  ///////////////////////////////////////
 
+//////////////////////////////////  For Company Users can Login and come back  ///////////////////////////////////////
 export const loginCompanyUser = async (req, res) => {
   try {
     const { email, password } = req.body;
