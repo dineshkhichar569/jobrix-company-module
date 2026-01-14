@@ -28,7 +28,7 @@ export default function LandingPage() {
             <button className="text-sm font-medium text-gray-600 hover:text-black">
               Careers
             </button>
-            <Button variant="ghost">Log in</Button>
+            <Button variant="ghost" onClick={() => navigate("/login")}>Log in</Button>
             <Button variant="primary" onClick={() => navigate("/signup")}>Get Started</Button>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function LandingPage() {
 
           <div className="flex gap-4">
             <Button variant="primary" onClick={() => navigate("/signup")}>Start Free Trial</Button>
-            <Button variant="ghost">Login to your account</Button>
+            <Button variant="ghost" onClick={() => navigate("/login")}>Login to your account</Button>
           </div>
         </div>
 

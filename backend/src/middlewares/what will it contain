@@ -1,0 +1,21 @@
+# JWT authentication, input validation
+
+## auth.middleware.js
+- is the user logged in ?
+
+## role.middleware.js
+- (runs after auth middleware)
+- Does this logged-in user have permission to do this ?
+
+## company.middleware.js
+- Users can access only their company's data.
+
+## validate.middleware.js
+- To stop bad data before it reaches controllers.
+
+## error.middleware.js
+- To handle all errors in one place.
+
+## index.js
+- instead of importing each middleware separatly everywhere.
+- you import them from one place.
