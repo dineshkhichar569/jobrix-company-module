@@ -6,7 +6,7 @@ const isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   //////  to check is header exists AND starts with "Bearer"
-  if (!authHeader || !authHeader.startswith("Bearer")) {
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
@@ -27,6 +27,7 @@ const isLoggedIn = async (req, res, next) => {
 
     next();
   } catch (error) {
+    console.log("JWT VERIFY ERROR:", error.message);
     return res.status(401).json({ message: "Invalid token" });
   }
 };

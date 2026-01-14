@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
-import Company from "../models/Company.js";
-import CompanyUser from "../models/CompanyUser.js";
+import Company from "../models/Company.model.js";
+import CompanyUser from "../models/CompanyUser.model.js";
 
 ////// To generate Token
 import generateToken from "../utiles/generateToken.js";
