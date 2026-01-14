@@ -10,12 +10,17 @@
 ## company.middleware.js
 - Users can access only their company's data.
 
+## index.js
+- instead of importing each middleware separatly everywhere.
+- you import them from one place.
+
+----------
+----------
+----------
+
+# OPTIONAL 
 ## validate.middleware.js
 - To stop bad data before it reaches controllers.
 
 ## error.middleware.js
 - To handle all errors in one place.
-
-## index.js
-- instead of importing each middleware separatly everywhere.
-- you import them from one place.
