@@ -25,7 +25,7 @@ const companyUserSchema = mongoose.Schema(
     },
     gender: {
       type: String,
-      required: true,
+      // required: true,
     },
     password: {
       type: String,

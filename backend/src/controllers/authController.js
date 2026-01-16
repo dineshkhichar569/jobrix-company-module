@@ -105,9 +105,6 @@ export const loginCompanyUser = async (req, res) => {
       return res.status(401).json({ message: "Email or Password Incorrect." });
     }
 
-    /////////////////////////  Remove after this part of app is done ////////////////////////////////////
-    console.log("USER DOC:", existUser);
-
     // check password is correct or not
     const isMatch = await bcrypt.compare(password, existUser.password);
     if (!isMatch) {

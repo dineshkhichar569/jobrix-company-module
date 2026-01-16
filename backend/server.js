@@ -1,9 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+
 import connnectDB from "./src/config/mongoose-connection.js";
+
+/////////////////   Routes  ///////////////////
 import authRouter from "./src/routes/auth.Routes.js";
 import jobRouter from "./src/routes/admin/job.routes.js";
+import recruiterRouter from "./src/routes/admin/recruiter.routes.js";
 
 
 dotenv.config();
@@ -21,6 +25,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/admin", jobRouter);
+app.use("/api/admin", recruiterRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started at http://localhost:${PORT}`);
