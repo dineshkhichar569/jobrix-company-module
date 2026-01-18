@@ -4,6 +4,7 @@ import "./styles/App.css";
 import LandingPage from "./pages/public/LandingPage";
 import CompanyRegister from "./pages/public/CompanyRegister";
 import CompanyUserLogin from "./pages/public/CompanyUserLogin";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
 
         <Route path="/signup" element={<CompanyRegister />} />
         <Route path="/login" element={<CompanyUserLogin />} />
+
+
+        <Route path="/nav" element={<Navbar />} />
       </Routes>
     </>
   );
