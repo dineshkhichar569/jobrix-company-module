@@ -25,7 +25,7 @@ const commpanySize = [
   "1000+ employees",
 ];
 
-const SelectOption = ({ options, placeholder, onOptionSelection }) => {
+const SelectOption = ({ options, placeholder,  }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 

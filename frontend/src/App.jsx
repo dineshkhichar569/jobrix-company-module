@@ -4,7 +4,8 @@ import "./styles/App.css";
 import LandingPage from "./pages/public/LandingPage";
 import CompanyRegister from "./pages/public/CompanyRegister";
 import CompanyUserLogin from "./pages/public/CompanyUserLogin";
-import Navbar from "./components/layout/Navbar";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import Dashboard from "./pages/admin/dashboard pages/Dashboard";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/login" element={<CompanyUserLogin />} />
 
 
-        <Route path="/nav" element={<Navbar />} />
+        <Route path="/dash" element={<AdminDashboard />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
     </>
   );
