@@ -5,7 +5,7 @@ import LandingPage from "./pages/public/LandingPage";
 import CompanyRegister from "./pages/public/CompanyRegister";
 import CompanyUserLogin from "./pages/public/CompanyUserLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import Dashboard from "./pages/admin/dashboard pages/Dashboard";
+import Profile_Icon_PopUp from "./components/ui/Card/Profile_Icon_PopUp";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
 
 
         <Route path="/dash" element={<AdminDashboard />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+        <Route path="/popup" element={<Profile_Icon_PopUp />} />
       </Routes>
     </>
   );

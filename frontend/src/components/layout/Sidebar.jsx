@@ -13,7 +13,7 @@ function Sidebar({ setIsOption }) {
 
   return (
     <>
-      <aside className="sticky top-0 h-screen w-1/6 border-r">
+      <aside className="fixed overflow-hidden top-0 h-screen w-1/6 border-r">
         {/* Logo */}
         <div className="h-16 border-b p-3">
           <div className="flex items-center gap-3 font-bold text-xl">

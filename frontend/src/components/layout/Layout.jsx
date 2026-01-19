@@ -9,7 +9,7 @@ function Layout({ children, setIsOption }) {
       <Sidebar setIsOption={setIsOption} />
 
       {/* Navbar + dashboard pages */}
-      <div className="flex-1 flex flex-col">
+      <div className="ml-[16.666%] flex-1 flex flex-col">
         <Navbar />
 
         {/* dashboard pages */}

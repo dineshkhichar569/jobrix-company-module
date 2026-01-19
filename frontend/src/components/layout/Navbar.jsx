@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Bell, User2, Search, ChevronDown } from "lucide-react";
 import HoverPopUpCard from "../ui/Card/hoverPopUpCard";
+import Profile_Icon_PopUp from "../ui/Card/Profile_Icon_PopUp";
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur bg-white/40 border-b h-16 flex items-center justify-between px-8">
@@ -45,7 +47,10 @@ function Navbar() {
           </div>
 
           {/* profile */}
-          <div className="w-auto flex items-center gap-3 p-1 px-2 rounded-lg hover:bg-slate-100 cursor-pointer relative group">
+          <div
+            className="w-auto flex items-center gap-3 p-1 px-2 rounded-lg hover:bg-slate-100 cursor-pointer relative group"
+            onClick={() => setOpen(!open)}
+          >
             <div className="border-2 rounded-full p-1 cursor-pointer bg-indigo-100">
               <User2 className="text-indigo-600"></User2>
             </div>
@@ -63,6 +68,9 @@ function Navbar() {
             <div className="absolute bottom-full top-5 left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block transition">
               <HoverPopUpCard placeholder="Profile and Account" />
             </div>
+
+            {/* Profile PopUp */}
+            {open && <Profile_Icon_PopUp />}
           </div>
         </div>
       </nav>
