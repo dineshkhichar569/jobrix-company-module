@@ -48,7 +48,7 @@ function Navbar() {
 
           {/* profile */}
           <div
-            className="w-auto flex items-center gap-3 p-1 px-2 rounded-lg hover:bg-slate-100 cursor-pointer relative group"
+            className={`group w-auto flex items-center gap-3 p-1 px-2 rounded-lg ${open ? "bg-slate-200" : "hover:bg-slate-100"} cursor-pointer relative group`}
             onClick={() => setOpen(!open)}
           >
             <div className="border-2 rounded-full p-1 cursor-pointer bg-indigo-100">
@@ -63,14 +63,19 @@ function Navbar() {
               </span>
             </div>
 
-            <ChevronDown className="h-4 w-4 "></ChevronDown>
+            <ChevronDown className="h-4 w-4"></ChevronDown>
             {/* popUp */}
-            <div className="absolute bottom-full top-5 left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block transition">
+            <div
+              className={`absolute bottom-full top-5 left-1/2 -translate-x-1/2 mb-2 transition ${
+                open ? "hidden" : "hidden group-hover:block"
+                }
+              `}
+            >
               <HoverPopUpCard placeholder="Profile and Account" />
             </div>
 
             {/* Profile PopUp */}
-            {open && <Profile_Icon_PopUp />}
+            <Profile_Icon_PopUp open={open} />
           </div>
         </div>
       </nav>
