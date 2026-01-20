@@ -32,7 +32,13 @@ function Navbar() {
           {/* Help */}
           <div className="cursor-pointer relative inline-block group">
             <span className="font-macondo font-medium text-2xl ">?</span>
-            <div className="absolute bottom-full top-0 left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block transition">
+            {/* popUp */}
+            <div
+              className="absolute bottom-full top-0 left-1/2 -translate-x-1/2 mb-2
+             opacity-0 translate-y-1 pointer-events-none
+             group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+             transition-all duration-300 ease-out"
+            >
               <HoverPopUpCard placeholder="Help" />
             </div>
           </div>
@@ -41,7 +47,12 @@ function Navbar() {
           <div className="relative inline-block group">
             <Bell className="h-5 w-5 cursor-pointer"></Bell>
             {/* popUp */}
-            <div className="absolute bottom-full top-0 left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block transition">
+            <div
+              className="absolute bottom-full top-0 left-1/2 -translate-x-1/2 mb-2
+             opacity-0 translate-y-1 pointer-events-none
+             group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+             transition-all duration-300 ease-out"
+            >
               <HoverPopUpCard placeholder="Notification" />
             </div>
           </div>
@@ -66,8 +77,11 @@ function Navbar() {
             <ChevronDown className="h-4 w-4"></ChevronDown>
             {/* popUp */}
             <div
-              className={`absolute bottom-full top-5 left-1/2 -translate-x-1/2 mb-2 transition ${
-                open ? "hidden" : "hidden group-hover:block"
+              className={`absolute bottom-full top-5 left-1/2 -translate-x-1/2 mb-2 transition-all duration-300 ease-out
+                ${
+                  open
+                    ? "opacity-0 translate-y-1 pointer-events-none"
+                    : "opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                 }
               `}
             >
