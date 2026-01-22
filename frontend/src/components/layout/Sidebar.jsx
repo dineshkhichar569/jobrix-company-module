@@ -26,10 +26,10 @@ function Sidebar({ setIsOption }) {
 
         <div className="p-3 flex flex-col gap-2">
           <div
-            className={`flex gap-3 items-center hover:bg-slate-100 p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
               isSelected === "dashboard"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
-                : "text-gray-600"
+                : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
               setIsSelected("dashboard");
@@ -40,10 +40,10 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Dashboard</span>
           </div>
           <div
-            className={`flex gap-3 items-center hover:bg-slate-100 p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
               isSelected === "jobs"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
-                : "text-gray-600"
+                : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
               setIsSelected("jobs");
@@ -54,10 +54,10 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Jobs</span>
           </div>
           <div
-            className={`flex gap-3 items-center hover:bg-slate-100 p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
               isSelected === "candidates"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
-                : "text-gray-600"
+                : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
               setIsSelected("candidates");
@@ -68,10 +68,10 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Candidates</span>
           </div>
           <div
-            className={`flex gap-3 items-center hover:bg-slate-100 p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
               isSelected === "interviews"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
-                : "text-gray-600"
+                : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
               setIsSelected("interviews");
@@ -82,10 +82,10 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Interviews</span>
           </div>
           <div
-            className={`flex gap-3 items-center hover:bg-slate-100 p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
               isSelected === "analytics"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
-                : "text-gray-600"
+                : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
               setIsSelected("analytics");

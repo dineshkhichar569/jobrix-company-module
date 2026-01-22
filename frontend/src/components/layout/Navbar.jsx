@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Bell, User2, Search, ChevronDown } from "lucide-react";
 import HoverPopUpCard from "../ui/Card/hoverPopUpCard";
 import Profile_Icon_PopUp from "../ui/Card/Profile_Icon_PopUp";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
+
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur bg-white/40 border-b h-16 flex items-center justify-between px-8">
@@ -61,6 +79,7 @@ function Navbar() {
           <div
             className={`group w-auto flex items-center gap-3 p-1 px-2 rounded-lg ${open ? "bg-slate-200" : "hover:bg-slate-100"} cursor-pointer relative group`}
             onClick={() => setOpen(!open)}
+            ref={profileRef}
           >
             <div className="border-2 rounded-full p-1 cursor-pointer bg-indigo-100">
               <User2 className="text-indigo-600"></User2>
