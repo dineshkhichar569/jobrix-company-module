@@ -3,6 +3,8 @@ import {
   Briefcase,
   Calendar,
   LayoutDashboard,
+  Settings,
+  UserPlus2,
   Users,
 } from "lucide-react";
 import React, { useState } from "react";
@@ -26,7 +28,7 @@ function Sidebar({ setIsOption }) {
 
         <div className="p-3 flex flex-col gap-2">
           <div
-            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "dashboard"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -40,7 +42,7 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Dashboard</span>
           </div>
           <div
-            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "jobs"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -54,7 +56,7 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Jobs</span>
           </div>
           <div
-            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "candidates"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -68,7 +70,7 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Candidates</span>
           </div>
           <div
-            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "interviews"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -82,7 +84,7 @@ function Sidebar({ setIsOption }) {
             <span className="text-base font-semibold">Interviews</span>
           </div>
           <div
-            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-100 ${
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "analytics"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -94,6 +96,38 @@ function Sidebar({ setIsOption }) {
           >
             <BarChart3 />
             <span className="text-base font-semibold">Analytics</span>
+          </div>
+
+          <span className="text-gray-600 font-normal p-6">Admin</span>
+
+          <div
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
+              isSelected === "teams"
+                ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
+                : "text-gray-600 hover:bg-slate-100"
+            }`}
+            onClick={() => {
+              setIsSelected("teams");
+              setIsOption("teams");
+            }}
+          >
+            <UserPlus2 />
+            <span className="text-base font-semibold">Team</span>
+          </div>
+
+          <div
+            className={`flex gap-3 items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
+              isSelected === "settings"
+                ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
+                : "text-gray-600 hover:bg-slate-100"
+            }`}
+            onClick={() => {
+              setIsSelected("settings");
+              setIsOption("settings");
+            }}
+          >
+            <Settings />
+            <span className="text-base font-semibold">Settings</span>
           </div>
         </div>
       </aside>
