@@ -5,6 +5,8 @@ import CreateJob from "./dashboard pages/CreateJob";
 import Interviews from "./dashboard pages/Interviews";
 import Analytics from "./dashboard pages/Analytics";
 import Candidates from "./dashboard pages/Candidates";
+import Teams from "./dashboard pages/Teams";
+import Settings from "./dashboard pages/Settings";
 
 function AdminDashboard() {
   const [isOption, setIsOption] = useState("dashboard");
@@ -15,6 +17,8 @@ function AdminDashboard() {
       {isOption == "candidates" ? <Candidates /> : ""}
       {isOption == "interviews" ? <Interviews /> : ""}
       {isOption == "analytics" ? <Analytics /> : ""}
+      {isOption == "teams" ? <Teams /> : ""}
+      {isOption == "settings" ? <Settings /> : ""}
     </Layout>
   );
 }
