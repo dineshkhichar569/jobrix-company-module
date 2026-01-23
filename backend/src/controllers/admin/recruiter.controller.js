@@ -4,7 +4,7 @@ import generateToken from "../../utiles/generateToken.js";
 
 export const registerRecruiter = async (req, res) => {
   try {
-    const { fullname, email, phoneNo, role, password } = req.body;
+    const { fullname, email, phoneNo, role, department, password } = req.body;
 
     const user = await CompanyUser.findOne({ email });
     if (user) {
@@ -22,6 +22,7 @@ export const registerRecruiter = async (req, res) => {
       email,
       phoneNo,
       role,
+      department,
       password: hashedPassword,
     });
 
