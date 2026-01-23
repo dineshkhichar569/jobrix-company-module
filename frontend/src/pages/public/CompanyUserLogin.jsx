@@ -2,9 +2,35 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import BackButton from "../../components/ui/Button/BackButton";
+import { loginUser } from "../../api/index.js";
 
 function CompanyUserLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = { email, password };
+      const res = await loginUser(data);
+      
+      console.log(data);
+      console.log(res);
+
+      localStorage.setItem("token", res.data.token);
+    } catch (error) {
+      const message = error.response?.data?.message || "Something went wrong";
+      setError(message);
+
+      console.error(error.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <BackButton placeholder="⟵" left="20px" top="20px" />
@@ -52,7 +78,7 @@ function CompanyUserLogin() {
             <div className="absolute -top-6 -left-6 w-full h-full rounded-3xl bg-indigo-100" />
 
             <div className="relative bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10">
-              <form className="space-y-8">
+              <form className="space-y-8" onSubmit={handleSubmit}>
                 <div className="space-y-2">
                   <h2 className="text-2xl font-bold text-[#0B1220]">
                     Sign in to your account
@@ -68,6 +94,8 @@ function CompanyUserLogin() {
                     placeholder="Work Email"
                     required
                     className="input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
 
                   <input
@@ -75,6 +103,8 @@ function CompanyUserLogin() {
                     placeholder="Password"
                     required
                     className="input"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
