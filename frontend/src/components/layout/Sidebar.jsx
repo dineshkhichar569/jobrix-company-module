@@ -10,8 +10,10 @@ import {
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Sidebar({ setIsOption }) {
+function Sidebar() {
   const [isSelected, setIsSelected] = useState("dashboard");
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -35,7 +37,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("dashboard");
-              setIsOption("dashboard");
+              navigate("/admin/dashboard");
             }}
           >
             <LayoutDashboard />
@@ -49,7 +51,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("jobs");
-              setIsOption("jobs");
+              navigate("/admin/jobs");
             }}
           >
             <Briefcase />
@@ -63,7 +65,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("candidates");
-              setIsOption("candidates");
+              navigate("/admin/candidates");
             }}
           >
             <Users />
@@ -77,7 +79,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("interviews");
-              setIsOption("interviews");
+              navigate("/admin/interviews");
             }}
           >
             <Calendar />
@@ -91,7 +93,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("analytics");
-              setIsOption("analytics");
+              navigate("/admin/analytics");
             }}
           >
             <BarChart3 />
@@ -108,7 +110,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("teams");
-              setIsOption("teams");
+              navigate("/admin/teams");
             }}
           >
             <UserPlus2 />
@@ -123,7 +125,7 @@ function Sidebar({ setIsOption }) {
             }`}
             onClick={() => {
               setIsSelected("settings");
-              setIsOption("settings");
+              navigate("/admin/settings");
             }}
           >
             <Settings />

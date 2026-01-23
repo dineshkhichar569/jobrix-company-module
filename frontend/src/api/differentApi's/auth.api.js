@@ -1,8 +1,4 @@
-import axios from "axios";
-
-const API = axios.create({
-  baseURL: "http://localhost:8080/api",
-});
+import API from "../axios.js";
 
 export const companySignup = (data) => {
   return API.post("/auth/company/signup", data);

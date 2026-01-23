@@ -1,7 +1,69 @@
 import { UserCheck2, UserPlus2Icon } from "lucide-react";
-import React from "react";
+
+import { addMember } from "../../../api/index.js";
+import { useState } from "react";
+import { SelectOption } from "./SelectOption.jsx";
+
+const departments = [
+  "Human Resources",
+  "Engineering",
+  "Product Management",
+  "Design",
+  "Sales",
+  "Marketing",
+  "Customer Support",
+  "Operations",
+  "Finance",
+  "Legal",
+  "Administration",
+  "IT & Infrastructure",
+  "Quality Assurance",
+  "Business Development",
+  "Data & Analytics",
+  "Research & Development",
+  "Supply Chain",
+  "Procurement",
+  "Training & Development",
+  "Other",
+];
 
 function AddMember({ open, setOpen }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const [department, setDepartment] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    try {
+      const data = {
+        fullname: name,
+        email,
+        password,
+        role: role.toLocaleLowerCase(),
+        department,
+      };
+
+      console.log(data);
+
+      const res = await addMember(data);
+
+      console.log(res);
+
+    } catch (error) {
+      const message = error.response?.data?.message || "Something went wrong";
+      setError(message);
+
+      console.error(error.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div
       className={`fixed z-50 w-1/3 left-1/2 -translate-x-1/3 top-32
@@ -14,7 +76,7 @@ function AddMember({ open, setOpen }) {
         }
       `}
     >
-        {/* For Heading */}
+      {/* For Heading */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-3">
           <UserPlus2Icon className="w-5 h-5 text-indigo-600" />
@@ -26,7 +88,7 @@ function AddMember({ open, setOpen }) {
         </p>
       </div>
 
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         {/* Full Name */}
         <div>
           <label className="block text-sm font-medium mb-1">Full Name</label>
@@ -34,6 +96,8 @@ function AddMember({ open, setOpen }) {
             type="text"
             className="addMemberInput"
             placeholder="Enter full name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
 
@@ -44,6 +108,8 @@ function AddMember({ open, setOpen }) {
             type="email"
             className="addMemberInput"
             placeholder="Enter email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -56,6 +122,8 @@ function AddMember({ open, setOpen }) {
             type="password"
             className="addMemberInput"
             placeholder="Set temporary password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
@@ -63,23 +131,21 @@ function AddMember({ open, setOpen }) {
           {/* Role */}
           <div className="w-1/2">
             <label className="block text-sm font-medium mb-1">Role</label>
-            <select className="addMemberInput">
-              <option value="">Select role</option>
-              <option>Admin</option>
-              <option>Recruiter</option>
-              <option>HR Manager</option>
-            </select>
+            <SelectOption
+              options={["Admin", "Recruiter", "HR_Manager"]}
+              placeholder="Select Role"
+              onOptionSelection={setRole}
+            />
           </div>
 
           {/* Account Status */}
           <div className="w-1/2">
-            <label className="block text-sm font-medium mb-1">
-              Account Status
-            </label>
-            <select className="addMemberInput">
-              <option>Active</option>
-              <option>Inactive</option>
-            </select>
+            <label className="block text-sm font-medium mb-1">Department</label>
+            <SelectOption
+              options={departments}
+              placeholder="Select Department"
+              onOptionSelection={setDepartment}
+            />
           </div>
         </div>
 

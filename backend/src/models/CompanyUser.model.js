@@ -20,7 +20,7 @@ const companyUserSchema = mongoose.Schema(
     },
     phoneNo: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
     },
     gender: {
@@ -32,10 +32,11 @@ const companyUserSchema = mongoose.Schema(
       required: true,
       select: false,
     },
+    department: {
+      type: String
+    },
     role: {
       type: String,
-      enum: ["admin", "recruiter", "hiring_manager"],
-      default: "recruiter",
     },
     isActive: {
       type: Boolean,
