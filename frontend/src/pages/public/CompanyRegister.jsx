@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { companySignup } from "../../api/authApi";
+import { companySignup } from "../../api/index.js";
 import BackButton from "../../components/ui/Button/BackButton";
+import { SelectOption } from "../../components/ui/Card/SelectOption.jsx";
 
 const industries = [
   "Technology",
@@ -16,7 +16,7 @@ const industries = [
   "Real Estate",
   "Other",
 ];
-const commpanySize = [
+const size = [
   "1-10 employees",
   "11-50 employees",
   "51-200 employees",
@@ -24,43 +24,6 @@ const commpanySize = [
   "501-1000 employees",
   "1000+ employees",
 ];
-
-const SelectOption = ({ options, placeholder,  }) => {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState("");
-
-  return (
-    <div className="relative w-full">
-      <button
-        className="cursor-pointer w-full flex justify-between items-center px-4 py-2 rounded-xl border bg-[#eceef4] shadow-sm text-gray-600 hover:shadow-md transition"
-        onClick={() => setOpen(!open)} ////// open will be true when button is clicked
-      >
-        {selected || placeholder}
-        <span className="">▾</span>
-      </button>
-
-      {/* ////////   for Drop Down */}
-
-      {open && (
-        <div className="absolute z-10 mt-2 w-full rounded-xl bg-white shadow-lg border overflow-hidden">
-          {options.map((options) => (
-            <div
-              key={options}
-              onClick={() => {
-                setSelected(options);
-                setOpen(false);
-                onOptionSelection(options);
-              }}
-              className="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-100 transition"
-            >
-              {options}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
 
 function CompanyRegister() {
   ////////////////  here these industry and companySize will be used to send data to backend
@@ -184,7 +147,7 @@ function CompanyRegister() {
                       onOptionSelection={setIndustry}
                     />
                     <SelectOption
-                      options={commpanySize}
+                      options={size}
                       placeholder="Company Size"
                       onOptionSelection={setCompanySize}
                     />

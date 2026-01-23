@@ -22,3 +22,24 @@
 .addMemberInput {
   @apply bg-[#F6F7FB] p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full ;
 }
+
+
+@keyframes dropdown {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.95) translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+}
+
+.animate-dropdown {
+  animation: dropdown 0.2s ease-out forwards;
+}
+
+.dropdown-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
