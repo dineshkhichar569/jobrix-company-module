@@ -7,6 +7,7 @@ import Analytics from "./dashboard pages/Analytics";
 import Candidates from "./dashboard pages/Candidates";
 import Teams from "./dashboard pages/Teams";
 import Settings from "./dashboard pages/Settings";
+import AddMember from "../../components/ui/Card/AddMember";
 
 function AdminDashboard() {
   const [isOption, setIsOption] = useState("dashboard");
@@ -18,7 +19,7 @@ function AdminDashboard() {
       {isOption == "interviews" ? <Interviews /> : ""}
       {isOption == "analytics" ? <Analytics /> : ""}
       {isOption == "teams" ? <Teams /> : ""}
-      {isOption == "settings" ? <Settings /> : ""}
+      {isOption == "settings" ? <AddMember /> : ""}
     </Layout>
   );
 }
