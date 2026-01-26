@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import BackButton from "../../components/ui/Button/BackButton";
 import { loginUser } from "../../api/index.js";
 
 function CompanyUserLogin() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -16,7 +17,7 @@ function CompanyUserLogin() {
     try {
       const data = { email, password };
       const res = await loginUser(data);
-      
+
       console.log(data);
       console.log(res);
 
@@ -113,6 +114,7 @@ function CompanyUserLogin() {
                     <input
                       type="checkbox"
                       className="rounded border-gray-300"
+                      required
                     />
                     Remember me
                   </label>
@@ -129,6 +131,10 @@ function CompanyUserLogin() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={loading}
+                  type="submit"
+                  // onClick={() => {
+                  //   navigate("/admin/dashboard")
+                  // }}
                   className={`w-full py-3 rounded-xl font-semibold text-white ${
                     loading
                       ? "bg-indigo-400 cursor-not-allowed"
