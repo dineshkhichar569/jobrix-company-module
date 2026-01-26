@@ -114,7 +114,6 @@ function CompanyUserLogin() {
                     <input
                       type="checkbox"
                       className="rounded border-gray-300"
-                      required
                     />
                     Remember me
                   </label>
