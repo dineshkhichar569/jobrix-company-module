@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AddMember from "../../../components/ui/Card/AddMember";
+import AddMemberCard from "../../../components/ui/Card/AddMemberCard";
 import { getAllMembers } from "../../../api/index.js";
 import { Shield, UserCheck, Users } from "lucide-react";
 
@@ -8,6 +8,7 @@ function Teams() {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
+
     const fetchMembers = async () => {
       const res = await getAllMembers();
       setMembers(res.data);
@@ -60,7 +61,7 @@ function Teams() {
               onClick={() => setOpen(false)}
             />
 
-            <AddMember open={open} setOpen={setOpen} />
+            <AddMemberCard open={open} setOpen={setOpen} />
           </div>
         </div>
       </div>

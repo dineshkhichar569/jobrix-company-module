@@ -7,11 +7,11 @@ import {
   UserPlus2,
   Users,
 } from "lucide-react";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Sidebar() {
-  const [isSelected, setIsSelected] = useState("dashboard");
+  const location = useLocation();
+  const isSelected = location.pathname.split("/").pop();
 
   const navigate = useNavigate();
 
@@ -36,7 +36,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("dashboard");
               navigate("/admin/dashboard");
             }}
           >
@@ -50,7 +49,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("jobs");
               navigate("/admin/jobs");
             }}
           >
@@ -64,7 +62,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("candidates");
               navigate("/admin/candidates");
             }}
           >
@@ -78,7 +75,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("interviews");
               navigate("/admin/interviews");
             }}
           >
@@ -92,7 +88,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("analytics");
               navigate("/admin/analytics");
             }}
           >
@@ -109,7 +104,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("teams");
               navigate("/admin/teams");
             }}
           >
@@ -124,7 +118,6 @@ function Sidebar() {
                 : "text-gray-600 hover:bg-slate-100"
             }`}
             onClick={() => {
-              setIsSelected("settings");
               navigate("/admin/settings");
             }}
           >

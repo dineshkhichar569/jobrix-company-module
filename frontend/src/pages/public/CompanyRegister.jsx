@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { companySignup } from "../../api/index.js";
 import BackButton from "../../components/ui/Button/BackButton";
 import { SelectOption } from "../../components/ui/Card/SelectOption.jsx";
+import { Link } from "react-router-dom";
 
 const industries = [
   "Technology",
@@ -73,6 +74,15 @@ function CompanyRegister() {
     }
   };
 
+  ////// so that error disappear after few seconds
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+    }
+  }, [error]);
+
   return (
     <>
       <BackButton placeholder="⟵" left="20px" top="20px" />
@@ -120,7 +130,7 @@ function CompanyRegister() {
             <div className="absolute -top-6 -left-6 w-full h-full rounded-3xl bg-indigo-100" />
 
             <div className="relative bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10">
-              <form onSubmit={handleCompanySignup} className="space-y-12">
+              <form onSubmit={handleCompanySignup} className="space-y-8">
                 <motion.div className="space-y-6">
                   <h2 className="text-2xl font-bold text-[#0B1220]">
                     Company Information
@@ -231,20 +241,38 @@ function CompanyRegister() {
                     ? "Creating Workspace..."
                     : "Create Company & Continue"}
                 </motion.button>
-
-                {error && (
-                  <div className="text-red-700 bg-red-100 p-3 rounded-lg text-sm">
-                    {error}
-                  </div>
-                )}
               </form>
+              <p className="text-center text-sm text-gray-500 mt-4">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="text-indigo-600 font-semibold hover:underline"
+                >
+                  Log In
+                </Link>
+              </p>
 
-              <p className="text-xs text-center text-gray-400 mt-6">
+              <p className="text-xs text-center text-gray-400 mt-3">
                 By continuing, you agree to Jobrix Terms & Privacy Policy
               </p>
             </div>
           </motion.div>
         </div>
+
+        {/* for error popUp */}
+        <AnimatePresence mode="wait">
+          {error && (
+            <motion.div
+              initial={{ y: 40, x: "-50%" }}
+              animate={{ y: 0, x: "-50%" }}
+              exit={{ y: 40, x: "-50%" }}
+              transition={{ duration: 0.3, ease: "easeIn" }}
+              className="fixed bottom-6 left-1/2 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl text-sm font-medium z-50"
+            >
+              ⚠️ {error}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.main>
     </>
   );

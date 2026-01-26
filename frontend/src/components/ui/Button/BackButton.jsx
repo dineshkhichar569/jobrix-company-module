@@ -12,7 +12,7 @@ function BackButton({ placeholder, top, left, bottom, right }) {
         className={`fixed z-50`}
         style={{top, left, bottom, right}}
       >
-        <Link to={-1}>
+        <Link to="/">
           <motion.div
             className="w-9 h-9 rounded-full flex items-center justify-center text-indigo-700 text-base font-medium cursor-pointer backdrop-blur-md bg-indigo-950/10 border border-indigo-300 shadow-[0_0_12px_rgba(79,70,229,0.35)]"
             whileHover={{

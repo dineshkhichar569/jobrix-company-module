@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import BackButton from "../../components/ui/Button/BackButton";
 import { loginUser } from "../../api/index.js";
 
@@ -17,6 +17,7 @@ function CompanyUserLogin() {
     try {
       const data = { email, password };
       const res = await loginUser(data);
+      setError("");
 
       console.log(data);
       console.log(res);
@@ -32,6 +33,15 @@ function CompanyUserLogin() {
     }
   };
 
+  ////// so that error disappear after few seconds
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+    }
+  }, [error]);
+
   return (
     <>
       <BackButton placeholder="⟵" left="20px" top="20px" />
@@ -39,7 +49,7 @@ function CompanyUserLogin() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="min-h-screen bg-[#F6F7FB] flex items-center justify-center px-4 sm:px-6"
+        className="min-h-screen bg-[#F6F7FB] flex items-center justify-center px-4 sm:px-6 "
       >
         <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
@@ -156,6 +166,21 @@ function CompanyUserLogin() {
             </div>
           </motion.div>
         </div>
+
+        {/* for error popUp */}
+        <AnimatePresence mode="wait">
+          {error && (
+            <motion.div
+              initial={{ y: 40, x: "-50%" }}
+              animate={{ y: 0, x: "-50%" }}
+              exit={{ y: 40, x: "-50%" }}
+              transition={{ duration: 0.3, ease: "easeIn" }}
+              className="fixed bottom-6 left-1/2 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl text-sm font-medium z-50"
+            >
+              ⚠️ {error}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.main>
     </>
   );
