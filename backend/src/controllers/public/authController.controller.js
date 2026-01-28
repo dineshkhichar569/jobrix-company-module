@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
 
-import Company from "../models/Company.model.js";
-import CompanyUser from "../models/CompanyUser.model.js";
+import Company from "../../models/Company.model.js";
+import CompanyUser from "../../models/CompanyUser.model.js";
 
 ////// To generate Token
-import generateToken from "../utiles/generateToken.js";
+import generateToken from "../../utiles/generateToken.js";
 
 //////////////////////////////////  For Company Register and First Admin registeration  ///////////////////////////////////////
 export const companyRegister = async (req, res) => {

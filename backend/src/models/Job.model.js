@@ -17,7 +17,6 @@ const jobSchema = mongoose.Schema(
     location: String,
     jobType: {
       type: String,
-      enum: ["Full Time", "Internship", "Contract"],
       required: true,
     },
     description: String,
@@ -27,7 +26,6 @@ const jobSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Open", "Closed", "Paused"],
       default: "Open",
     },
   },

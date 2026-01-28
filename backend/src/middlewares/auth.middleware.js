@@ -6,7 +6,7 @@ const isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   //////  to check is header exists AND starts with "Bearer"
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
@@ -21,7 +21,7 @@ const isLoggedIn = async (req, res, next) => {
 
     /// to save user details inside request
     /// so controller knows who is calling API
-    req.userId = decoded.userId;
+    req.userId = decoded.id;
     req.companyId = decoded.companyId;
     req.role = decoded.role;
 

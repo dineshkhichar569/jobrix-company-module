@@ -12,7 +12,9 @@ function Teams() {
     const fetchMembers = async () => {
       const res = await getAllMembers();
       setMembers(res.data);
+
     };
+    console.log("data: " , members)
 
     fetchMembers();
   }, []);

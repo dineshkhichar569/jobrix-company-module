@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const IsLoggedInRoute = () => {
   const isLoggedIn = localStorage.getItem("token");
-  localStorage.clear();
+  // localStorage.removeItem("token");
 
   if(!isLoggedIn){
     alert("⚠️ You need to login first");

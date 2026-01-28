@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { addMember } from "../../../api/index.js";
 import { useEffect, useState } from "react";
 import { SelectOption } from "./SelectOption.jsx";
+import AuthMSG from "../popUpMessages/AuthMSG.jsx";
 
 const departments = [
   "Human Resources",
@@ -36,6 +37,7 @@ function AddMemberCard({ open, setOpen }) {
   const [department, setDepartment] = useState("");
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -53,12 +55,26 @@ function AddMemberCard({ open, setOpen }) {
 
       console.log(data);
 
-      const res = await addMember(data);
+      setSuccess(true);
 
+      if (open) {
+        setTimeout(() => {
+          setOpen(false);
+        }, 300);
+      }
+
+      setName("");
+      setEmail("");
+      setPassword("");
+      setRole("");
+      setDepartment("");
+
+      const res = await addMember(data);
       console.log(res);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
+      setError(false);
 
       console.error(error.response?.data?.message || "Registration failed");
     } finally {
@@ -71,9 +87,15 @@ function AddMemberCard({ open, setOpen }) {
     if (error) {
       setTimeout(() => {
         setError("");
-      }, 4000);
+      }, 3000);
     }
-  }, [error]);
+
+    if (success) {
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    }
+  }, [error, success]);
 
   return (
     <>
@@ -189,15 +211,30 @@ function AddMemberCard({ open, setOpen }) {
       {/* for error popUp */}
       <AnimatePresence mode="wait">
         {error && (
-          <motion.div
-            initial={{ y: 40, x: "-50%" }}
-            animate={{ y: 0, x: "-50%" }}
-            exit={{ y: 40, x: "-50%" }}
-            transition={{ duration: 0.3, ease: "easeIn" }}
-            className="fixed bottom-6 left-1/2 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl text-sm font-medium z-50"
-          >
-            ⚠️ {error}
-          </motion.div>
+          <AuthMSG
+            placeholder={error}
+            icon="⚠️"
+            bottom="24px"
+            background="#dc2626"
+            color="white"
+            textSize="16px"
+            px="15px"
+            py="8px"
+            popUpDirection="bottom"
+          />
+        )}
+        {success && (
+          <AuthMSG
+            placeholder="New team member added successfully!"
+            icon="🎉"
+            top="24px"
+            background="#16a34a"
+            color="white"
+            textSize="18px"
+            px="20px"
+            py="12px"
+            popUpDirection="top"
+          />
         )}
       </AnimatePresence>
     </>

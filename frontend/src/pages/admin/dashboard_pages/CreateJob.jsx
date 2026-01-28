@@ -1,11 +1,25 @@
 import { MapPin, Users2 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+// import { getAllJobs } from "../../../api/index.js";
+import CreateJobCard from "../../../components/ui/Card/CreateJobCard.jsx";
 
 function CreateJob() {
   const [open, setOpen] = useState(false);
   const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+
+    console.log("TOKEN AT REQUEST TIME:", localStorage.getItem("token"));
+
+    const fetchJobs = async () => {
+      // const res = await getAllJobs();
+      // setJobs(res.data);
+    }
+    fetchJobs();
+  },[])
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-8">  
       {/* Heading and add team job button */}
       <div className="flex justify-between items-center">
         <div>
@@ -35,7 +49,7 @@ function CreateJob() {
               onClick={() => setOpen(false)}
             />
 
-            {/* <AddMemberCard open={open} setOpen={setOpen} /> */}
+            <CreateJobCard open={open} setOpen={setOpen} />
           </div>
         </div>
       </div>
@@ -60,8 +74,8 @@ function CreateJob() {
             {jobs.map((job) => (
               <tr key={job._id} className="border-b hover:bg-slate-100">
                 <td className=" px-3 py-4 flex gap-3 items-center">
-                  <p className="font-medium text-base">{job.fullname}</p>
-                  <p className="text-[11px] text-blue-600">● {job.type}</p>
+                  <p className="font-medium text-base">{job.title}</p>
+                  <p className="text-[11px] text-blue-600">● {job.jobType}</p>
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
                   {job.department}
@@ -78,13 +92,13 @@ function CreateJob() {
                   </span>
                 </td>
                 <td className="px-3 py-3 text-center text-black font-medium">
-                  {job.recruiter}
+                  Recruiter
                 </td>
                 <td className="px-3 py-3 text-center text-black font-medium flex items-center gap-3">
                   <Users2 className="w-4 h-4 text-gray-500" /> 45
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
-                  {job.date}
+                  date
                 </td>
                 <td className="px-3 py-3 cursor-pointer">•••</td>
               </tr>

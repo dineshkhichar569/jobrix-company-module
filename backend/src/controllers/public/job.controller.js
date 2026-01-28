@@ -2,6 +2,7 @@ import Job from "../../models/Job.model.js";
 
 export const jobCreation = async (req, res) => {
   try {
+    console.log("BODY:", req.body);
     const {
       jobTitle,
       jobDepartment,
