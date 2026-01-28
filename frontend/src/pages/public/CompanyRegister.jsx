@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { companySignup } from "../../api/index.js";
 import BackButton from "../../components/ui/Button/BackButton";
 import { SelectOption } from "../../components/ui/Card/SelectOption.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthMSG from "../../components/ui/popUpMessages/AuthMSG.jsx";
 
 const industries = [
   "Technology",
@@ -27,6 +28,8 @@ const size = [
 ];
 
 function CompanyRegister() {
+  const navigate = useNavigate();
+
   ////////////////  here these industry and companySize will be used to send data to backend
   const [industry, setIndustry] = useState("");
   const [companySize, setCompanySize] = useState("");
@@ -41,6 +44,7 @@ function CompanyRegister() {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleCompanySignup = async (e) => {
@@ -64,9 +68,16 @@ function CompanyRegister() {
 
       const res = await companySignup(data);
       localStorage.setItem("token", res.data.token);
+
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/admin/dashboard", { replace: true });
+      }, 2000);
+
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
+      setSuccess(false);
 
       console.error(error.response?.data?.message || "Signup failed");
     } finally {
@@ -262,17 +273,34 @@ function CompanyRegister() {
         {/* for error popUp */}
         <AnimatePresence mode="wait">
           {error && (
-            <motion.div
-              initial={{ y: 40, x: "-50%" }}
-              animate={{ y: 0, x: "-50%" }}
-              exit={{ y: 40, x: "-50%" }}
-              transition={{ duration: 0.3, ease: "easeIn" }}
-              className="fixed bottom-6 left-1/2 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl text-sm font-medium z-50"
-            >
-              ⚠️ {error}
-            </motion.div>
+            <AuthMSG
+              placeholder={error}
+              icon="⚠️"
+              bottom="24px"
+              background="#dc2626"
+              color="white"
+              textSize="16px"
+              px="15px"
+              py="8px"
+              popUpDirection="bottom"
+            />
           )}
         </AnimatePresence>
+        {success && (
+          <div className="absolute h-screen w-screen backdrop-blur-sm z-50">
+            <AuthMSG
+              placeholder="Registration complete. Welcome to Jobrix."
+              icon="🎉"
+              top="24px"
+              background="#16a34a"
+              color="white"
+              textSize="18px"
+              px="20px"
+              py="12px"
+              popUpDirection="top"
+            />
+          </div>
+        )}
       </motion.main>
     </>
   );

@@ -6,6 +6,7 @@ import CompanyRegister from "./pages/public/CompanyRegister";
 import CompanyUserLogin from "./pages/public/CompanyUserLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import IsLoggedInRoute from "./guards/isLoggedInRoute";
+import LoggedOutOnlyRoute from "./guards/LoggedOutOnlyRoute";
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
 
-        <Route path="/signup" element={<CompanyRegister />} />
-        <Route path="/login" element={<CompanyUserLogin />} />
+        <Route element={<LoggedOutOnlyRoute />}>
+          <Route path="/login" element={<CompanyUserLogin />} />
+          <Route path="/signup" element={<CompanyRegister />} />
+        </Route>
 
         <Route element={<IsLoggedInRoute />}>
           <Route path="/admin/*" element={<AdminDashboard />} />

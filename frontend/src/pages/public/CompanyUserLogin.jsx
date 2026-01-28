@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import BackButton from "../../components/ui/Button/BackButton";
 import { loginUser } from "../../api/index.js";
+import AuthMSG from "../../components/ui/popUpMessages/AuthMSG";
 
 function CompanyUserLogin() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = { email, password };
       const res = await loginUser(data);
+
       setError("");
+      setSuccess(true);
+
+      setTimeout(() => {
+        navigate("/admin/dashboard", {replace: true});
+      }, 2000);
 
       console.log(data);
       console.log(res);
@@ -26,6 +35,7 @@ function CompanyUserLogin() {
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
+      setSuccess(false);
 
       console.error(error.response?.data?.message || "Login failed");
     } finally {
@@ -170,17 +180,34 @@ function CompanyUserLogin() {
         {/* for error popUp */}
         <AnimatePresence mode="wait">
           {error && (
-            <motion.div
-              initial={{ y: 40, x: "-50%" }}
-              animate={{ y: 0, x: "-50%" }}
-              exit={{ y: 40, x: "-50%" }}
-              transition={{ duration: 0.3, ease: "easeIn" }}
-              className="fixed bottom-6 left-1/2 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl text-sm font-medium z-50"
-            >
-              ⚠️ {error}
-            </motion.div>
+            <AuthMSG
+              placeholder={error}
+              icon="⚠️"
+              bottom="24px"
+              background="#dc2626"
+              color="white"
+              textSize="16px"
+              px="15px"
+              py="8px"
+              popUpDirection="bottom"
+            />
           )}
         </AnimatePresence>
+        {success && (
+          <div className="absolute h-screen w-screen backdrop-blur-sm z-50">
+            <AuthMSG
+              placeholder="Welcome back! Login successful."
+              icon="🎉"
+              top="24px"
+              background="#16a34a"
+              color="white"
+              textSize="18px"
+              px="20px"
+              py="12px"
+              popUpDirection="top"
+            />
+          </div>
+        )}
       </motion.main>
     </>
   );
