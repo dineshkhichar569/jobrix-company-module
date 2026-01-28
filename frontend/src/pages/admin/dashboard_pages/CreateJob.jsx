@@ -84,7 +84,7 @@ function CreateJob() {
                   <Users2 className="w-4 h-4 text-gray-500" /> 45
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
-                  Jan 15, 2023
+                  {job.date}
                 </td>
                 <td className="px-3 py-3 cursor-pointer">•••</td>
               </tr>
