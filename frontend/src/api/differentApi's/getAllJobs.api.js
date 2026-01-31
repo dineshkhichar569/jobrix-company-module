@@ -1,5 +1,5 @@
-// import API from "../axios.js";
+import API from "../axios.js";
 
-// export const getAllJobs = () => {
-//   return API.get("/fetch/jobs");
-// };
+export const getAllJobs = () => {
+  return API.get("/fetch/jobs");
+};

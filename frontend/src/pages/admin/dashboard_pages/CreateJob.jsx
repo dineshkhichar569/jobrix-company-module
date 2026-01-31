@@ -1,6 +1,6 @@
 import { MapPin, Users2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
-// import { getAllJobs } from "../../../api/index.js";
+import { useEffect, useState } from "react";
+import { getAllJobs } from "../../../api/index.js";
 import CreateJobCard from "../../../components/ui/Card/CreateJobCard.jsx";
 
 function CreateJob() {
@@ -8,12 +8,9 @@ function CreateJob() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-
-    console.log("TOKEN AT REQUEST TIME:", localStorage.getItem("token"));
-
     const fetchJobs = async () => {
-      // const res = await getAllJobs();
-      // setJobs(res.data);
+      const res = await getAllJobs();
+      setJobs(res.data);
     }
     fetchJobs();
   },[])

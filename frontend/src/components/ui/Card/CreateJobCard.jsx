@@ -1,9 +1,4 @@
-import {
-  Briefcase,
-  BriefcaseBusiness,
-  ClipboardPlus,
-  UserPlus2Icon,
-} from "lucide-react";
+import { BriefcaseBusiness } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
@@ -46,10 +41,9 @@ function CreateJobCard({ open, setOpen }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (req, res) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      setError("");
-
       const data = {
         jobTitle,
         jobDepartment,
@@ -60,18 +54,47 @@ function CreateJobCard({ open, setOpen }) {
         jobStatus,
       };
 
-      // const res = await addJob(data);
+      setError("");
+      setSuccess(true);
+
+      if (open) {
+        setTimeout(() => {
+          setOpen(false);
+        }, 300);
+      }
+
+      setJobTitle("");
+      setJobDepartment("");
+      setJobLocation("");
+      setJobType("");
+      setJobDescription("");
+      setJobRequirement("");
+      setJobStatus("");
+
+      const res = await addJob(data);
       console.log(res);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
-      setError(false);
+      setSuccess(false);
 
       console.error(error.response?.data?.message || "Registration failed");
-    } finally {
-      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
+
+    if (success) {
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    }
+  }, [error, success]);
 
   return (
     <>

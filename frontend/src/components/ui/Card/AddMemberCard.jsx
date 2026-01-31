@@ -43,7 +43,6 @@ function AddMemberCard({ open, setOpen }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
     try {
       const data = {
         fullname: name,
@@ -52,10 +51,11 @@ function AddMemberCard({ open, setOpen }) {
         role: role.toLocaleLowerCase(),
         department,
       };
-
+      
       console.log(data);
-
+      
       setSuccess(true);
+      setError(false);
 
       if (open) {
         setTimeout(() => {
@@ -74,7 +74,8 @@ function AddMemberCard({ open, setOpen }) {
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
-      setError(false);
+      setSuccess(false);
+      console.log(error);
 
       console.error(error.response?.data?.message || "Registration failed");
     } finally {
@@ -220,7 +221,7 @@ function AddMemberCard({ open, setOpen }) {
             textSize="16px"
             px="15px"
             py="8px"
-            popUpDirection="bottom"
+            popUpDirection="top"
           />
         )}
         {success && (
@@ -233,7 +234,7 @@ function AddMemberCard({ open, setOpen }) {
             textSize="18px"
             px="20px"
             py="12px"
-            popUpDirection="top"
+            popUpDirection="to p"
           />
         )}
       </AnimatePresence>
