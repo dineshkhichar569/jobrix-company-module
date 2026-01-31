@@ -5,3 +5,4 @@ const generateToken = (payload) => {
 };
 
 export default generateToken;
+ 

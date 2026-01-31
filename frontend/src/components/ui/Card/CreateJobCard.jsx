@@ -72,7 +72,6 @@ function CreateJobCard({ open, setOpen }) {
       setJobStatus("");
 
       const res = await addJob(data);
-      console.log(res);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);

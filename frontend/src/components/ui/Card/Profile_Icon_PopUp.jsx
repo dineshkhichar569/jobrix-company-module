@@ -1,7 +1,9 @@
 import { LogOutIcon, Settings, Sun, UserCircle2 } from "lucide-react";
-import React from "react";
+import { AnimatePresence } from "framer-motion";
+import AuthMSG from "../popUpMessages/AuthMSG";
+import { useState } from "react";
 
-function Profile_Icon_PopUp({ open }) {
+function Profile_Icon_PopUp({ open, handleLogout }) {
   return (
     <div
       className={`absolute top-14 left-0 bg-white w-52 h-auto rounded-lg border-2 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.12)]
@@ -34,7 +36,10 @@ function Profile_Icon_PopUp({ open }) {
       <hr />
 
       {/* Logout */}
-      <div className="flex gap-3 items-center p-2 rounded-lg hover:bg-red-100 transition-all duration-100 cursor-pointer text-red-600 mt-1">
+      <div
+        onClick={handleLogout}
+        className="flex gap-3 items-center p-2 rounded-lg hover:bg-red-100 transition-all duration-100 cursor-pointer text-red-600 mt-1"
+      >
         <LogOutIcon className="rotate-180 h-5 w-5" />
         <span className="text-sm">Log out</span>
       </div>

@@ -21,7 +21,7 @@ const isLoggedIn = async (req, res, next) => {
 
     /// to save user details inside request
     /// so controller knows who is calling API
-    req.userId = decoded.id;
+    req.userId = decoded.userId;
     req.companyId = decoded.companyId;
     req.role = decoded.role;
 

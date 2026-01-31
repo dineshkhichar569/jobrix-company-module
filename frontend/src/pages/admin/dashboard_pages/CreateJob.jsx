@@ -11,12 +11,12 @@ function CreateJob() {
     const fetchJobs = async () => {
       const res = await getAllJobs();
       setJobs(res.data);
-    }
+    };
     fetchJobs();
-  },[])
+  }, []);
 
   return (
-    <div className="space-y-8">  
+    <div className="space-y-8">
       {/* Heading and add team job button */}
       <div className="flex justify-between items-center">
         <div>
@@ -72,13 +72,17 @@ function CreateJob() {
               <tr key={job._id} className="border-b hover:bg-slate-100">
                 <td className=" px-3 py-4 flex gap-3 items-center">
                   <p className="font-medium text-base">{job.title}</p>
-                  <p className="text-[11px] text-blue-600">● {job.jobType}</p>
+                  <p className="text-[11px] text-blue-600">
+                    <span className="animate-ping"> ● </span>
+                    {job.jobType}
+                  </p>
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
                   {job.department}
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500 flex items-center gap-1">
-                  <MapPin className="w-4 h-4 text-indigo-500" /> {job.location}
+                  <MapPin className="w-4 h-4 text-indigo-500 animate-bounce" />{" "}
+                  {job.location}
                 </td>
                 <td className="px-3 py-3 text-center font-medium text-gray-500">
                   <span
@@ -95,7 +99,11 @@ function CreateJob() {
                   <Users2 className="w-4 h-4 text-gray-500" /> 45
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
-                  date
+                  {new Date(job.createdAt).toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
                 </td>
                 <td className="px-3 py-3 cursor-pointer">•••</td>
               </tr>

@@ -2,14 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import { Bell, User2, Search, ChevronDown } from "lucide-react";
 import HoverPopUpCard from "../ui/Card/hoverPopUpCard";
 import Profile_Icon_PopUp from "../ui/Card/Profile_Icon_PopUp";
+import { getLoggedInUser } from "../../api/index.js";
+import { AnimatePresence } from "framer-motion";
+import AuthMSG from "../ui/popUpMessages/AuthMSG.jsx";
+import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({handleLogout}) {
   const [open, setOpen] = useState(false);
   const profileRef = useRef(null);
 
+  const [loggedUser, setLoggedUser] = useState(null);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
         setOpen(false);
       }
     };
@@ -23,6 +29,19 @@ function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const fetchLoggedUser = async () => {
+      const res = await getLoggedInUser();
+      setLoggedUser(res.data);
+    };
+    fetchLoggedUser();
+  }, []);
+
+  const capitalRole = (role) => {
+    return role ? role.charAt(0).toUpperCase() + role.slice(1) : "";
+  };
+
+
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur bg-white/40 border-b h-16 flex items-center justify-between px-8">
@@ -30,7 +49,7 @@ function Navbar() {
         <div className="flex items-center gap-20">
           <div className="flex flex-col justify-center">
             <span className="text-base font-medium">Jobrix Corporation</span>
-            <span className="text-gray-600 text-xs">Enterprise ATS</span>
+            <span className="text-gray-600 text-xs">Enterprise ATS </span>
           </div>
 
           {/* Search bar */}
@@ -87,9 +106,13 @@ function Navbar() {
 
             {/* Admin Name */}
             <div className="flex flex-col ">
-              <span className="font-medium">Dinesh Khichar</span>
-              <span className="text-[14px] text-gray-600 leading-tight">
-                Admin
+              <span className="font-medium">
+                {loggedUser ? loggedUser.fullname : "Loading..."}
+              </span>
+              <span
+                className={`text-[14px] leading-tight ${loggedUser?.role === "admin" ? "text-blue-600" : "text-gray-600"} `}
+              >
+                {capitalRole(loggedUser?.role)}
               </span>
             </div>
 
@@ -108,10 +131,12 @@ function Navbar() {
             </div>
 
             {/* Profile PopUp */}
-            <Profile_Icon_PopUp open={open} />
+            <Profile_Icon_PopUp open={open} handleLogout={handleLogout} />
           </div>
         </div>
       </nav>
+
+
     </>
   );
 }

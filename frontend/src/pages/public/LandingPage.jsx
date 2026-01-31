@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 export default function LandingPage() {
   const navigate = useNavigate();
 
+  const isLogIn = localStorage.getItem("token");
+  console.log("Token : ", isLogIn);
+
   return (
     <div className="bg-[#F6F7FB] text-[#0B1220]">
       {/* /////////////////////  navbar */}
@@ -28,8 +31,24 @@ export default function LandingPage() {
             <button className="text-sm font-medium text-gray-600 hover:text-black">
               Careers
             </button>
-            <Button variant="ghost" onClick={() => navigate("/login")}>Log in</Button>
-            <Button variant="primary" onClick={() => navigate("/signup")}>Get Started</Button>
+
+            {isLogIn ? (
+              <Button
+                variant="primary"
+                onClick={() => navigate("/admin/dashboard")}
+              >
+                Go to Dashboard
+              </Button>
+            ) : (
+              <>
+                <Button variant="ghost" onClick={() => navigate("/login")}>
+                  Log in
+                </Button>
+                <Button variant="primary" onClick={() => navigate("/signup")}>
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -57,8 +76,23 @@ export default function LandingPage() {
           </p>
 
           <div className="flex gap-4">
-            <Button variant="primary" onClick={() => navigate("/signup")}>Start Free Trial</Button>
-            <Button variant="ghost" onClick={() => navigate("/login")}>Login to your account</Button>
+            {isLogIn ? (
+              <Button
+                variant="primary"
+                onClick={() => navigate("/admin/dashboard")}
+              >
+                Go to Dashboard
+              </Button>
+            ) : (
+              <>
+                <Button variant="primary" onClick={() => navigate("/signup")}>
+                  Start Free Trial
+                </Button>
+                <Button variant="ghost" onClick={() => navigate("/login")}>
+                  Login to your account
+                </Button>
+              </>
+            )}
           </div>
         </div>
 

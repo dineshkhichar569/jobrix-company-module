@@ -8,13 +8,11 @@ function Teams() {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-
     const fetchMembers = async () => {
       const res = await getAllMembers();
       setMembers(res.data);
-
     };
-    console.log("data: " , members)
+    console.log("data: ", members);
 
     fetchMembers();
   }, []);
@@ -163,7 +161,11 @@ function Teams() {
                   6
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
-                  Jan 15, 2023
+                  {new Date(member.createdAt).toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
                 </td>
                 <td className="px-3 py-3 cursor-pointer">•••</td>
               </tr>

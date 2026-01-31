@@ -70,7 +70,6 @@ function AddMemberCard({ open, setOpen }) {
       setDepartment("");
 
       const res = await addMember(data);
-      console.log(res);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
