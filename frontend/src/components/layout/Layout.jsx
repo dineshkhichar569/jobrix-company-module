@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -7,8 +7,15 @@ import AuthMSG from "../ui/popUpMessages/AuthMSG";
 
 function Layout() {
   const [msg, setMsg] = useState(false);
-
   const navigate = useNavigate();
+
+  const [collapsed, setCollapsed] = useState(
+    localStorage.getItem("collapsed") === "true",
+  );
+
+  useEffect(() => {
+    localStorage.setItem("collapsed", collapsed);
+  }, [collapsed]);
 
   ///////////////   to Handle error message popup at the time of logOut
   const handleLogout = () => {
@@ -23,10 +30,16 @@ function Layout() {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar
+        handleLogout={handleLogout}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
 
       {/* Navbar + dashboard pages */}
-      <div className="ml-[16.666%] flex-1 flex flex-col">
+      <div
+        className={`transition-all duration-700 ease-in-out ${collapsed ? "ml-[5%]" : "ml-[16.666%]"} flex-1 flex flex-col`}
+      >
         <Navbar handleLogout={handleLogout} />
 
         {/* dashboard pages */}

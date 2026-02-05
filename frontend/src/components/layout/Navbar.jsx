@@ -44,7 +44,7 @@ function Navbar({handleLogout}) {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 backdrop-blur bg-white/40 border-b h-16 flex items-center justify-between px-8">
+      <nav className="sticky top-0 z-30 backdrop-blur bg-white/40 border-b h-16 flex items-center justify-between px-8">
         {/* left */}
         <div className="flex items-center gap-20">
           <div className="flex flex-col justify-center">
