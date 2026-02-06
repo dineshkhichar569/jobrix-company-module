@@ -2,9 +2,9 @@ import {
   BarChart3,
   Briefcase,
   Calendar,
+  ChevronLeft,
   LayoutDashboard,
   LogOut,
-  PanelRightClose,
   Settings,
   UserPlus2,
   Users,
@@ -20,15 +20,20 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
   return (
     <>
       <aside
-        className={`fixed overflow-hidden top-0 h-screen border-r transition-all duration-700 ease-in-out ${collapsed ? "w-[5%]" : "w-1/6"} `}
+        className={`fixed z-40 overflow-hidden top-0 h-screen border-r transition-all duration-700 ease-in-out ${collapsed ? "w-[5%]" : "w-1/6"} `}
       >
         <div
-          className="absolute right-0 top-5 cursor-pointer"
+          className={`fixed top-4 z-50 cursor-pointer text-center transition-all duration-700 ease-in-out 
+            ${
+              collapsed
+                ? "p-1 rotate-180 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-full translate-x-[calc(5vw-1rem)]"
+                : "p-2 rotate-0 hover:bg-slate-200 rounded-lg translate-x-[calc(14vw-0.75rem)]"
+            }`}
           onClick={(e) => {
             setCollapsed(!collapsed);
           }}
         >
-          <PanelRightClose />
+          <ChevronLeft className={`h-5 w-5 text-slate-500`} />
         </div>
         {/* Logo */}
         <div className="h-16 border-b p-3">
@@ -45,12 +50,12 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
                 JOBRIX
               </span>
             </div>
-                    </div>
+          </div>
         </div>
 
         <div className="p-3 flex flex-col gap-2">
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "dashboard"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -59,7 +64,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               navigate("/admin/dashboard");
             }}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <LayoutDashboard />
             </div>
             <div
@@ -74,7 +79,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "jobs"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -83,7 +88,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               navigate("/admin/jobs");
             }}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <Briefcase />
             </div>
             <div
@@ -98,7 +103,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "candidates"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -107,7 +112,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               navigate("/admin/candidates");
             }}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <Users />
             </div>
             <div
@@ -122,7 +127,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "interviews"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -131,7 +136,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               navigate("/admin/interviews");
             }}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <Calendar />
             </div>
             <div
@@ -146,10 +151,10 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${isSelected === "analytics" ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100" : "text-gray-600 hover:bg-slate-100"} `}
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${isSelected === "analytics" ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100" : "text-gray-600 hover:bg-slate-100"} `}
             onClick={() => navigate("/admin/analytics")}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <BarChart3 />
             </div>
             <div
@@ -170,7 +175,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </span>
 
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "teams"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -179,7 +184,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               navigate("/admin/teams");
             }}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <UserPlus2 />
             </div>
             <div
@@ -194,7 +199,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`flex items-center p-2 px-3 rounded-lg cursor-pointer transition duration-150 ${
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "settings"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
                 : "text-gray-600 hover:bg-slate-100"
@@ -203,7 +208,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               navigate("/admin/settings");
             }}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <Settings />
             </div>
             <div
@@ -218,10 +223,10 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`flex absolute bottom-4 left-3 right-3 items-center p-2 px-3 rounded-lg cursor-pointer transition-colors duration-200 text-red-600 hover:bg-red-100`}
+            className={`group flex absolute bottom-4 left-3 right-3 items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 text-red-600 hover:bg-red-100`}
             onClick={handleLogout}
           >
-            <div className="w-6 h-6 flex items-center justify-center">
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
               <LogOut className="rotate-180" />
             </div>
             <div
