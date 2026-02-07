@@ -6,14 +6,29 @@ import {
   LayoutDashboard,
   LogOut,
   Settings,
+  User2,
   UserPlus2,
   Users,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getLoggedInUser } from "../../api";
 
 function Sidebar({ handleLogout, collapsed, setCollapsed }) {
   const location = useLocation();
   const isSelected = location.pathname.split("/").pop();
+  const [loggedUser, setLoggedUser] = useState(null);
+
+  useEffect(() => {
+    const fetchLoggedUser = async () => {
+      const res = await getLoggedInUser();
+      setLoggedUser(res.data);
+    };
+    fetchLoggedUser();
+  }, []);
+  const capitalRole = (role) => {
+    return role ? role.charAt(0).toUpperCase() + role.slice(1) : "";
+  };
 
   const navigate = useNavigate();
 
@@ -219,6 +234,44 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
               >
                 Settings
               </span>
+            </div>
+          </div>
+
+          {/* profile */}
+          <div
+            className={`group w-auto absolute bottom-20 left-3 right-3 flex items-center gap-3 rounded-xl border border-indigo-400 bg-indigo-100 cursor-pointer transition-all duration-500 ease-out shadow-[0_15px_35px_rgba(79,70,229,0.25)] hover:shadow-[0_30px_60px_rgba(79,70,229,0.45)] hover:bg-indigo-400 ${collapsed ? "px-2 p-1" : "px-3 p-2"}`}
+            style={{ perspective: "1000px" }}
+          >
+            {/* 3D inner card */}
+            <div
+              className={`flex items-center gap-3 transition-transform duration-500 ease-out group-hover:rotate-x-6 group-hover:-rotate-y-6 ${collapsed ? "" : ""}`}
+            >
+              <div
+                className={`flex items-center justify-center border-2 border-indigo-300 rounded-full p-1 bg-indigo-700 shadow-lg transition-transform duration-500 group-hover:translate-z-10 group-hover:scale-110`}
+              >
+                <User2 className="text-white" />
+              </div>
+
+              {/* Admin Name */}
+              <div
+                className={`flex flex-col whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
+              >
+                <span
+                  className={`font-semibold text-gray-900 group-hover:text-white transition-colors`}
+                >
+                  {loggedUser ? loggedUser.fullname : "Loading..."}
+                </span>
+
+                <span
+                  className={`text-[14px] leading-tight transition-colors ${
+                    loggedUser?.role === "admin"
+                      ? "text-blue-600 group-hover:text-blue-200"
+                      : "text-gray-600 group-hover:text-gray-200"
+                  }`}
+                >
+                  {capitalRole(loggedUser?.role)}
+                </span>
+              </div>
             </div>
           </div>
 
