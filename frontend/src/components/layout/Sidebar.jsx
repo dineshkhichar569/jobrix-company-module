@@ -242,7 +242,6 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
             className={`group w-auto absolute bottom-20 left-3 right-3 flex items-center gap-3 rounded-xl border border-indigo-400 bg-indigo-100 cursor-pointer transition-all duration-500 ease-out shadow-[0_15px_35px_rgba(79,70,229,0.25)] hover:shadow-[0_30px_60px_rgba(79,70,229,0.45)] hover:bg-indigo-400 ${collapsed ? "px-2 p-1" : "px-3 p-2"}`}
             style={{ perspective: "1000px" }}
           >
-            {/* 3D inner card */}
             <div
               className={`flex items-center gap-3 transition-transform duration-500 ease-out group-hover:rotate-x-6 group-hover:-rotate-y-6 ${collapsed ? "" : ""}`}
             >
