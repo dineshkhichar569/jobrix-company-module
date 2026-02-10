@@ -24,6 +24,8 @@ app.get("/", (req, res) => {
   res.send("Hello World !");
 })
 
+
+// Routes /////'
 app.use("/api/auth", authRouter);
 app.use("/api/admin", recruiterRouter);
 app.use("/api", jobRouter);
