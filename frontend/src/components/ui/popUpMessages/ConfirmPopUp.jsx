@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 function ConfirmPopup({
   placeholder,
@@ -11,6 +12,8 @@ function ConfirmPopup({
   px,
   py,
   popUpDirection,
+  setPop,
+  confirmLogout,
 }) {
   const yOffset = popUpDirection === "top" ? -40 : 40;
   return (
@@ -22,12 +25,12 @@ function ConfirmPopup({
       style={{
         top,
         bottom,
-        // backgroundColor: background,
+        backgroundColor: background,
         color,
         fontSize: textSize,
         padding: `${py} ${px}`,
       }}
-      className="fixed left-1/2 rounded-xl shadow-2xl font-medium z-50 space-y-2 border border-amber-300 text-gray-900 bg-amber-200"
+      className="fixed left-1/2 rounded-xl shadow-2xl font-medium z-50 space-y-2"
     >
       <span className="flex items-center gap-2">
         {/* for animated emoji */}
@@ -44,13 +47,19 @@ function ConfirmPopup({
           {icon}
         </motion.span>
 
-        <span className="text-gray-900">{placeholder}</span>
+        <span className="">{placeholder}</span>
       </span>
       <div className="flex items-center justify-center gap-4 text-sm">
-        <button className="bg-gray-200 hover:bg-gray-400 text-gray-700 px-3 py-1 rounded-lg transition-all duration-200">
+        <button
+          onClick={() => setPop(false)}
+          className=" bg-green-700 px-3 p-1 rounded-lg hover:bg-green-900 transition-all duration-200"
+        >
           Cancel
         </button>
-        <button className="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded-lg transition-all duration-200">
+        <button
+          onClick={confirmLogout}
+          className=" bg-red-600 px-3 p-1 rounded-lg hover:bg-red-900 transition-all duration-200"
+        >
           Yes, Logout
         </button>
       </div>

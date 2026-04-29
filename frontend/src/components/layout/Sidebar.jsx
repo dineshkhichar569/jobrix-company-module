@@ -26,6 +26,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
     };
     fetchLoggedUser();
   }, []);
+  
   const capitalRole = (role) => {
     return role ? role.charAt(0).toUpperCase() + role.slice(1) : "";
   };

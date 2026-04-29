@@ -7,7 +7,6 @@ import CompanyUserLogin from "./pages/public/CompanyUserLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import IsLoggedInRoute from "./guards/isLoggedInRoute";
 import LoggedOutOnlyRoute from "./guards/LoggedOutOnlyRoute";
-import ConfirmPopup from "./components/ui/popUpMessages/ConfirmPopUp";
 
 function App() {
   return (
@@ -23,23 +22,6 @@ function App() {
         <Route element={<IsLoggedInRoute />}>
           <Route path="/admin/*" element={<AdminDashboard />} />
         </Route>
-
-        <Route
-          path="/pop"
-          element={
-            <ConfirmPopup
-              placeholder="Do you want to logOut"
-              icon="⚠️"
-              top="24px"
-              background="#FFFFFF"
-              color="white"
-              textSize="16px"
-              px="15px"
-              py="8px"
-              popUpDirection="top"
-            />
-          }
-        />
       </Routes>
     </>
   );

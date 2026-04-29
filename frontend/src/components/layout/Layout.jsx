@@ -4,9 +4,12 @@ import Sidebar from "./Sidebar";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import AuthMSG from "../ui/popUpMessages/AuthMSG";
+import ConfirmPopup from "../ui/popUpMessages/ConfirmPopUp";
 
 function Layout() {
-  const [msg, setMsg] = useState(false);
+  const [pop, setPop] = useState(false);
+  const [onCancel, setOnCancel] = useState(false);
+  const [onLogout, setOnLogout] = useState(false);
   const navigate = useNavigate();
 
   const [collapsed, setCollapsed] = useState(
@@ -19,14 +22,21 @@ function Layout() {
 
   ///////////////   to Handle error message popup at the time of logOut
   const handleLogout = () => {
+    setPop(true);
+  };
+
+  // ////////  to confirm longout or cancel it
+  const confirmLogout = () => {
     localStorage.removeItem("token");
-    setMsg(true);
+    setPop(false);
+    setOnLogout(true);
 
     setTimeout(() => {
-      setMsg(false);
+      setOnLogout(false);
       navigate("/login");
     }, 1500);
   };
+
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
@@ -49,7 +59,27 @@ function Layout() {
       </div>
 
       <AnimatePresence mode="wait">
-        {msg && (
+        {pop && (
+          <div className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-sm bg-slate-950/40">
+            <ConfirmPopup
+              placeholder="Do you want to logOut"
+              icon="🔴"
+              top="24px"
+              background="#16223d"
+              color="white"
+              textSize="16px"
+              px="15px"
+              py="8px"
+              popUpDirection="top"
+              setPop={setPop}
+              confirmLogout={confirmLogout}
+            />
+          </div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        {onLogout && (
           <div className="fixed z-50 h-screen w-screen backdrop-blur-sm">
             <AuthMSG
               placeholder="Logging out securely…"
