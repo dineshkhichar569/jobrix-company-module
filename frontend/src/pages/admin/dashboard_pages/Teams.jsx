@@ -12,7 +12,6 @@ function Teams() {
       const res = await getAllMembers();
       setMembers(res.data);
     };
-    console.log("data: ", members);
 
     fetchMembers();
   }, []);

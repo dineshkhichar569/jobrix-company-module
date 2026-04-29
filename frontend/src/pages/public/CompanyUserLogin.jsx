@@ -28,9 +28,6 @@ function CompanyUserLogin() {
         navigate("/admin/dashboard", {replace: true});
       }, 2000);
 
-      console.log(data);
-      console.log(res);
-
       localStorage.setItem("token", res.data.token);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
