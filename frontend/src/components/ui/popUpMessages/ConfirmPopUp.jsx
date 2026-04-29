@@ -12,7 +12,7 @@ function ConfirmPopup({
   px,
   py,
   popUpDirection,
-  setPop,
+  setPopUp,
   confirmLogout,
 }) {
   const yOffset = popUpDirection === "top" ? -40 : 40;
@@ -35,12 +35,12 @@ function ConfirmPopup({
       <span className="flex items-center gap-2">
         {/* for animated emoji */}
         <motion.span
-          initial={{ scale: 0, rotate: 0 }}
-          animate={{ scale: 1.2, rotate: 0 }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
           transition={{
             type: "spring",
             stiffness: 400,
-            damping: 1,
+            damping: 5,
           }}
           className="text-lg"
         >
@@ -51,7 +51,7 @@ function ConfirmPopup({
       </span>
       <div className="flex items-center justify-center gap-4 text-sm">
         <button
-          onClick={() => setPop(false)}
+          onClick={() => setPopUp(false)}
           className=" bg-green-700 px-3 p-1 rounded-lg hover:bg-green-900 transition-all duration-200"
         >
           Cancel

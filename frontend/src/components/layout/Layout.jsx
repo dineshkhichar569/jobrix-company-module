@@ -7,8 +7,7 @@ import AuthMSG from "../ui/popUpMessages/AuthMSG";
 import ConfirmPopup from "../ui/popUpMessages/ConfirmPopUp";
 
 function Layout() {
-  const [pop, setPop] = useState(false);
-  const [onCancel, setOnCancel] = useState(false);
+  const [popUp, setPopUp] = useState(false);
   const [onLogout, setOnLogout] = useState(false);
   const navigate = useNavigate();
 
@@ -22,13 +21,13 @@ function Layout() {
 
   ///////////////   to Handle error message popup at the time of logOut
   const handleLogout = () => {
-    setPop(true);
+    setPopUp(true);
   };
 
   // ////////  to confirm longout or cancel it
   const confirmLogout = () => {
     localStorage.removeItem("token");
-    setPop(false);
+    setPopUp(false);
     setOnLogout(true);
 
     setTimeout(() => {
@@ -59,7 +58,7 @@ function Layout() {
       </div>
 
       <AnimatePresence mode="wait">
-        {pop && (
+        {popUp && (
           <div className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-sm bg-slate-950/40">
             <ConfirmPopup
               placeholder="Do you want to logOut"
@@ -71,7 +70,7 @@ function Layout() {
               px="15px"
               py="8px"
               popUpDirection="top"
-              setPop={setPop}
+              setPopUp={setPopUp}
               confirmLogout={confirmLogout}
             />
           </div>
