@@ -8,6 +8,7 @@ import Analytics from "./dashboard_pages/Analytics";
 import Candidates from "./dashboard_pages/Candidates";
 import Teams from "./dashboard_pages/Teams";
 import Settings from "./dashboard_pages/Settings";
+import Pipeline from "./dashboard_pages/Pipeline";
 
 
 function AdminDashboard() {
@@ -18,6 +19,7 @@ function AdminDashboard() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="jobs" element={<CreateJob />} />
         <Route path="candidates" element={<Candidates />} />
+        <Route path="pipeline" element={<Pipeline />} />
         <Route path="interviews" element={<Interviews />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="teams" element={<Teams />} />

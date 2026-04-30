@@ -3,6 +3,7 @@ import {
   Briefcase,
   Calendar,
   ChevronLeft,
+  Kanban,
   LayoutDashboard,
   LogOut,
   Settings,
@@ -26,7 +27,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
     };
     fetchLoggedUser();
   }, []);
-  
+
   const capitalRole = (role) => {
     return role ? role.charAt(0).toUpperCase() + role.slice(1) : "";
   };
@@ -70,6 +71,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
         </div>
 
         <div className="p-3 flex flex-col gap-2">
+          {/* dashboard */}
           <div
             className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "dashboard"
@@ -94,6 +96,32 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
             </div>
           </div>
 
+          {/* team members */}
+          <div
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+              isSelected === "teams"
+                ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
+                : "text-gray-600 hover:bg-slate-100"
+            }`}
+            onClick={() => {
+              navigate("/admin/teams");
+            }}
+          >
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
+              <UserPlus2 />
+            </div>
+            <div
+              className={`overflow-hidden transition-all duration-700 ease-in-out ${collapsed ? "max-w-0 ml-0" : "max-w-[200px] ml-3"} `}
+            >
+              <span
+                className={`block text-base font-semibold whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
+              >
+                Team Members
+              </span>
+            </div>
+          </div>
+
+          {/* jobs */}
           <div
             className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "jobs"
@@ -118,6 +146,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
             </div>
           </div>
 
+          {/* candidates */}
           <div
             className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
               isSelected === "candidates"
@@ -138,6 +167,31 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
                 className={`block text-base font-semibold whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
               >
                 Candidates
+              </span>
+            </div>
+          </div>
+
+          {/* Pipeline */}
+          <div
+            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+              isSelected === "pipeline"
+                ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
+                : "text-gray-600 hover:bg-slate-100"
+            }`}
+            onClick={() => {
+              navigate("/admin/pipeline");
+            }}
+          >
+            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
+              <Kanban />
+            </div>
+            <div
+              className={`overflow-hidden transition-all duration-700 ease-in-out ${collapsed ? "max-w-0 ml-0" : "max-w-[200px] ml-3"} `}
+            >
+              <span
+                className={`block text-base font-semibold whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
+              >
+                Pipeline
               </span>
             </div>
           </div>
@@ -180,36 +234,6 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
                 className={`block text-base font-semibold whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
               >
                 Analytics
-              </span>
-            </div>
-          </div>
-
-          <span
-            className={`text-gray-600 font-normal p-6 transition-all duration-300 ease-in-out ${collapsed ? "px-1" : "px-6"}`}
-          >
-            Admin
-          </span>
-
-          <div
-            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${
-              isSelected === "teams"
-                ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
-                : "text-gray-600 hover:bg-slate-100"
-            }`}
-            onClick={() => {
-              navigate("/admin/teams");
-            }}
-          >
-            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
-              <UserPlus2 />
-            </div>
-            <div
-              className={`overflow-hidden transition-all duration-700 ease-in-out ${collapsed ? "max-w-0 ml-0" : "max-w-[200px] ml-3"} `}
-            >
-              <span
-                className={`block text-base font-semibold whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
-              >
-                Team
               </span>
             </div>
           </div>
