@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button/Button";
-import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -11,7 +10,7 @@ export default function LandingPage() {
 
   return (
     <div className="bg-[#F6F7FB] text-[#0B1220]">
-      {/* /////////////////////  navbar */}
+      {/* //? navbar */}
       <nav className="sticky top-0 z-50 backdrop-blur bg-white/40 border-b">
         <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
           <div className="flex items-center gap-3 font-bold text-xl">
@@ -53,7 +52,7 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* //////////////////  page 1 */}
+      {/* //?  page 1 */}
       <section className="max-w-7xl mx-auto px-6 pt-28 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col gap-6">
           <span className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full w-fit">
@@ -97,7 +96,7 @@ export default function LandingPage() {
         </div>
 
         <div className="relative">
-          {/*/ ////////////////////// for Background shadow card */}
+          {/*/ //? for Background shadow card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,7 +115,7 @@ export default function LandingPage() {
             </p>
 
             <div className="relative pl-6 space-y-10">
-              {/* ///////////////// for Animated vertical line */}
+              {/* // ?for Animated vertical line */}
               <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: "100%" }}
@@ -141,7 +140,7 @@ export default function LandingPage() {
                   }}
                   className="relative flex gap-4 items-start"
                 >
-                  {/* /////////////////// for Animated dot */}
+                  {/* //? for Animated dot */}
                   <motion.div
                     animate={{
                       scale: [1, 1.4, 1],
@@ -168,7 +167,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ////////////////////  page 2 */}
+      {/* //?  page 2 */}
       <section className="bg-white py-28">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">
@@ -204,7 +203,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* //////////////////////  page 3 */}
+      {/* //?  page 3 */}
       <section className="py-28 bg-[#F6F7FB]">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-14 text-center">
@@ -233,7 +232,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ////////////////////  footbar */}
+      {/* //?  footbar */}
       <section className="py-32 bg-indigo-600 text-white text-center">
         <h2 className="text-4xl font-bold mb-6">
           Build a hiring system your company can trust

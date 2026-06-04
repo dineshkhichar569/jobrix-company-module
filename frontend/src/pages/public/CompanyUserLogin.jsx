@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import BackButton from "../../components/ui/Button/BackButton";
 import { loginUser } from "../../api/index.js";
 import AuthMSG from "../../components/ui/popUpMessages/AuthMSG";
@@ -40,7 +40,7 @@ function CompanyUserLogin() {
     }
   };
 
-  ////// so that error disappear after few seconds
+  //! so that error disappear after few seconds
   useEffect(() => {
     if (error) {
       setTimeout(() => {
@@ -92,7 +92,7 @@ function CompanyUserLogin() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            {/*//////////////////// for background layer */}
+            {/* //? for background layer */}
             <div className="absolute -top-6 -left-6 w-full h-full rounded-3xl bg-indigo-100" />
 
             <div className="relative bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10">
@@ -174,7 +174,7 @@ function CompanyUserLogin() {
           </motion.div>
         </div>
 
-        {/* for error popUp */}
+        {/* //? for error popUp */}
         <AnimatePresence mode="wait">
           {error && (
             <AuthMSG

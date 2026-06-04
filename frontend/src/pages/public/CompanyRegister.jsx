@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { companySignup } from "../../api/index.js";
 import BackButton from "../../components/ui/Button/BackButton";
 import { SelectOption } from "../../components/ui/Card/SelectOption.jsx";
@@ -30,7 +30,7 @@ const size = [
 function CompanyRegister() {
   const navigate = useNavigate();
 
-  ////////////////  here these industry and companySize will be used to send data to backend
+  //!  here these industry and companySize will be used to send data to backend
   const [industry, setIndustry] = useState("");
   const [companySize, setCompanySize] = useState("");
 
@@ -85,7 +85,7 @@ function CompanyRegister() {
     }
   };
 
-  ////// so that error disappear after few seconds
+  //! so that error disappear after few seconds
   useEffect(() => {
     if (error) {
       setTimeout(() => {
@@ -137,7 +137,7 @@ function CompanyRegister() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            {/*////////////// for background layer */}
+            {/* //? for background layer */}
             <div className="absolute -top-6 -left-6 w-full h-full rounded-3xl bg-indigo-100" />
 
             <div className="relative bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10">
@@ -270,7 +270,7 @@ function CompanyRegister() {
           </motion.div>
         </div>
 
-        {/* for error popUp */}
+        {/* //? for error popUp */}
         <AnimatePresence mode="wait">
           {error && (
             <AuthMSG
