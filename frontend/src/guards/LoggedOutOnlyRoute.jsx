@@ -1,4 +1,4 @@
-/////////////////  this for so that it blocks /login if user is loggedIn
+//! this for so that it blocks /login if user is loggedIn
 
 import { Navigate, Outlet } from "react-router-dom";
 
