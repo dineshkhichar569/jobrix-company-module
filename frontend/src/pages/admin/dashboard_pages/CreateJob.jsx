@@ -17,7 +17,7 @@ function CreateJob() {
 
   return (
     <div className="space-y-8">
-      {/* Heading and add team job button */}
+      {/* //? Heading and add team job button */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-xl font-bold">Jobs</h1>
@@ -26,7 +26,7 @@ function CreateJob() {
           </p>
         </div>
 
-        {/* add team Member */}
+        {/* //? add team Member */}
         <div>
           <button
             onClick={() => setOpen(!open)}
@@ -35,7 +35,7 @@ function CreateJob() {
             <i className="font-medium">+</i> Create Job
           </button>
 
-          {/* Add Member PopUp */}
+          {/* //? Add Member PopUp */}
           <div>
             {/* for background blur */}
             <div
@@ -51,7 +51,7 @@ function CreateJob() {
         </div>
       </div>
 
-      {/* jobs */}
+      {/* //? jobs */}
       <div className="overflow-hidden rounded-xl border-[1px]">
         <table className="w-full text-xs">
           <thead className="bg-gray-100 text-gray-500 border-b">
