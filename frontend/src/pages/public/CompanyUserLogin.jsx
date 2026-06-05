@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import BackButton from "../../components/ui/Button/BackButton";
 import { loginUser } from "../../api/index.js";
 import AuthMSG from "../../components/ui/popUpMessages/AuthMSG";
+import { motion } from "motion/react";
 
 function CompanyUserLogin() {
   const navigate = useNavigate();

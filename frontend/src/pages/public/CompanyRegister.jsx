@@ -5,6 +5,7 @@ import BackButton from "../../components/ui/Button/BackButton";
 import { SelectOption } from "../../components/ui/Card/SelectOption.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import AuthMSG from "../../components/ui/popUpMessages/AuthMSG.jsx";
+import { motion } from "motion/react";
 
 const industries = [
   "Technology",
