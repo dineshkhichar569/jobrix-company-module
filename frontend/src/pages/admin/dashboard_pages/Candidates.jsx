@@ -6,7 +6,7 @@ function Candidates() {
   const [open, setOpen] = useState(false);
   return (
     <div className="space-y-8">
-      {/* //? Heading and add team job button */}
+      {/* //? Heading and add add candidates button */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-xl font-bold">Candidates</h1>
@@ -15,7 +15,7 @@ function Candidates() {
           </p>
         </div>
 
-        {/* //? add team Member */}
+        {/* //? add a sourced candidate */}
         <div>
           <button
             onClick={() => setOpen(!open)}
@@ -24,7 +24,7 @@ function Candidates() {
             <i className="font-medium">+</i> Add Candidates
           </button>
 
-          {/* //? Add Member PopUp */}
+          {/* //? Add candidate PopUp */}
           <div>
             {/* for background blur */}
             <div
@@ -40,7 +40,7 @@ function Candidates() {
         </div>
       </div>
 
-      {/* //? jobs */}
+      {/* //? candidates */}
       <div className="overflow-hidden rounded-xl border-[1px]">
         <table className="w-full text-xs">
           <thead className="bg-gray-100 text-gray-500 border-b">
