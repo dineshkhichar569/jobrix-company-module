@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import CreateJobCard from "../../../components/ui/Card/CreateJobCard";
+import { SelectOption } from "../../../components/ui/Card/SelectOption";
 
 function Candidates() {
-
   const [open, setOpen] = useState(false);
   return (
     <div className="space-y-8">
@@ -40,6 +40,37 @@ function Candidates() {
         </div>
       </div>
 
+      {/* //? for filter */}
+      <div className="flex flex-wrap gap-4 mb-6">
+        <div className="w-1/4">
+          <SelectOption
+            placeholder="All statuses"
+            options={["Applied", "Screening", "Interview", "Hired", "Rejected"]}
+            onOptionSelection={(value) => console.log(value)}
+          />
+        </div>
+
+        <div className="w-1/4">
+          <SelectOption
+            placeholder="All jobs"
+            options={[
+              "React Developer",
+              "Frontend Developer",
+              "Backend Developer",
+            ]}
+            onOptionSelection={(value) => console.log(value)}
+          />
+        </div>
+
+        <div className="w-1/4">
+          <SelectOption
+            placeholder="All sources"
+            options={["LinkedIn", "Indeed", "Referral", "Career Page"]}
+            onOptionSelection={(value) => console.log(value)}
+          />
+        </div>
+      </div>
+
       {/* //? candidates */}
       <div className="overflow-hidden rounded-xl border-[1px]">
         <table className="w-full text-xs">
@@ -55,37 +86,35 @@ function Candidates() {
 
           <tbody>
             {/* {jobs.map((job) => ( */}
-              <tr key={0} className="border-b hover:bg-slate-100 cursor-pointer">
+            <tr key={0} className="border-b hover:bg-slate-100 cursor-pointer">
+              <td className=" px-3 py-4 flex gap-3 items-center">
+                <p className="font-medium text-base">candidate</p>
+                <p className="text-[11px] text-blue-600">
+                  <span className="animate-ping"> ● </span>
+                  intern
+                </p>
+              </td>
 
-                <td className=" px-3 py-4 flex gap-3 items-center">
-                  <p className="font-medium text-base">candidate</p>
-                  <p className="text-[11px] text-blue-600">
-                    <span className="animate-ping"> ● </span>
-                    intern
-                  </p>
-                </td>
+              <td className="px-3 py-3 text-center text-black font-medium">
+                React developer
+              </td>
 
-                <td className="px-3 py-3 text-center text-black font-medium">
-                  React developer
-                </td>
+              <td className="px-3 py-3 text-center font-medium text-gray-500">
+                <span
+                // className={`border rounded-lg px-2 p-[1px] text-[10px] font-medium
+                //    ${job.status === "close" ? "text-red-600 bg-red-50 border-red-500" : "text-blue-600 bg-blue-50 border-blue-500"}`}
+                >
+                  status
+                </span>
+              </td>
 
-                <td className="px-3 py-3 text-center font-medium text-gray-500">
-                  <span
-                    // className={`border rounded-lg px-2 p-[1px] text-[10px] font-medium
-                    //    ${job.status === "close" ? "text-red-600 bg-red-50 border-red-500" : "text-blue-600 bg-blue-50 border-blue-500"}`}
-                  >
-                    status
-                  </span>
-                </td>
-
-                <td className="px-3 py-3 text-center font-medium text-gray-500">
-                  source
-                </td>
-                <td className="px-3 py-3 text-center font-medium text-gray-500">
-                  3 years
-                </td>
-
-              </tr>
+              <td className="px-3 py-3 text-center font-medium text-gray-500">
+                source
+              </td>
+              <td className="px-3 py-3 text-center font-medium text-gray-500">
+                3 years
+              </td>
+            </tr>
             {/* ))} */}
           </tbody>
         </table>
