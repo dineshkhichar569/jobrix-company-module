@@ -40,7 +40,7 @@ function CreateJobCard({ open, setOpen }) {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
