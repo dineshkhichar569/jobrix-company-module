@@ -25,11 +25,12 @@ app.get("/", (req, res) => {
 })
 
 
-// Routes /////'
+//! Routes
 app.use("/api/auth", authRouter);
 app.use("/api/admin", recruiterRouter);
 app.use("/api", jobRouter);
 app.use("/api", loggedInRouter);
+app.use("/api", candidateRouter);
 
 
 app.listen(PORT, () => {
