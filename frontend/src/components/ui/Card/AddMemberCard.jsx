@@ -78,7 +78,7 @@ function AddMemberCard({ open, setOpen }) {
     }
   };
 
-  ////// so that error disappear after few seconds
+  //! so that error disappear after few seconds
   useEffect(() => {
     if (error) {
       setTimeout(() => {

@@ -26,10 +26,10 @@ export default function AddCandidate({ open, setOpen }) {
     const fetchJobs = async () => {
       const res = await getAllJobs();
       setJobs(res.data);
-    }
+    };
     fetchJobs();
   }, []);
-  const jobTitles = jobs.map(job => job.title);
+  const jobTitles = jobs.map((job) => job.title);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,6 +79,20 @@ export default function AddCandidate({ open, setOpen }) {
       console.error(error.response?.data?.message || "Registration failed");
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+
+    if (success) {
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    }
+  }, [error, success]);
 
   return (
     <>

@@ -16,14 +16,14 @@ function Teams() {
     fetchMembers();
   }, []);
 
-  //? so that Admin should always on top
+  //! so that Admin should always on top
   const sortedMember = [...members].sort((a, b) => {
     if (a.role === "admin" && b.role !== "admin") return -1;
     if (a.role !== "admin" && b.role === "admin") return 1;
     return 0;
   });
 
-  //? to count total members, Admins, Recruiters, HR Managers
+  //! to count total members, Admins, Recruiters, HR Managers
   const totalAdmin = members.filter((m) => m.role === "admin").length;
   const totalRecruiter = members.filter((m) => m.role === "recruiter").length;
   const totalHr = members.filter((m) => m.role === "hr_manager").length;
@@ -31,7 +31,7 @@ function Teams() {
 
   return (
     <div className="space-y-8">
-      {/* //? Heading and add team member button */}
+      {/* //! Heading and add team member button */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-xl font-bold">Team</h1>
@@ -40,7 +40,7 @@ function Teams() {
           </p>
         </div>
 
-        {/* //? add team Member */}
+        {/* //! add team Member */}
         <div>
           <button
             onClick={() => setOpen(!open)}
@@ -49,9 +49,9 @@ function Teams() {
             <i className="font-medium">+</i> Add team Member
           </button>
 
-          {/* //? Add Member PopUp */}
+          {/* //! Add Member PopUp */}
           <div>
-            {/* //? for background blur */}
+            {/* //! for background blur */}
             <div
               className={`fixed inset-0 z-50 bg-black/30 backdrop-blur-sm
               transition-opacity duration-300
@@ -65,10 +65,10 @@ function Teams() {
         </div>
       </div>
 
-      {/* //? member numbers */}
+      {/* //! member numbers */}
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          {/* //? Team Members */}
+          {/* //! Team Members */}
           <div className="flex items-center gap-4 p-4 border rounded-xl bg-white">
             <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
               <Users size={20} />
@@ -79,7 +79,7 @@ function Teams() {
             </div>
           </div>
 
-          {/* //? Admins */}
+          {/* //! Admins */}
           <div className="flex items-center gap-4 p-4 border rounded-xl bg-white">
             <div className="p-2 rounded-lg bg-red-100 text-red-600">
               <Shield size={20} />
@@ -90,7 +90,7 @@ function Teams() {
             </div>
           </div>
 
-          {/* //? Recruiters */}
+          {/* //! Recruiters */}
           <div className="flex items-center gap-4 p-4 border rounded-xl bg-white">
             <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
               <UserCheck size={20} />
@@ -112,7 +112,7 @@ function Teams() {
         </div>
       </div>
 
-      {/* //? members */}
+      {/* //! members */}
       <div className="overflow-hidden rounded-xl border-[1px]">
         <table className="w-full text-xs">
           <thead className="bg-gray-100 text-gray-500 border-b">
