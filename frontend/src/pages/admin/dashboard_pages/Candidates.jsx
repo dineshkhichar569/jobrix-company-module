@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateJobCard from "../../../components/ui/Card/CreateJobCard";
 import { SelectOption } from "../../../components/ui/Card/SelectOption";
+import AddCandidate from "../../../components/ui/Card/AddCandidate";
 
 function Candidates() {
   const [open, setOpen] = useState(false);
@@ -35,7 +36,7 @@ function Candidates() {
               onClick={() => setOpen(false)}
             />
 
-            <CreateJobCard open={open} setOpen={setOpen} />
+            <AddCandidate open={open} setOpen={setOpen} />
           </div>
         </div>
       </div>

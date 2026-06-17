@@ -1,4 +1,4 @@
-import Candidate from "../../models/AddCandidate.model";
+import Candidate from "../../models/AddCandidate.model.js";
 
 export const createCandidate = async (req, res) => {
   try {

@@ -4,3 +4,5 @@ export * from "./differentApi's/getAllMembers.api.js";
 
 export * from "./differentApi's/getAllJobs.api.js";
 export * from "./differentApi's/getLoggedInUser.api.js";
+
+export * from "./differentApi's/addCandidate.api.js";

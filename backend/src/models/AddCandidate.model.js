@@ -31,9 +31,9 @@ const candidateSchema = new mongoose.Schema(
       default: 0,
     },
     job: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Job",
+      type: String,
       required: true,
+      trim: true,
     },
     skills: {
       type: [String],

@@ -9,11 +9,12 @@ import authRouter from "./src/routes/public/auth.Routes.js";
 import jobRouter from "./src/routes/public/job.routes.js";
 import recruiterRouter from "./src/routes/admin/recruiter.routes.js";
 import loggedInRouter from "./src/routes/public/getLoggedInUser.Routes.js";
+import candidateRouter from "./src/routes/public/candidate.routes.js";
 
 
 dotenv.config();
 connnectDB();
-32
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
