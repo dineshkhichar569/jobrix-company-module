@@ -1,5 +1,5 @@
 import { BriefcaseBusiness } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import { useEffect, useState } from "react";
 import AuthMSG from "../popUpMessages/AuthMSG.jsx";
@@ -71,7 +71,7 @@ function CreateJobCard({ open, setOpen }) {
       setJobRequirement("");
       setJobStatus("");
 
-      const res = await addJob(data);
+      await addJob(data);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);

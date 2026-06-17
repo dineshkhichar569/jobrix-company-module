@@ -7,12 +7,15 @@ import CompanyUserLogin from "./pages/public/CompanyUserLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import IsLoggedInRoute from "./guards/isLoggedInRoute";
 import LoggedOutOnlyRoute from "./guards/LoggedOutOnlyRoute";
+import AddCandidate from "./components/ui/Card/AddCandidate";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+
+        <Route path="/add" element={<AddCandidate />} />
 
         <Route element={<LoggedOutOnlyRoute />}>
           <Route path="/login" element={<CompanyUserLogin />} />

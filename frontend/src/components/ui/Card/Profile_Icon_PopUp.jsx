@@ -1,7 +1,6 @@
 import { LogOutIcon, Settings, Sun, UserCircle2 } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import AuthMSG from "../popUpMessages/AuthMSG";
-import { useState } from "react";
 
 function Profile_Icon_PopUp({ open, handleLogout }) {
   return (

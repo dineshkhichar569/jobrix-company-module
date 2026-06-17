@@ -1,5 +1,5 @@
 import { UserPlus2Icon } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import { addMember } from "../../../api/index.js";
 import { useEffect, useState } from "react";
@@ -38,11 +38,9 @@ function AddMemberCard({ open, setOpen }) {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
       const data = {
         fullname: name,
@@ -69,7 +67,7 @@ function AddMemberCard({ open, setOpen }) {
       setRole("");
       setDepartment("");
 
-      const res = await addMember(data);
+      await addMember(data);
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
@@ -77,8 +75,6 @@ function AddMemberCard({ open, setOpen }) {
       console.log(error);
 
       console.error(error.response?.data?.message || "Registration failed");
-    } finally {
-      setLoading(false);
     }
   };
 
