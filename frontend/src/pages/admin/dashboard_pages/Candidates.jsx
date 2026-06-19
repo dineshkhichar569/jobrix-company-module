@@ -52,12 +52,16 @@ function Candidates() {
         return "bg-blue-100 text-blue-700 border-blue-200";
       case "Screening":
         return "bg-yellow-100 text-yellow-700 border-yellow-200";
-      case "Interview":
+      case "Shortlisted":
+        return "bg-indigo-100 text-indigo-700 border-indigo-200";
+      case "Interview Scheduled":
         return "bg-purple-100 text-purple-700 border-purple-200";
-      case "Hired":
+      case "Selected":
         return "bg-green-100 text-green-700 border-green-200";
       case "Rejected":
         return "bg-red-100 text-red-700 border-red-200";
+      case "On Hold":
+        return "bg-orange-100 text-orange-700 border-orange-200";
       default:
         return "bg-gray-100 text-gray-700 border-gray-200";
     }
@@ -105,12 +109,13 @@ function Candidates() {
           <SelectOption
             placeholder="All status"
             options={[
-              "All status",
               "Applied",
               "Screening",
-              "Interview",
-              "Hired",
+              "Shortlisted",
+              "Interview Scheduled",
+              "Selected",
               "Rejected",
+              "On Hold",
             ]}
             onOptionSelection={(value) =>
               setSelectedStatus(value === "All status" ? "" : value)

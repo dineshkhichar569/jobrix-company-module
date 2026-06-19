@@ -257,7 +257,16 @@ export default function AddCandidate({ open, setOpen }) {
                 <label className="block text-sm font-medium mb-1">Source</label>
 
                 <SelectOption
-                  options={["Website", "LinkedIn", "Referral", "Naukri"]}
+                  options={[
+                    "Website",
+                    "LinkedIn",
+                    "Naukri",
+                    "Referral",
+                    "Email",
+                    "Internshala",
+                    "Campus",
+                    "Walk-in",
+                  ]}
                   placeholder="Select Source"
                   onOptionSelection={setCandidate_Source}
                 />
