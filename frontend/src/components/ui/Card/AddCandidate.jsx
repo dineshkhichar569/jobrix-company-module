@@ -242,9 +242,11 @@ export default function AddCandidate({ open, setOpen }) {
                   options={[
                     "Applied",
                     "Screening",
-                    "Interview",
-                    "Offer",
+                    "Shortlisted",
+                    "Interview Scheduled",
+                    "Selected",
                     "Rejected",
+                    "On Hold",
                   ]}
                   placeholder="Select Status"
                   onOptionSelection={setCandidate_Status}
