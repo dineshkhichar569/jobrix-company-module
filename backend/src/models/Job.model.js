@@ -23,6 +23,7 @@ const jobSchema = mongoose.Schema(
     requirements: [String],
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "CompanyUser",
     },
     status: {
       type: String,
