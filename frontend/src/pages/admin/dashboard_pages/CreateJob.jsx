@@ -70,33 +70,36 @@ function CreateJob() {
           <tbody>
             {jobs.map((job) => (
               <tr key={job._id} className="border-b hover:bg-slate-100">
-                <td className=" px-3 py-4 flex gap-3 items-center">
-                  <p className="font-medium text-base">{job.title}</p>
-                  <p className="text-[11px] text-blue-600">
-                    <span className="animate-ping"> ● </span>
-                    {job.jobType}
-                  </p>
+                <td className="px-3 py-4">
+                  <div className="flex gap-3 items-center">
+                    <p className="font-medium text-base">{job.title}</p>
+                    <p className="text-[11px] text-blue-600">{job.jobType}</p>
+                  </div>
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
                   {job.department}
                 </td>
-                <td className="px-3 py-3 font-medium text-gray-500 flex items-center gap-1">
-                  <MapPin className="w-4 h-4 text-indigo-500 animate-bounce" />{" "}
-                  {job.location}
+                <td className="px-3 py-3 font-medium text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <MapPin className="w-4 h-4 text-indigo-500" />
+                    {job.location}
+                  </div>
                 </td>
-                <td className="px-3 py-3 text-center font-medium text-gray-500">
+                <td className="px-3 py-3 text-center">
                   <span
                     className={`border rounded-lg px-2 p-[1px] text-[10px] font-medium
-                       ${job.status === "close" ? "text-red-600 bg-red-50 border-red-500" : "text-blue-600 bg-blue-50 border-blue-500"}`}
+                      ${job.status === "close" ? "text-red-600 bg-red-50 border-red-500" : "text-blue-600 bg-blue-50 border-blue-500"}`}
                   >
                     {job.status}
                   </span>
                 </td>
                 <td className="px-3 py-3 text-center text-black font-medium">
-                  Recruiter
+                  {job.createdBy?.fullname || "—"}
                 </td>
-                <td className="px-3 py-3 text-center text-black font-medium flex items-center gap-3">
-                  <Users2 className="w-4 h-4 text-gray-500" /> 45
+                <td className="px-3 py-3 text-center text-black font-medium">
+                  <div className="flex items-center justify-center gap-2">
+                    <Users2 className="w-4 h-4 text-gray-500" /> 45
+                  </div>
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
                   {new Date(job.createdAt).toLocaleDateString("en-IN", {
@@ -105,7 +108,7 @@ function CreateJob() {
                     year: "numeric",
                   })}
                 </td>
-                <td className="px-3 py-3 cursor-pointer">•••</td>
+                <td className="px-3 py-3 text-center cursor-pointer">•••</td>
               </tr>
             ))}
           </tbody>
