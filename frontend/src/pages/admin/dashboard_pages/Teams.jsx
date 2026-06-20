@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddMemberCard from "../../../components/ui/Card/AddMemberCard";
 import { getAllMembers } from "../../../api/index.js";
 import { Shield, UserCheck, Users } from "lucide-react";
+import { getAvatarInitials } from "../../../components/utils/avatarUtils.js";
 
 function Teams() {
   const [open, setOpen] = useState(false);
@@ -132,10 +133,10 @@ function Teams() {
               <tr key={member._id} className="border-b hover:bg-slate-100">
                 <td className=" px-3 py-4 flex gap-2 items-center">
                   <span
-                    className={`font-bold text-sm h-8 w-8 rounded-full flex items-center justify-center 
+                    className={`font-medium text-sm h-8 w-8 rounded-full flex items-center justify-center 
                       ${member.role === "admin" ? "text-red-500 bg-red-100" : "text-blue-500 bg-blue-100"}`}
                   >
-                    {member.fullname?.charAt(0).toUpperCase()}
+                    {getAvatarInitials(member.fullname)}
                   </span>
                   <div className="-space-y-1">
                     <p className="font-medium text-base">{member.fullname}</p>
