@@ -19,12 +19,12 @@ function Layout() {
     localStorage.setItem("collapsed", collapsed);
   }, [collapsed]);
 
-  ///////////////   to Handle error message popup at the time of logOut
+  //!   to Handle error message popup at the time of logOut
   const handleLogout = () => {
     setPopUp(true);
   };
 
-  // ////////  to confirm longout or cancel it
+  //!  to confirm longout or cancel it
   const confirmLogout = () => {
     localStorage.removeItem("token");
     setPopUp(false);
@@ -37,21 +37,21 @@ function Layout() {
   };
 
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
+    <div className="overflow-x-hidden flex min-h-screen">
+      {/* //! Sidebar */}
       <Sidebar
         handleLogout={handleLogout}
         collapsed={collapsed}
         setCollapsed={setCollapsed}
       />
 
-      {/* Navbar + dashboard pages */}
+      {/* //! Navbar + dashboard pages */}
       <div
         className={`transition-all duration-700 ease-in-out ${collapsed ? "ml-[5%]" : "ml-[16.666%]"} flex-1 flex flex-col`}
       >
         <Navbar handleLogout={handleLogout} />
 
-        {/* dashboard pages */}
+        {/* //! dashboard pages */}
         <main className="flex-1 p-6 bg-gray-50">
           <Outlet />
         </main>

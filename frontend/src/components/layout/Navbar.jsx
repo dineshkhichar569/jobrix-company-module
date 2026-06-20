@@ -5,7 +5,6 @@ import Profile_Icon_PopUp from "../ui/Card/Profile_Icon_PopUp";
 import { getLoggedInUser } from "../../api/index.js";
 import { AnimatePresence } from "framer-motion";
 import AuthMSG from "../ui/popUpMessages/AuthMSG.jsx";
-import { useNavigate } from "react-router-dom";
 
 function Navbar({handleLogout}) {
   const [open, setOpen] = useState(false);

@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export const SelectOption = ({ options, placeholder, onOptionSelection }) => {
@@ -25,10 +26,17 @@ export const SelectOption = ({ options, placeholder, onOptionSelection }) => {
         onClick={() => setOpen(!open)} ////? open will be true when button is clicked
       >
         {selected || placeholder}
-        <span className="">▾</span>
+        <span>
+          <ChevronDown
+            size={18} // resize icon
+            className={`transition-transform duration-300 ease-in-out ${
+              open ? "rotate-180" : "rotate-0"
+            }`}
+          />
+        </span>
       </button>
 
-      {/* ////////   for Drop Down */}
+      {/* ////////!   for Drop Down */}
 
       {open && (
         <div className="absolute z-10 mt-2 w-full max-h-52 overflow-y-auto rounded-xl bg-white shadow-lg border overflow-hidden animate-dropdown dropdown-scroll">

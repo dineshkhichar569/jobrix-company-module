@@ -46,7 +46,7 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
                 ? "p-1 rotate-180 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-full translate-x-[calc(5vw-1rem)]"
                 : "p-2 rotate-0 hover:bg-slate-200 rounded-lg translate-x-[calc(14vw-0.75rem)]"
             }`}
-          onClick={(e) => {
+          onClick={() => {
             setCollapsed(!collapsed);
           }}
         >

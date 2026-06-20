@@ -20,8 +20,8 @@ const companyUserSchema = mongoose.Schema(
     },
     phoneNo: {
       type: String,
-      // required: true,
       unique: true,
+      sparse: true,
     },
     gender: {
       type: String,
@@ -33,7 +33,7 @@ const companyUserSchema = mongoose.Schema(
       select: false,
     },
     department: {
-      type: String
+      type: String,
     },
     role: {
       type: String,
@@ -43,7 +43,7 @@ const companyUserSchema = mongoose.Schema(
       default: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const CompanyUser = mongoose.model("CompanyUser", companyUserSchema);
