@@ -1,4 +1,4 @@
-import { FileText, Mail, MapPin, Phone } from "lucide-react";
+import { FileText, Globe, Mail, MapPin, Phone } from "lucide-react";
 import { updateCandidateStatus } from "../../../api/differentApi's/updateCandidateStatus.api.js";
 import { SelectOption } from "./SelectOption.jsx";
 
@@ -112,7 +112,7 @@ export default function CandidateDetail({
                 {candidate.location || "—"}
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="text-gray-400">⚇</span>
+                <span className="text-gray-400"><Globe size={16} /></span>
                 Source: {candidate.source || "—"}
               </div>
             </div>

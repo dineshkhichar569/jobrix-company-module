@@ -199,7 +199,7 @@ export default function Pipeline() {
           </div>
 
           {/* //? filters */}
-          <div className="flex gap-2 w-1/3">
+          <div className="flex gap-2 w-1/2">
             <SelectOption
               placeholder="All jobs"
               options={["All jobs", ...jobTitles]}
