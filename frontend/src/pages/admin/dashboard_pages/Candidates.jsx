@@ -5,6 +5,11 @@ import AddCandidate from "../../../components/ui/Card/AddCandidate";
 import { getAllCandidates } from "../../../api/differentApi's/getAllCandidates.api";
 import { getAllJobs } from "../../../api";
 import CandidateDetail from "../../../components/ui/Card/CandidateDetails";
+import {
+  getAvatarColor,
+  getAvatarInitials,
+  getStatusColor,
+} from "../../../components/utils/avatarUtils.js";
 
 function Candidates() {
   const [open, setOpen] = useState(false);
@@ -48,28 +53,6 @@ function Candidates() {
   const sources = [
     ...new Set(allCandidate.map((candidate) => candidate.source)),
   ];
-
-  //! for different status different colors
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "Applied":
-        return "bg-blue-100 text-blue-700 border-blue-200";
-      case "Screening":
-        return "bg-yellow-100 text-yellow-700 border-yellow-200";
-      case "Shortlisted":
-        return "bg-indigo-100 text-indigo-700 border-indigo-200";
-      case "Interview Scheduled":
-        return "bg-purple-100 text-purple-700 border-purple-200";
-      case "Selected":
-        return "bg-green-100 text-green-700 border-green-200";
-      case "Rejected":
-        return "bg-red-100 text-red-700 border-red-200";
-      case "On Hold":
-        return "bg-orange-100 text-orange-700 border-orange-200";
-      default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
-    }
-  };
 
   return (
     <div className="space-y-8">
@@ -180,9 +163,16 @@ function Candidates() {
                   setDetailOpen(true);
                 }}
                 className="border-b hover:bg-slate-100 cursor-pointer"
-              >
-                <td className=" px-3 py-4">
-                  <p className="font-medium text-base">{candidate.fullname}</p>
+                >
+                <td className=" px-3 py-4 mb-1.5 flex items-center gap-2">
+                  <div
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[12px] font-medium ${getAvatarColor(candidate.fullname)}`}
+                  >
+                    {getAvatarInitials(candidate.fullname)}
+                  </div>
+                  <span className="truncate text-[16px] font-medium text-gray-800">
+                    {candidate.fullname}
+                  </span>
                 </td>
 
                 <td className="px-3 py-3 text-left text-black font-medium">

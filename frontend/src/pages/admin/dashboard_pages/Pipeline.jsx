@@ -18,6 +18,7 @@ import { getAllCandidates } from "../../../api/differentApi's/getAllCandidates.a
 import { getAllJobs } from "../../../api";
 import { updateCandidateStatus } from "../../../api/differentApi's/updateCandidateStatus.api";
 import CandidateDetail from "../../../components/ui/Card/CandidateDetails";
+import { getStatusColor } from "../../../components/utils/avatarUtils";
 
 //! status order for the columns — must match candidate status enum
 const PIPELINE_STAGES = [
@@ -30,27 +31,6 @@ const PIPELINE_STAGES = [
   "On Hold",
 ];
 
-//! same colors as Candidates section (single source of truth)
-const getStatusColor = (status) => {
-  switch (status) {
-    case "Applied":
-      return "bg-blue-100 text-blue-700 border-blue-200";
-    case "Screening":
-      return "bg-yellow-100 text-yellow-700 border-yellow-200";
-    case "Shortlisted":
-      return "bg-indigo-100 text-indigo-700 border-indigo-200";
-    case "Interview Scheduled":
-      return "bg-purple-100 text-purple-700 border-purple-200";
-    case "Selected":
-      return "bg-green-100 text-green-700 border-green-200";
-    case "Rejected":
-      return "bg-red-100 text-red-700 border-red-200";
-    case "On Hold":
-      return "bg-orange-100 text-orange-700 border-orange-200";
-    default:
-      return "bg-gray-100 text-gray-700 border-gray-200";
-  }
-};
 
 /* //! Droppable Column  */
 function PipelineColumn({ status, candidates, onCardClick }) {

@@ -1,29 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-
-
-function initials(name = "") {
-  return name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((w) => w[0]?.toUpperCase() || "")
-    .join("");
-}
-
-//! to give different colors to every candidate
-function avatarColor(name = "") {
-  const palette = [
-    "bg-rose-100 text-rose-700",
-    "bg-amber-100 text-amber-700",
-    "bg-indigo-100 text-indigo-700",
-    "bg-green-100 text-green-700",
-    "bg-blue-100 text-blue-700",
-    "bg-violet-100 text-violet-700",
-  ];
-  const sum = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-  return palette[sum % palette.length];
-}
+import { getAvatarColor, getAvatarInitials } from "../../utils/avatarUtils.js";
 
 export default function PipelineCard({ candidate, onClick }) {
   const {
@@ -55,9 +32,9 @@ export default function PipelineCard({ candidate, onClick }) {
     >
       <div className="mb-1.5 flex items-center gap-2">
         <div
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-medium ${avatarColor(candidate.fullname)}`}
+          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-medium ${getAvatarColor(candidate.fullname)}`}
         >
-          {initials(candidate.fullname)}
+          {getAvatarInitials(candidate.fullname)}
         </div>
         <span className="truncate text-[13px] font-medium text-gray-800">
           {candidate.fullname}
