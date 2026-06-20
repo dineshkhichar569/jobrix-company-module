@@ -17,6 +17,7 @@ import { SelectOption } from "../../../components/ui/Card/SelectOption";
 import { getAllCandidates } from "../../../api/differentApi's/getAllCandidates.api";
 import { getAllJobs } from "../../../api";
 import { updateCandidateStatus } from "../../../api/differentApi's/updateCandidateStatus.api";
+import CandidateDetail from "../../../components/ui/Card/CandidateDetails";
 
 //! status order for the columns — must match candidate status enum
 const PIPELINE_STAGES = [
@@ -103,6 +104,9 @@ export default function Pipeline() {
   const [selectedJob, setSelectedJob] = useState("");
   const [selectedSource, setSelectedSource] = useState("");
 
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
   );
@@ -166,8 +170,7 @@ export default function Pipeline() {
     if (!moved || moved.status === newStatus) return;
     const prevStatus = moved.status;
 
-    //! optimistic update
-    //! TODO (backend later): PATCH /api/candidates/:id/status { status: newStatus }
+    //! for status update
     setCandidates((prev) =>
       prev.map((c) => (c._id === active.id ? { ...c, status: newStatus } : c)),
     );
@@ -184,61 +187,77 @@ export default function Pipeline() {
   };
 
   return (
-    <div className="space-y-8">
-      {/* //! Heading */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-xl font-bold">Pipeline</h1>
-          <p className="text-gray-600 text-sm">
-            Drag candidates across stages.
-          </p>
-        </div>
+    <>
+      <div className="space-y-8">
+        {/* //! Heading */}
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-xl font-bold">Pipeline</h1>
+            <p className="text-gray-600 text-sm">
+              Drag candidates across stages.
+            </p>
+          </div>
 
-        {/* //? filters */}
-        <div className="flex gap-2 w-1/3">
-          <SelectOption
-            placeholder="All jobs"
-            options={["All jobs", ...jobTitles]}
-            onOptionSelection={(value) =>
-              setSelectedJob(value === "All jobs" ? "" : value)
-            }
-          />
-          <SelectOption
-            placeholder="All source"
-            options={["All source", ...sources]}
-            onOptionSelection={(value) =>
-              setSelectedSource(value === "All source" ? "" : value)
-            }
-          />
-        </div>
-      </div>
-
-      {/* //! board */}
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCorners}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
-        <div className="flex gap-3 overflow-x-auto pb-2">
-          {PIPELINE_STAGES.map((status) => (
-            <PipelineColumn
-              key={status}
-              status={status}
-              candidates={grouped[status]}
-              onCardClick={""}
+          {/* //? filters */}
+          <div className="flex gap-2 w-1/3">
+            <SelectOption
+              placeholder="All jobs"
+              options={["All jobs", ...jobTitles]}
+              onOptionSelection={(value) =>
+                setSelectedJob(value === "All jobs" ? "" : value)
+              }
             />
-          ))}
+            <SelectOption
+              placeholder="All source"
+              options={["All source", ...sources]}
+              onOptionSelection={(value) =>
+                setSelectedSource(value === "All source" ? "" : value)
+              }
+            />
+          </div>
         </div>
 
-        <DragOverlay>
-          {activeCandidate ? (
-            <div className="w-[200px] rotate-2">
-              <PipelineCard candidate={activeCandidate} />
-            </div>
-          ) : null}
-        </DragOverlay>
-      </DndContext>
-    </div>
+        {/* //! board */}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCorners}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+        >
+          <div className="flex gap-3 overflow-x-auto pb-2">
+            {PIPELINE_STAGES.map((status) => (
+              <PipelineColumn
+                key={status}
+                status={status}
+                candidates={grouped[status]}
+                onCardClick={(c) => {
+                  setSelectedCandidate(c);
+                  setDetailOpen(true);
+                }}
+              />
+            ))}
+          </div>
+
+          <DragOverlay>
+            {activeCandidate ? (
+              <div className="w-[200px] rotate-2">
+                <PipelineCard candidate={activeCandidate} />
+              </div>
+            ) : null}
+          </DragOverlay>
+        </DndContext>
+      </div>
+      {/* //! for details popUp */}
+      <CandidateDetail
+        open={detailOpen}
+        setOpen={setDetailOpen}
+        candidate={selectedCandidate}
+        onStatusChange={(id, status) =>
+          setCandidates((prev) =>
+            prev.map((c) => (c._id === id ? { ...c, status } : c)),
+          )
+        }
+      />
+    </>
   );
 }

@@ -4,6 +4,7 @@ import { SelectOption } from "../../../components/ui/Card/SelectOption";
 import AddCandidate from "../../../components/ui/Card/AddCandidate";
 import { getAllCandidates } from "../../../api/differentApi's/getAllCandidates.api";
 import { getAllJobs } from "../../../api";
+import CandidateDetail from "../../../components/ui/Card/CandidateDetails";
 
 function Candidates() {
   const [open, setOpen] = useState(false);
@@ -14,6 +15,9 @@ function Candidates() {
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedJob, setSelectedJob] = useState("");
   const [selectedSource, setSelectedSource] = useState("");
+
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   useEffect(() => {
     const fetchCandidates = async () => {
@@ -99,6 +103,16 @@ function Candidates() {
             />
 
             <AddCandidate open={open} setOpen={setOpen} />
+            <CandidateDetail
+              open={detailOpen}
+              setOpen={setDetailOpen}
+              candidate={selectedCandidate}
+              onStatusChange={(id, status) =>
+                setAllCandidate((prev) =>
+                  prev.map((c) => (c._id === id ? { ...c, status } : c)),
+                )
+              }
+            />
           </div>
         </div>
       </div>
@@ -161,6 +175,10 @@ function Candidates() {
             {filteredCandidates.map((candidate) => (
               <tr
                 key={candidate._id}
+                onClick={() => {
+                  setSelectedCandidate(candidate);
+                  setDetailOpen(true);
+                }}
                 className="border-b hover:bg-slate-100 cursor-pointer"
               >
                 <td className=" px-3 py-4">
