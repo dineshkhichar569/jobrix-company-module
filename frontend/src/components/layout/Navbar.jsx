@@ -6,7 +6,7 @@ import { getLoggedInUser } from "../../api/index.js";
 import { AnimatePresence } from "framer-motion";
 import AuthMSG from "../ui/popUpMessages/AuthMSG.jsx";
 
-function Navbar({handleLogout}) {
+function Navbar({ handleLogout, collapsed }) {
   const [open, setOpen] = useState(false);
   const profileRef = useRef(null);
 
@@ -40,10 +40,11 @@ function Navbar({handleLogout}) {
     return role ? role.charAt(0).toUpperCase() + role.slice(1) : "";
   };
 
-
   return (
     <>
-      <nav className="sticky top-0 z-30 backdrop-blur bg-white/40 border-b h-16 flex items-center justify-between px-8">
+      <nav
+        className={`fixed top-0 z-30 h-16 flex items-center justify-between px-8 backdrop-blur bg-white/40 border-b transition-all duration-700 ease-in-out ${collapsed ? "left-[5%] w-[95%]" : "left-[16.666%] w-[83.334%]"} `}
+      >
         {/* left */}
         <div className="flex items-center gap-20">
           <div className="flex flex-col justify-center">
@@ -134,8 +135,6 @@ function Navbar({handleLogout}) {
           </div>
         </div>
       </nav>
-
-
     </>
   );
 }

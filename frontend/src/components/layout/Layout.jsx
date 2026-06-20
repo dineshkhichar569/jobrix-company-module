@@ -49,10 +49,10 @@ function Layout() {
       <div
         className={`transition-all duration-700 ease-in-out ${collapsed ? "ml-[5%]" : "ml-[16.666%]"} flex-1 flex flex-col`}
       >
-        <Navbar handleLogout={handleLogout} />
+        <Navbar handleLogout={handleLogout} collapsed={collapsed} />
 
         {/* //! dashboard pages */}
-        <main className="flex-1 p-6 bg-gray-50">
+        <main className="flex-1 p-6 bg-gray-50 pt-24">
           <Outlet />
         </main>
       </div>
