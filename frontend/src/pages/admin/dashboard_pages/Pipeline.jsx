@@ -20,7 +20,7 @@ import { updateCandidateStatus } from "../../../api/differentApi's/updateCandida
 import CandidateDetail from "../../../components/ui/Card/CandidateDetails";
 import { getStatusColor } from "../../../components/utils/avatarUtils";
 
-//! status order for the columns — must match candidate status enum
+//! status order for the columns
 const PIPELINE_STAGES = [
   "Applied",
   "Screening",
@@ -75,8 +75,7 @@ function PipelineColumn({ status, candidates, onCardClick }) {
   );
 }
 
-//! Main
-
+//! Main function
 export default function Pipeline() {
   const [candidates, setCandidates] = useState([]);
   const [allJobs, setAllJobs] = useState([]);
@@ -91,7 +90,7 @@ export default function Pipeline() {
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
   );
 
-  //! fetch candidates + jobs (same pattern as Candidates section)
+  //! fetch candidates + jobs data
   useEffect(() => {
     const fetchCandidates = async () => {
       const res = await getAllCandidates();
@@ -108,7 +107,7 @@ export default function Pipeline() {
   const jobTitles = allJobs.map((job) => job.title);
   const sources = [...new Set(candidates.map((c) => c.source))];
 
-  //! filter (job + source match by string, like Candidates)
+  //! filter (job ans source)
   const filtered = useMemo(() => {
     return candidates.filter((c) => {
       if (selectedJob && c.job !== selectedJob) return false;
