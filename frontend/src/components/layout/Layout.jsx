@@ -61,17 +61,14 @@ function Layout() {
         {popUp && (
           <div className="fixed inset-0 z-50 h-screen w-screen backdrop-blur-sm bg-slate-950/40">
             <ConfirmPopup
-              placeholder="Do you want to logOut"
-              icon="🔴"
-              top="24px"
-              background="#16223d"
-              color="white"
-              textSize="16px"
-              px="15px"
-              py="8px"
-              popUpDirection="top"
-              setPopUp={setPopUp}
-              confirmLogout={confirmLogout}
+              title="Are you sure?"
+              message=""
+              icon="?"
+              confirmText = "Confirm"
+              cancelText = "Cancel"
+              tone = "danger"
+              onCancel={setPopUp}
+              onConfirm={confirmLogout}
             />
           </div>
         )}
@@ -81,14 +78,10 @@ function Layout() {
         {onLogout && (
           <div className="fixed z-50 h-screen w-screen backdrop-blur-sm">
             <AuthMSG
-              placeholder="Logging out securely…"
-              icon="🔒"
+              message="Logging out securely…"
+              type="logout"
               top="24px"
-              background="#16223d"
-              color="white"
-              textSize="16px"
-              px="15px"
-              py="8px"
+              bottom=""
               popUpDirection="top"
             />
           </div>

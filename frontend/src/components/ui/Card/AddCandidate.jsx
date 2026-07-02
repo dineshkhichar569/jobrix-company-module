@@ -316,34 +316,27 @@ export default function AddCandidate({ open, setOpen }) {
         </form>
       </div>
 
-      {/* Popups stay SAME */}
+      {/* //! for error popUp */}
       <AnimatePresence mode="wait">
         {error && (
           <AuthMSG
-            placeholder={error}
-            icon="⚠️"
+            message={error}
+            type="warning"
+            top=""
             bottom="24px"
-            background="#dc2626"
-            color="white"
-            textSize="16px"
-            px="15px"
-            py="8px"
             popUpDirection="bottom"
           />
         )}
-
         {success && (
-          <AuthMSG
-            placeholder="Candidate added Successfully"
-            icon="🎉"
-            top="24px"
-            background="#16a34a"
-            color="white"
-            textSize="18px"
-            px="20px"
-            py="12px"
-            popUpDirection="top"
-          />
+          <div className="absolute h-screen w-screen backdrop-blur-sm z-50">
+            <AuthMSG
+              message="Candidate added Successfully"
+              type="success"
+              top="24px"
+              bottom=""
+              popUpDirection="top"
+            />
+          </div>
         )}
       </AnimatePresence>
     </>

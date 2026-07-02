@@ -26,7 +26,7 @@ function CompanyUserLogin() {
       setSuccess(true);
 
       setTimeout(() => {
-        navigate("/admin/dashboard", {replace: true});
+        navigate("/admin/dashboard", { replace: true });
       }, 2000);
 
       localStorage.setItem("token", res.data.token);
@@ -175,18 +175,14 @@ function CompanyUserLogin() {
           </motion.div>
         </div>
 
-        {/* //? for error popUp */}
+        {/* //! for error popUp */}
         <AnimatePresence mode="wait">
           {error && (
             <AuthMSG
-              placeholder={error}
-              icon="⚠️"
+              message={error}
+              type="warning"
+              top=""
               bottom="24px"
-              background="#dc2626"
-              color="white"
-              textSize="16px"
-              px="15px"
-              py="8px"
               popUpDirection="bottom"
             />
           )}
@@ -194,14 +190,10 @@ function CompanyUserLogin() {
         {success && (
           <div className="absolute h-screen w-screen backdrop-blur-sm z-50">
             <AuthMSG
-              placeholder="Welcome back! Login successful."
-              icon="🎉"
+              message="Welcome back! Login successful."
+              type="login"
               top="24px"
-              background="#16a34a"
-              color="white"
-              textSize="18px"
-              px="20px"
-              py="12px"
+              bottom=""
               popUpDirection="top"
             />
           </div>

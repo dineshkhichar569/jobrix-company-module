@@ -1,4 +1,4 @@
-import { FileText, Globe, Mail, MapPin, Phone } from "lucide-react";
+import { FileText, Globe, Mail, MapPin, Phone, X } from "lucide-react";
 import { updateCandidateStatus } from "../../../api/differentApi's/updateCandidateStatus.api.js";
 import { SelectOption } from "./SelectOption.jsx";
 
@@ -50,12 +50,12 @@ export default function CandidateDetail({
         ${open ? "translate-x-0 opacity-100" : "translate-x-[calc(100%+1rem)] opacity-0"}`}
       >
         {/* //! header */}
-        <div className="flex items-center justify-between border-b px-5 py-4">
-          <span className="text-xs font-medium text-gray-400">
+        <div className="flex items-center justify-between border-b px-4 py-3">
+          <span className="text-sm font-medium text-gray-400">
             Candidate details
           </span>
           <button onClick={() => setOpen(false)}>
-            <i className="text-gray-400 text-lg">✕</i>
+            <X className="text-gray-400" />
           </button>
         </div>
 
@@ -112,7 +112,9 @@ export default function CandidateDetail({
                 {candidate.location || "—"}
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="text-gray-400"><Globe size={16} /></span>
+                <span className="text-gray-400">
+                  <Globe size={16} />
+                </span>
                 Source: {candidate.source || "—"}
               </div>
             </div>
@@ -124,16 +126,16 @@ export default function CandidateDetail({
               <div className="mb-2.5 text-[11px] font-medium text-gray-400">
                 Skills
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1">
                 {(Array.isArray(candidate.skills)
-                  ? candidate.skills
+                  ? candidate.skills.flatMap((s) => String(s).split(","))
                   : String(candidate.skills).split(",")
                 ).map((skill, i) => (
                   <span
                     key={i}
-                    className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700"
+                    className="rounded-xl bg-gray-100 px-3 py-1 text-xs text-gray-700"
                   >
-                    {skill.trim()}
+                    {skill}
                   </span>
                 ))}
               </div>
