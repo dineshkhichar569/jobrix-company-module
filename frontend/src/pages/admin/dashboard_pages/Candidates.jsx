@@ -106,6 +106,7 @@ function Candidates() {
           <SelectOption
             placeholder="All status"
             options={[
+              "All status",
               "Applied",
               "Screening",
               "Shortlisted",

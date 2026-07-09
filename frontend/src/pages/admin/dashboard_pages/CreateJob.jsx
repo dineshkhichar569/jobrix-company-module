@@ -1,4 +1,4 @@
-import { MapPin, Users2 } from "lucide-react";
+import { MapPin, SquarePen, Users2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getAllJobs } from "../../../api/index.js";
 import CreateJobCard from "../../../components/ui/Card/CreateJobCard.jsx";
@@ -63,7 +63,7 @@ function CreateJob() {
               <th className="px-3 py-2 text-center">RECRUITER</th>
               <th className="px-3 py-2 text-left">APPLICANTS</th>
               <th className="px-3 py-2 text-left">CREATED</th>
-              <th className="px-3 py-2 text-left"></th>
+              <th className="px-3 py-2 text-left">EDIT</th>
             </tr>
           </thead>
 
@@ -108,7 +108,14 @@ function CreateJob() {
                     year: "numeric",
                   })}
                 </td>
-                <td className="px-3 py-3 text-center cursor-pointer">•••</td>
+                <td className="px-3 py-3 text-center">
+                  <button
+                    className="inline-flex items-center justify-center w-7 h-7 rounded-lg border border-gray-200 bg-white text-gray-600 transition-all duration-200 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 hover:shadow-md active:scale-95"
+                    title="Edit"
+                  >
+                    <SquarePen size={16} />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
