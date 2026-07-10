@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import AuthMSG from "../popUpMessages/AuthMSG.jsx";
 import { SelectOption } from "./SelectOption.jsx";
 import { addJob } from "../../../api/differentApi's/addJob.api.js";
+import { updateJob } from "../../../api/differentApi's/updateJob.api.js";
 
 const departments = [
   "Human Resources",
@@ -29,7 +30,11 @@ const departments = [
   "Other",
 ];
 
-function CreateJobCard({ open, setOpen }) {
+//! job present = edit mode || absent = create mode
+//! onSaved = parent refreshes the jobs list after save
+function CreateJobCard({ open, setOpen, job, onSaved }) {
+  const isEdit = Boolean(job);
+
   const [jobTitle, setJobTitle] = useState("");
   const [jobDepartment, setJobDepartment] = useState("");
   const [jobLocation, setJobLocation] = useState("");
@@ -40,29 +45,23 @@ function CreateJobCard({ open, setOpen }) {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const data = {
-        jobTitle,
-        jobDepartment,
-        jobLocation,
-        jobType,
-        jobDescription,
-        jobRequirement,
-        jobStatus,
-      };
 
-      setError("");
-      setSuccess(true);
-
-      if (open) {
-        setTimeout(() => {
-          setOpen(false);
-        }, 300);
-      }
-
+  //! prefill when editing is opened
+  useEffect(() => {
+    if (job) {
+      setJobTitle(job.title || "");
+      setJobDepartment(job.department || "");
+      setJobLocation(job.location || "");
+      setJobType(job.jobType || "");
+      setJobDescription(job.description || "");
+      setJobRequirement(
+        Array.isArray(job.requirements)
+          ? job.requirements.join(", ")
+          : job.requirements || "",
+      );
+      setJobStatus(job.status || "");
+    } else {
+      //! reset to empty for create mode
       setJobTitle("");
       setJobDepartment("");
       setJobLocation("");
@@ -70,14 +69,47 @@ function CreateJobCard({ open, setOpen }) {
       setJobDescription("");
       setJobRequirement("");
       setJobStatus("");
+    }
+  }, [job]);
 
-      await addJob(data);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        title: jobTitle,
+        department: jobDepartment,
+        location: jobLocation,
+        jobType: jobType,
+        description: jobDescription,
+        requirements: jobRequirement
+          ? jobRequirement.split(",").map((r) => r.trim())
+          : [],
+        status: jobStatus,
+      };
+
+      setError("");
+
+      //! edit vs create
+      if (isEdit) {
+        await updateJob(job._id, data);
+      } else {
+        await addJob(data);
+      }
+
+      setSuccess(true);
+      onSaved?.(); //! refresh the jobs list in parent
+
+      if (open) {
+        setTimeout(() => {
+          setOpen(false);
+        }, 300);
+      }
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
       setError(message);
       setSuccess(false);
 
-      console.error(error.response?.data?.message || "Registration failed");
+      console.error(error.response?.data?.message || "Save failed");
     }
   };
 
@@ -111,10 +143,12 @@ function CreateJobCard({ open, setOpen }) {
         <div className="mb-4">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-3">
             <BriefcaseBusiness className="w-5 h-5 text-indigo-600" />
-            Create New Job
+            {isEdit ? "Edit Job" : "Create New Job"}
           </h2>
           <p className="mt-1 text-sm text-gray-500">
-            Fill job details to publish a new opening.
+            {isEdit
+              ? "Update the job details below."
+              : "Fill job details to publish a new opening."}
           </p>
         </div>
 
@@ -137,7 +171,7 @@ function CreateJobCard({ open, setOpen }) {
             <label className="block text-sm font-medium mb-1">Department</label>
             <SelectOption
               options={departments}
-              placeholder="Select Department"
+              placeholder={jobDepartment || "Select Department"}
               onOptionSelection={setJobDepartment}
             />
           </div>
@@ -147,7 +181,7 @@ function CreateJobCard({ open, setOpen }) {
             <label className="block text-sm font-medium mb-1">Job Type</label>
             <SelectOption
               options={["Full Time", "Intern", "Contract"]}
-              placeholder="Select Type"
+              placeholder={jobType || "Select Type"}
               onOptionSelection={setJobType}
             />
           </div>
@@ -169,7 +203,7 @@ function CreateJobCard({ open, setOpen }) {
             <label className="block text-sm font-medium mb-1">Job Status</label>
             <SelectOption
               options={["Open", "Closed", "Draft"]}
-              placeholder="Select Status"
+              placeholder={jobStatus || "Select Status"}
               onOptionSelection={setJobStatus}
             />
           </div>
@@ -216,38 +250,31 @@ function CreateJobCard({ open, setOpen }) {
               type="submit"
               className="px-4 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
             >
-              Create Job
+              {isEdit ? "Save Changes" : "Create Job"}
             </button>
           </div>
         </form>
       </div>
 
-      {/* Popups stay SAME */}
+      {/* //! for error popUp */}
       <AnimatePresence mode="wait">
         {error && (
           <AuthMSG
-            placeholder={error}
-            icon="⚠️"
+            message={error}
+            type="warning"
+            top=""
             bottom="24px"
-            background="#dc2626"
-            color="white"
-            textSize="16px"
-            px="15px"
-            py="8px"
             popUpDirection="bottom"
           />
         )}
-
         {success && (
           <AuthMSG
-            placeholder="Job created successfully!"
-            icon="🎉"
+            message={
+              isEdit ? "Job updated successfully!" : "Job created successfully!"
+            }
+            type="success"
             top="24px"
-            background="#16a34a"
-            color="white"
-            textSize="18px"
-            px="20px"
-            py="12px"
+            bottom=""
             popUpDirection="top"
           />
         )}

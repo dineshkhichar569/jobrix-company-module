@@ -4,23 +4,23 @@ export const jobCreation = async (req, res) => {
   try {
     console.log("BODY:", req.body);
     const {
-      jobTitle,
-      jobDepartment,
-      jobLocation,
+      title,
+      department,
+      location,
       jobType,
-      jobDescription,
-      jobRequirement,
-      jobStatus,
+      description,
+      requirements,
+      status,
     } = req.body;
 
     const job = await Job.create({
-      title: jobTitle,
-      department: jobDepartment,
-      location: jobLocation,
-      jobType: jobType,
-      description: jobDescription,
-      requirements: jobRequirement,
-      status: jobStatus,
+      title,
+      department,
+      location,
+      jobType,
+      description,
+      requirements,
+      status,
 
       companyId: req.companyId,
       createdBy: req.userId,
