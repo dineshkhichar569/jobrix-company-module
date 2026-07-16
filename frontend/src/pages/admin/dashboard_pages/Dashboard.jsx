@@ -26,7 +26,7 @@ import {
   FilePlus,
 } from "lucide-react";
 import { getAllCandidates } from "../../../api/differentApi's/getAllCandidates.api";
-import { getAllJobs } from "../../../api";
+import { getAllJobs, getLoggedInUser } from "../../../api";
 
 const STAGE_COLORS = {
   Applied: "#3b82f6",
@@ -75,6 +75,15 @@ function Kpi({ icon: Icon, label, value, sub, subColor = "text-emerald-600" }) {
 export default function Dashboard() {
   const [candidates, setCandidates] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [loggedUser, setLoggedUser] = useState(null);
+
+    useEffect(() => {
+      const fetchLoggedUser = async () => {
+        const res = await getLoggedInUser();
+        setLoggedUser(res.data);
+      };
+      fetchLoggedUser();
+    }, []);
 
   useEffect(() => {
     (async () => {
@@ -233,14 +242,14 @@ export default function Dashboard() {
   return (
     <div className="space-y-4">
       {/* //! header */}
-      <div>
-        <h1 className="text-xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-sm text-gray-500">
-          Welcome back{name ? `, ${name}` : ""}! Here's what's happening with
-          your hiring.
-        </p>
-      </div>
-
+<div>
+  <h1 className="text-2xl font-bold tracking-tight text-gray-900">
+    Welcome Back , <span className="text-indigo-600">{loggedUser ? `${loggedUser.fullname}` : ""}</span> 👋
+  </h1>
+  <p className="mt-1 text-sm text-gray-400">
+    {new Date().toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long" })} · Here's what's happening with your hiring.
+  </p>
+</div>
       {/* //! 6 KPI cards */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
         <Kpi
