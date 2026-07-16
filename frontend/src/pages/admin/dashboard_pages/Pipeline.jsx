@@ -31,7 +31,6 @@ const PIPELINE_STAGES = [
   "On Hold",
 ];
 
-
 /* //! Droppable Column  */
 function PipelineColumn({ status, candidates, onCardClick }) {
   const { setNodeRef, isOver } = useDroppable({ id: status });
