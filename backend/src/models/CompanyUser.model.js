@@ -22,6 +22,7 @@ const companyUserSchema = mongoose.Schema(
       type: String,
       unique: true,
       sparse: true,
+      default: undefined,
     },
     gender: {
       type: String,

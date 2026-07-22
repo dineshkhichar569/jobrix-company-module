@@ -3,10 +3,14 @@ import AddMemberCard from "../../../components/ui/Card/AddMemberCard";
 import { getAllMembers } from "../../../api/index.js";
 import { Shield, UserCheck, Users } from "lucide-react";
 import { getAvatarInitials } from "../../../components/utils/avatarUtils.js";
+import CandidateDetail from "../../../components/ui/Card/CandidateDetails.jsx";
+import TeamMemberDetail from "../../../components/ui/Card/TeamMemberDetail.jsx";
 
 function Teams() {
   const [open, setOpen] = useState(false);
+  const [detailOpen, setDetailOpen] = useState(false);
   const [members, setMembers] = useState([]);
+  const [selectedMember, setSelectedMember] = useState([]);
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -62,6 +66,19 @@ function Teams() {
             />
 
             <AddMemberCard open={open} setOpen={setOpen} />
+            <TeamMemberDetail
+              open={detailOpen}
+              setOpen={setDetailOpen}
+              member={selectedMember}
+              onRoleChange={(id, role) =>
+                setSelectedMember((prev) =>
+                  prev.map((c) => (c._id === id ? { ...c, role } : c)),
+                )
+              }
+              onDeactivate={(id) => {
+                /* your deactivate API */
+              }}
+            />
           </div>
         </div>
       </div>
@@ -130,7 +147,14 @@ function Teams() {
 
           <tbody>
             {sortedMember.map((member) => (
-              <tr key={member._id} className="border-b hover:bg-slate-100">
+              <tr
+                key={member._id}
+                onClick={() => {
+                  setSelectedMember(member);
+                  setDetailOpen(true);
+                }}
+                className="border-b hover:bg-slate-100"
+              >
                 <td className=" px-3 py-4 flex gap-2 items-center">
                   <span
                     className={`font-medium text-sm h-8 w-8 rounded-full flex items-center justify-center 

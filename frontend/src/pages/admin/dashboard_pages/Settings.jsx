@@ -129,7 +129,7 @@ export default function Settings() {
           </p>
         </div>
 
-        {/* saved message */}
+        {/* //! saved message */}
         {saved && (
           <span className="flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-600">
             <Check size={14} /> Saved
