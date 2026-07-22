@@ -11,7 +11,7 @@ import {
   Trash2,
   Check,
 } from "lucide-react";
-import { getLoggedInUser } from "../../../api";
+import { getAllMembers, getLoggedInUser } from "../../../api";
 
 //! all settings tabs (some only for admin)
 const TABS = [
@@ -49,6 +49,7 @@ export default function Settings() {
   const [activeTab, setActiveTab] = useState("profile");
   const [saved, setSaved] = useState(false);
 
+  //! To get the Logged in user informations
   const [loggedUser, setLoggedUser] = useState();
 
   //! profile form
@@ -116,6 +117,13 @@ export default function Settings() {
       setLoggedUser(res.data);
     };
     fetchLoggedUser();
+
+    const fetchMembers = async () => {
+      const res = await getAllMembers();
+
+    }
+
+    fetchMembers();
   }, []);
 
   return (
