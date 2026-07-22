@@ -17,7 +17,6 @@ import { getAllMembers, getLoggedInUser } from "../../../api";
 const TABS = [
   { key: "profile", label: "My Profile", icon: User, adminOnly: false },
   { key: "company", label: "Company", icon: Building2, adminOnly: true },
-  { key: "team", label: "Team Members", icon: Users, adminOnly: true },
   {
     key: "notifications",
     label: "Notifications",
@@ -117,13 +116,6 @@ export default function Settings() {
       setLoggedUser(res.data);
     };
     fetchLoggedUser();
-
-    const fetchMembers = async () => {
-      const res = await getAllMembers();
-
-    }
-
-    fetchMembers();
   }, []);
 
   return (
@@ -170,7 +162,7 @@ export default function Settings() {
 
         {/* //! right content */}
         <div className="lg:col-span-3">
-          {/* ---------- PROFILE ---------- */}
+          {/* //! /////////////////// PROFILE */}
           {activeTab === "profile" && (
             <div className="space-y-4">
               {/* profile info */}
@@ -313,7 +305,7 @@ export default function Settings() {
             </div>
           )}
 
-          {/* ---------- COMPANY ---------- */}
+          {/* //! ///////////////// COMPANY */}
           {activeTab === "company" && (
             <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
               <div className="mb-4 text-sm font-semibold text-gray-900">
@@ -363,88 +355,7 @@ export default function Settings() {
             </div>
           )}
 
-          {/* ---------- TEAM MEMBERS ---------- */}
-          {activeTab === "team" && (
-            <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
-              <div className="mb-4 flex items-center justify-between">
-                <div className="text-sm font-semibold text-gray-900">
-                  Team Members
-                </div>
-                <span className="text-xs text-gray-400">
-                  {team.length} members
-                </span>
-              </div>
-
-              {team.length === 0 ? (
-                <p className="py-8 text-center text-xs text-gray-400">
-                  No team members yet.
-                </p>
-              ) : (
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-gray-100 text-[11px] uppercase tracking-wide text-gray-400">
-                      <th className="pb-2 text-left font-medium">Member</th>
-                      <th className="pb-2 text-left font-medium">Role</th>
-                      <th className="pb-2 text-right font-medium">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {team.map((member) => (
-                      <tr
-                        key={member._id}
-                        className="border-b border-gray-50 last:border-0"
-                      >
-                        <td className="py-3">
-                          <div className="flex items-center gap-3">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-[11px] font-medium text-indigo-600">
-                              {initials(member.fullname)}
-                            </div>
-                            <div>
-                              <div className="text-xs font-medium text-gray-800">
-                                {member.fullname}
-                              </div>
-                              <div className="text-[10px] text-gray-400">
-                                {member.email}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td className="py-3">
-                          <select
-                            value={member.role}
-                            onChange={(e) =>
-                              handleRoleChange(member._id, e.target.value)
-                            }
-                            className={`rounded-lg px-2.5 py-1 text-[11px] font-medium outline-none ${getRoleColor(
-                              member.role,
-                            )}`}
-                          >
-                            {ROLES.map((r) => (
-                              <option key={r} value={r}>
-                                {r}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-
-                        <td className="py-3 text-right">
-                          <button
-                            onClick={() => handleRemoveMember(member._id)}
-                            className="text-gray-400 hover:text-red-500"
-                          >
-                            <Trash2 size={15} />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
-            </div>
-          )}
-
-          {/* ---------- NOTIFICATIONS ---------- */}
+          {/* //! //////////////// NOTIFICATIONS  */}
           {activeTab === "notifications" && (
             <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
               <div className="mb-4 text-sm font-semibold text-gray-900">
