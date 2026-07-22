@@ -179,10 +179,10 @@ function Teams() {
                   {member.department}
                 </td>
                 <td className="px-3 py-3 text-center font-medium text-gray-500">
-                  0
+                  {member.activeJobs ?? 0}
                 </td>
                 <td className="px-3 py-3 text-center text-black font-medium">
-                  6
+                  {member.totalHired ?? 0}
                 </td>
                 <td className="px-3 py-3 font-medium text-gray-500">
                   {new Date(member.createdAt).toLocaleDateString("en-IN", {
