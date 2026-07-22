@@ -62,7 +62,7 @@ export default function TeamMemberDetail({
       {/* //! right floating rounded card */}
       <div
         className={`fixed right-4 top-4 bottom-4 z-50 w-[380px] max-w-[90%] bg-white rounded-2xl shadow-2xl
-        transition-all duration-300 ease-out overflow-y-auto
+        transition-all duration-300 ease-out overflow-y-auto border-green-300 border-[1px]
         ${open ? "translate-x-0 opacity-100" : "translate-x-[calc(100%+1rem)] opacity-0"}`}
       >
         {/* //! header */}
@@ -76,7 +76,7 @@ export default function TeamMemberDetail({
         {/* //! emerald identity banner */}
         <div className="bg-gradient-to-br from-emerald-50 to-teal-50 px-5 py-6">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500 text-xl font-semibold text-white shadow-lg shadow-emerald-500/25">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-600 text-xl font-semibold text-white shadow-lg shadow-emerald-500/25">
               {initials(member.fullname)}
             </div>
             <div>
