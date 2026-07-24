@@ -10,12 +10,14 @@ import {
   Globe,
   Trash2,
   Check,
+  MapPin,
 } from "lucide-react";
 import { getLoggedInUser } from "../../../api";
 import { updateMembersDetails } from "../../../api/differentApi's/updateMembersDetails.api";
 import { updatePassword } from "../../../api/differentApi's/updatePassword.api";
 import AuthMSG from "../../../components/ui/popUpMessages/AuthMSG";
 import { AnimatePresence } from "framer-motion";
+import { getCompanyDetails } from "../../../api/differentApi's/company.api";
 
 //! all settings tabs (some only for admin)
 const TABS = [
@@ -69,6 +71,8 @@ export default function Settings() {
   //! company form
   const [companyName, setCompanyName] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
+  const [companySize, setCompanySize] = useState("");
+  const [companyLocation, setCompanyLocation] = useState("");
 
   //! notification toggles
   const [notifyApply, setNotifyApply] = useState(true);
@@ -87,7 +91,7 @@ export default function Settings() {
       phoneNo: phone,
     });
 
-    setSuccess("Profile Updated successfully.")
+    setSuccess("Profile Updated successfully.");
   };
 
   //! TODO: connect to your change password API
@@ -119,7 +123,16 @@ export default function Settings() {
       setPhone(res.data.phoneNo || "");
     };
 
+    const fetchCompanyDetails = async () => {
+      const res = await getCompanyDetails();
+      setCompanyName(res.data.companyName || "");
+      setCompanyWebsite(res.data.domain || "");
+      setCompanySize(res.data.companySize || "");
+      setCompanyLocation(res.data.location || "");
+    };
+
     fetchLoggedUser();
+    fetchCompanyDetails();
   }, []);
 
   useEffect(() => {
@@ -147,13 +160,6 @@ export default function Settings() {
               Manage your account and company preferences.
             </p>
           </div>
-
-          {/* //! saved message */}
-          {saved && (
-            <span className="flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-600">
-              <Check size={14} /> Saved
-            </span>
-          )}
         </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
@@ -364,6 +370,42 @@ export default function Settings() {
                       />
                     </div>
                   </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                      Company Size
+                    </label>
+                    <div className="relative">
+                      <Building2
+                        size={15}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                      />
+                      <input
+                        type="text"
+                        value={companySize}
+                        onChange={(e) => setCompanySize(e.target.value)}
+                        placeholder="000"
+                        className="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 pl-9 pr-3 text-sm outline-none focus:border-indigo-400"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                      Location
+                    </label>
+                    <div className="relative">
+                      <MapPin
+                        size={15}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                      />
+                      <input
+                        type="text"
+                        value={companyLocation}
+                        onChange={(e) => setCompanyLocation(e.target.value)}
+                        placeholder="Jaipur, Rajasthan, India"
+                        className="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 pl-9 pr-3 text-sm outline-none focus:border-indigo-400"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <button
@@ -473,13 +515,13 @@ export default function Settings() {
           />
         )}
         {success && (
-            <AuthMSG
-              message={success}
-              type="success"
-              top="24px"
-              bottom=""
-              popUpDirection="top"
-            />
+          <AuthMSG
+            message={success}
+            type="success"
+            top="24px"
+            bottom=""
+            popUpDirection="top"
+          />
         )}
       </AnimatePresence>
     </>

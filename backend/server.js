@@ -10,6 +10,7 @@ import jobRouter from "./src/routes/public/job.routes.js";
 import recruiterRouter from "./src/routes/admin/recruiter.routes.js";
 import loggedInRouter from "./src/routes/public/getLoggedInUser.Routes.js";
 import candidateRouter from "./src/routes/public/candidate.routes.js";
+import companyRouter from "./src/routes/admin/company.routes.js";
 
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 //! Routes
 app.use("/api/auth", authRouter);
 app.use("/api/admin", recruiterRouter);
+app.use("/api/admin", companyRouter);
 app.use("/api", jobRouter);
 app.use("/api", loggedInRouter);
 app.use("/api", candidateRouter);

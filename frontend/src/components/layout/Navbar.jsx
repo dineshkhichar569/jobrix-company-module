@@ -5,12 +5,14 @@ import Profile_Icon_PopUp from "../ui/Card/Profile_Icon_PopUp";
 import { getLoggedInUser } from "../../api/index.js";
 import { AnimatePresence } from "framer-motion";
 import AuthMSG from "../ui/popUpMessages/AuthMSG.jsx";
+import { getCompanyDetails } from "../../api/differentApi's/company.api.js";
 
 function Navbar({ handleLogout, collapsed }) {
   const [open, setOpen] = useState(false);
   const profileRef = useRef(null);
 
   const [loggedUser, setLoggedUser] = useState(null);
+  const [companyData, setcompanyData] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -34,6 +36,13 @@ function Navbar({ handleLogout, collapsed }) {
       setLoggedUser(res.data);
     };
     fetchLoggedUser();
+
+    const fetchCompanyDetails = async () => {
+      const res = await getCompanyDetails();
+      setcompanyData(res.data);
+    };
+
+    fetchCompanyDetails();
   }, []);
 
   const capitalRole = (role) => {
@@ -48,8 +57,17 @@ function Navbar({ handleLogout, collapsed }) {
         {/* left */}
         <div className="flex items-center gap-20">
           <div className="flex flex-col justify-center">
-            <span className="text-base font-medium">Jobrix Corporation</span>
-            <span className="text-gray-600 text-xs">Enterprise ATS </span>
+            <span className="text-base font-medium">
+              {companyData.companyName}
+            </span>
+            <a
+              href={`https://${companyData.domain}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-blue-600 transition-colors hover:text-blue-800 hover:underline"
+            >
+              {companyData.domain}
+            </a>
           </div>
 
           {/* Search bar */}
