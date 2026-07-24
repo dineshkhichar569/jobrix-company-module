@@ -76,9 +76,13 @@ function Teams() {
                   prev.map((m) => (m._id === id ? { ...m, role } : m)),
                 );
               }}
-              onDeactivate={(id) => {
-                /* your deactivate API */
-              }}
+              onDeactivate={(id) =>
+                setMembers((prev) =>
+                  prev.map((m) =>
+                    m._id === id ? { ...m, isActive: false } : m,
+                  ),
+                )
+              }
             />
           </div>
         </div>
@@ -153,7 +157,7 @@ function Teams() {
                   setSelectedMember(member);
                   setDetailOpen(true);
                 }}
-                className="border-b hover:bg-slate-100"
+                className="border-b hover:bg-slate-100 cursor-pointer"
               >
                 <td className=" px-3 py-4 flex gap-2 items-center">
                   <span

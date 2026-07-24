@@ -17,7 +17,10 @@ import { updateMembersDetails } from "../../../api/differentApi's/updateMembersD
 import { updatePassword } from "../../../api/differentApi's/updatePassword.api";
 import AuthMSG from "../../../components/ui/popUpMessages/AuthMSG";
 import { AnimatePresence } from "framer-motion";
-import { getCompanyDetails } from "../../../api/differentApi's/company.api";
+import {
+  getCompanyDetails,
+  UpdateCompanyDetails,
+} from "../../../api/differentApi's/company.api";
 
 //! all settings tabs (some only for admin)
 const TABS = [
@@ -102,14 +105,23 @@ export default function Settings() {
       setNewPassword("");
       setSuccess("Password changed successfully.");
     } catch (err) {
-      console.error("password change failed:", err);
       setError(err.response?.data?.message || "Failed to change password");
     }
   }
 
   //! TODO: connect to your update company API
-  function handleSaveCompany() {
-    showSaved();
+  async function handleSaveCompany() {
+    try {
+      await UpdateCompanyDetails({
+        companyName,
+        domain: companyWebsite,
+        companySize,
+        location: companyLocation,
+      });
+      setSuccess("Company details Updated successfully.");
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to update company");
+    }
   }
 
   useEffect(() => {
@@ -122,18 +134,22 @@ export default function Settings() {
       setEmail(res.data.email || "");
       setPhone(res.data.phoneNo || "");
     };
+    fetchLoggedUser();
+  }, []);
 
+  useEffect(() => {
     const fetchCompanyDetails = async () => {
-      const res = await getCompanyDetails();
-      setCompanyName(res.data.companyName || "");
-      setCompanyWebsite(res.data.domain || "");
-      setCompanySize(res.data.companySize || "");
-      setCompanyLocation(res.data.location || "");
+      if (loggedUser?.role == "admin") {
+        const res = await getCompanyDetails();
+        setCompanyName(res.data.companyName || "");
+        setCompanyWebsite(res.data.domain || "");
+        setCompanySize(res.data.companySize || "");
+        setCompanyLocation(res.data.location || "");
+      }
     };
 
-    fetchLoggedUser();
     fetchCompanyDetails();
-  }, []);
+  }, [loggedUser]);
 
   useEffect(() => {
     if (error) {

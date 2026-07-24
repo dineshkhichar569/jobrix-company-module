@@ -5,6 +5,7 @@ import { getAllMembers } from "../../controllers/admin/getAllMembers.controller.
 import { updateMembersRole } from "../../controllers/admin/updateMembersRole.controller.js";
 import { updateMembersDetails } from "../../controllers/public/updateMembersDetails.controller.js";
 import { updatePassword } from "../../controllers/public/updatePassword.controller.js";
+import { deactivateMember } from "../../controllers/admin/deactivateMember.controller.js";
 
 const recruiterRouter = express();
 
@@ -33,6 +34,13 @@ recruiterRouter.patch(
   authMiddleware,
   roleMiddleware("admin"),
   updateMembersRole
+);
+
+recruiterRouter.patch(
+  "/members/:id/deactivate",
+  authMiddleware,
+  roleMiddleware("admin"),
+  deactivateMember
 );
 
 recruiterRouter.patch(

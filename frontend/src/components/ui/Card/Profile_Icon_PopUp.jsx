@@ -15,7 +15,7 @@ function Profile_Icon_PopUp({ open, handleLogout }) {
       {/* profile */}
       <div className="flex gap-3 items-center p-2 rounded-lg hover:bg-slate-100 transition-all duration-100 cursor-pointer mb-1">
         <UserCircle2 className="h-5 w-5" />
-        <span className="font-medium text-sm">Your Profile</span>
+        <a href="/admin/settings" className="text-sm">Your Profile</a>
       </div>
 
       <hr />
@@ -23,7 +23,7 @@ function Profile_Icon_PopUp({ open, handleLogout }) {
       {/* Account Settings */}
       <div className="flex gap-3 items-center p-2 rounded-lg hover:bg-slate-100 transition-all duration-100 cursor-pointer mt-1">
         <Settings className="h-5 w-5" />
-        <span className="text-sm">Account settings</span>
+        <a href="" className="text-sm">Account settings</a>
       </div>
 
       {/* Theme */}

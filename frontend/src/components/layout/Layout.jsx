@@ -76,7 +76,6 @@ function Layout() {
 
       <AnimatePresence mode="wait">
         {onLogout && (
-          <div className="fixed z-50 h-screen w-screen backdrop-blur-sm">
             <AuthMSG
               message="Logging out securely…"
               type="logout"
@@ -84,7 +83,6 @@ function Layout() {
               bottom=""
               popUpDirection="top"
             />
-          </div>
         )}
       </AnimatePresence>
     </div>

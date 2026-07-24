@@ -61,7 +61,7 @@ function Navbar({ handleLogout, collapsed }) {
               {companyData.companyName}
             </span>
             <a
-              href={`https://${companyData.domain}`}
+              href={companyData.domain}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-blue-600 transition-colors hover:text-blue-800 hover:underline"
