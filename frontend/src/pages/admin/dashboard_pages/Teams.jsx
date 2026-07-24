@@ -146,6 +146,7 @@ function Teams() {
               <th className="px-3 py-2 text-center">Active Jobs</th>
               <th className="px-3 py-2 text-center">Total Hired</th>
               <th className="px-3 py-2 text-left">Joined</th>
+              <th className="px-3 py-2 text-left">isActive</th>
             </tr>
           </thead>
 
@@ -194,6 +195,19 @@ function Teams() {
                     month: "short",
                     year: "numeric",
                   })}
+                </td>
+                <td className="px-3 py-3">
+                  {member.isActive ? (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-600">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      Active
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-medium text-gray-500">
+                      <span className="h-1.5 w-1.5 rounded-full bg-gray-400" />
+                      Inactive
+                    </span>
+                  )}
                 </td>
               </tr>
             ))}
