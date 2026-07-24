@@ -10,7 +10,7 @@ function Teams() {
   const [open, setOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
   const [members, setMembers] = useState([]);
-  const [selectedMember, setSelectedMember] = useState([]);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -70,11 +70,12 @@ function Teams() {
               open={detailOpen}
               setOpen={setDetailOpen}
               member={selectedMember}
-              onRoleChange={(id, role) =>
-                setSelectedMember((prev) =>
-                  prev.map((c) => (c._id === id ? { ...c, role } : c)),
-                )
-              }
+              onRoleChange={(id, role) => {
+                setSelectedMember((prev) => (prev ? { ...prev, role } : prev));
+                setMembers((prev) =>
+                  prev.map((m) => (m._id === id ? { ...m, role } : m)),
+                );
+              }}
               onDeactivate={(id) => {
                 /* your deactivate API */
               }}
@@ -141,7 +142,6 @@ function Teams() {
               <th className="px-3 py-2 text-center">Active Jobs</th>
               <th className="px-3 py-2 text-center">Total Hired</th>
               <th className="px-3 py-2 text-left">Joined</th>
-              <th className="px-3 py-2 text-left"></th>
             </tr>
           </thead>
 
@@ -191,7 +191,6 @@ function Teams() {
                     year: "numeric",
                   })}
                 </td>
-                <td className="px-3 py-3 cursor-pointer">•••</td>
               </tr>
             ))}
           </tbody>

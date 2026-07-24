@@ -9,13 +9,14 @@ import {
   X,
 } from "lucide-react";
 import { SelectOption } from "./SelectOption.jsx";
+import { updateMembersRole } from "../../../api/differentApi's/updateMembersRole.api.js";
 
-const ROLES = ["admin", "hr", "recruiter"];
+const ROLES = ["admin", "hr_manager", "recruiter"];
 
 //! role badge colors
 function getRoleColor(role) {
   if (role === "admin") return "bg-rose-50 text-rose-600 border-rose-200";
-  if (role === "hr") return "bg-amber-50 text-amber-600 border-amber-200";
+  if (role === "hr_manager") return "bg-amber-50 text-amber-600 border-amber-200";
   return "bg-sky-50 text-sky-600 border-sky-200";
 }
 
@@ -47,6 +48,7 @@ export default function TeamMemberDetail({
   if (!member) return null;
 
   const handleRole = async (newRole) => {
+    await updateMembersRole(member._id, newRole);
     onRoleChange?.(member._id, newRole);
   };
 
