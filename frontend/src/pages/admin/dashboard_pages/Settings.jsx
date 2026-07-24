@@ -11,7 +11,9 @@ import {
   Trash2,
   Check,
 } from "lucide-react";
-import { getAllMembers, getLoggedInUser } from "../../../api";
+import { getLoggedInUser } from "../../../api";
+import { updateMembersDetails } from "../../../api/differentApi's/updateMembersDetails.api";
+import { updatePassword } from "../../../api/differentApi's/updatePassword.api";
 
 //! all settings tabs (some only for admin)
 const TABS = [
@@ -52,9 +54,9 @@ export default function Settings() {
   const [loggedUser, setLoggedUser] = useState();
 
   //! profile form
-  const [fullname, setFullname] = useState(loggedUser?.fullname || "");
-  const [email, setEmail] = useState(loggedUser?.email || "");
-  const [phone, setPhone] = useState(loggedUser?.phone || "");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   //! password form
   const [currentPassword, setCurrentPassword] = useState("");
@@ -63,9 +65,6 @@ export default function Settings() {
   //! company form
   const [companyName, setCompanyName] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
-
-  //! team members
-  const [team, setTeam] = useState([]);
 
   //! notification toggles
   const [notifyApply, setNotifyApply] = useState(true);
@@ -84,15 +83,26 @@ export default function Settings() {
   }
 
   //! TODO: connect to your update profile API
-  function handleSaveProfile() {
+  const handleSaveProfile = async () => {
+    await updateMembersDetails(loggedUser._id, {
+      fullname,
+      phoneNo: phone,
+    });
+
     showSaved();
-  }
+  };
 
   //! TODO: connect to your change password API
-  function handleChangePassword() {
-    setCurrentPassword("");
-    setNewPassword("");
-    showSaved();
+  async function handleChangePassword() {
+    try {
+      await updatePassword(currentPassword, newPassword);
+      setCurrentPassword("");
+      setNewPassword("");
+      showSaved();
+    } catch (err) {
+      console.error("password change failed:", err);
+      alert(err.response?.data?.message || "Failed to change password");
+    }
   }
 
   //! TODO: connect to your update company API
@@ -100,21 +110,17 @@ export default function Settings() {
     showSaved();
   }
 
-  //! TODO: connect to your update role API
-  function handleRoleChange(id, newRole) {
-    setTeam(team.map((m) => (m._id === id ? { ...m, role: newRole } : m)));
-  }
-
-  //! TODO: connect to your delete member API
-  function handleRemoveMember(id) {
-    setTeam(team.filter((m) => m._id !== id));
-  }
-
   useEffect(() => {
     const fetchLoggedUser = async () => {
       const res = await getLoggedInUser();
       setLoggedUser(res.data);
+
+      //! prefill the form fields from the fetched user
+      setFullname(res.data.fullname || "");
+      setEmail(res.data.email || "");
+      setPhone(res.data.phoneNo || "");
     };
+
     fetchLoggedUser();
   }, []);
 
@@ -171,7 +177,7 @@ export default function Settings() {
                   Profile Information
                 </div>
 
-                {/* avatar */}
+                {/* //! avatar */}
                 <div className="mb-5 flex items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-lg font-semibold text-indigo-600">
                     {initials(loggedUser?.fullname)}
@@ -190,7 +196,7 @@ export default function Settings() {
                   </div>
                 </div>
 
-                {/* fields */}
+                {/* //! fields */}
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
                     <label className="mb-1.5 block text-xs font-medium text-gray-500">
@@ -216,8 +222,9 @@ export default function Settings() {
                       <input
                         type="email"
                         value={email}
+                        disabled
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 pl-9 pr-3 text-sm outline-none focus:border-indigo-400"
+                        className="w-full cursor-not-allowed rounded-lg border border-gray-200 bg-gray-100 py-2 pl-9 pr-3 text-sm outline-none text-gray-500"
                       />
                     </div>
                   </div>
