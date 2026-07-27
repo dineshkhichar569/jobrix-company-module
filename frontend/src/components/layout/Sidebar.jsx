@@ -221,24 +221,6 @@ function Sidebar({ handleLogout, collapsed, setCollapsed }) {
           </div>
 
           <div
-            className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition-colors duration-200 ${isSelected === "analytics" ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100" : "text-gray-600 hover:bg-slate-100"} `}
-            onClick={() => navigate("/admin/analytics")}
-          >
-            <div className="w-6 h-6 flex items-center justify-center transition-all duration-300 group-hover:scale-125">
-              <BarChart3 />
-            </div>
-            <div
-              className={`overflow-hidden transition-all duration-700 ease-in-out ${collapsed ? "max-w-0 ml-0" : "max-w-[200px] ml-3"} `}
-            >
-              <span
-                className={`block text-base font-semibold whitespace-nowrap transition-opacity duration-700 ${collapsed ? "opacity-0" : "opacity-100"}`}
-              >
-                Analytics
-              </span>
-            </div>
-          </div>
-
-          <div
             className={`group flex items-center p-3 px-3 rounded-lg cursor-pointer transition duration-150 ${
               isSelected === "settings"
                 ? "text-indigo-500 bg-indigo-100 hover:bg-indigo-100 "
