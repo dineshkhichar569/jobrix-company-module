@@ -11,6 +11,7 @@ import recruiterRouter from "./src/routes/admin/recruiter.routes.js";
 import loggedInRouter from "./src/routes/public/getLoggedInUser.Routes.js";
 import candidateRouter from "./src/routes/public/candidate.routes.js";
 import companyRouter from "./src/routes/admin/company.routes.js";
+import interviewRouter from "./src/routes/public/interview.routes.js";
 
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/api/admin", companyRouter);
 app.use("/api", jobRouter);
 app.use("/api", loggedInRouter);
 app.use("/api", candidateRouter);
+app.use("/api/interviews", interviewRouter);
 
 
 app.listen(PORT, () => {
